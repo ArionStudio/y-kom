@@ -1,0 +1,2 @@
+# y-kom
+Sklep komputerowy
