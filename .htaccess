@@ -2,8 +2,8 @@ RewriteEngine on
 
 DirectoryIndex y-shop.php
 
-RewriteRule ^(.+)-([0-9]+).css$ $1.php [QSA,L]
-RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
+#RewriteRule ^(.+)-([0-9]+).css$ $1.php [QSA,L]
+#RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
 
 Options -Indexes
 
@@ -15,6 +15,7 @@ RewriteRule ^([^/]*)/([^/]*)\.html$ /y-kom/y-shop.php?type=$1&id=$2 [L]
 
 #Funkcje
 RewriteRule ^([^/]*)\.html$ /y-kom/y-functions/app/$1.php [L]
+
 
 ErrorDocument 403 /y-kom/y-error.html
 ErrorDocument 404 /y-kom/y-error.html
