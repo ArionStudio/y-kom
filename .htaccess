@@ -1,6 +1,6 @@
 RewriteEngine on
 
-DirectoryIndex y-shop.php
+DirectoryIndex index.php
 
 #RewriteRule ^(.+)-([0-9]+).css$ $1.php [QSA,L]
 #RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
