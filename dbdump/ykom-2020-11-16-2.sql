@@ -1,13 +1,9 @@
-Drop database ykom;
-create database ykom;
-use ykom;
-
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2020 at 12:15 PM
+-- Generation Time: Nov 16, 2020 at 12:31 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -136,6 +132,7 @@ CREATE TABLE `products` (
   `idProduct` int(11) NOT NULL,
   `name` text COLLATE utf8_polish_ci DEFAULT NULL,
   `price` double DEFAULT NULL,
+  `Quantity` int(10) UNSIGNED NOT NULL,
   `Specification` mediumtext COLLATE utf8_polish_ci DEFAULT NULL,
   `idCategory` int(11) DEFAULT NULL,
   `idFoto` int(11) DEFAULT NULL
@@ -145,9 +142,9 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`idProduct`, `name`, `price`, `Specification`, `idCategory`, `idFoto`) VALUES
-(1, 'WD 240GB 2,5\" SATA SSD', 500, 'cos', 2, NULL),
-(2, 'Gigabyte GeForce RTX 2060 OC 6GB GDDR6', 1500, 'nic', 3, NULL);
+INSERT INTO `products` (`idProduct`, `name`, `price`, `Quantity`, `Specification`, `idCategory`, `idFoto`) VALUES
+(1, 'WD 240GB 2,5\" SATA SSD', 500, 0, 'cos', 2, NULL),
+(2, 'Gigabyte GeForce RTX 2060 OC 6GB GDDR6', 1500, 0, 'nic', 3, NULL);
 
 -- --------------------------------------------------------
 

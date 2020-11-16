@@ -41,7 +41,7 @@ CREATE TABLE `carts` (
 -- Table structure for table `categeries`
 --
 
-CREATE TABLE `categeries` (
+CREATE TABLE `categories` (
   `idCategory` int(11) NOT NULL,
   `category` text COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;

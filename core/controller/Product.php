@@ -9,8 +9,13 @@
 
 //konstruktor który przypisze wam automatycznie wsyzsktie zmienne i wywoła funkcje (1 funkcje) wypisujące je
     //funkcje wypisująca też musicie zrobic i kostruktor wywoła tą funkcje czyli jej użyje poprostu w siobie
+// //
+// dodawanie produktu do bazy
+// oraz dodawanie kategori do bazy
 
-// class ProduktController{
-//     function showAllProduct()
-// }
+class ProduktController{
 
+    function createNewProduct(){
+        
+    }
+}
