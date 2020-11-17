@@ -48,10 +48,10 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `categeries`
+-- Dumping data for table `categories`
 --
 
-INSERT INTO `categeries` (`idCategory`, `category`) VALUES
+INSERT INTO `categories` (`idCategory`, `category`) VALUES
 (1, 'Procesory'),
 (2, 'Dyski twarde HDD i SSD'),
 (3, 'Karty graficzne\r\n'),
@@ -236,9 +236,9 @@ ALTER TABLE `carts`
   ADD PRIMARY KEY (`idCart`);
 
 --
--- Indexes for table `categeries`
+-- Indexes for table `categories`
 --
-ALTER TABLE `categeries`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`idCategory`);
 
 --
@@ -308,9 +308,9 @@ ALTER TABLE `carts`
   MODIFY `idCart` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `categeries`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `categeries`
+ALTER TABLE `categories`
   MODIFY `idCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
@@ -372,7 +372,7 @@ ALTER TABLE `orders`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `categeries` (`idCategory`),
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `categories` (`idCategory`),
   ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`idFoto`) REFERENCES `produktgallery` (`idFoto`);
 
 --
