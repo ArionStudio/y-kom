@@ -1,0 +1,24 @@
+RewriteEngine on
+#
+DirectoryIndex index.php
+#
+RewriteRule ^(.+)-([0-9]+).css$ $1.php [QSA,L]
+RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
+#
+#Options -Indexes
+#
+#Sklep
+RewriteRule ^c/([^/]*)/$ /index.php?type=c&id=$1 [L]
+RewriteRule ^p/([^/]*)/$ /index.php?type=p&id=$1 [L]
+#
+
+#adminPanel
+RewriteRule ^admin/$ /index.php [L]
+
+ErrorDocument 403 /static/error.php
+ErrorDocument 404 /static/error.php
+ErrorDocument 500 /static/error.php
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/x-javascript text/plain text/xml image/x-icon text/javascript
+</IfModule>
