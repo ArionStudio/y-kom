@@ -1,26 +1,24 @@
 RewriteEngine on
-
-DirectoryIndex index.php
-
-#RewriteRule ^(.+)-([0-9]+).css$ $1.php [QSA,L]
-#RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
-
-Options -Indexes
-
-#Panel administatora
-RewriteRule ^panel/admin/y-kom.html /y-kom/y-panel.php [L]
-
+#
+DirectoryIndex public/index.php
+#
+RewriteRule ^(.+)-([0-9]+).css$ $1.php [QSA,L]
+RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
+#
+#Options -Indexes
+#
 #Sklep
-RewriteRule ^([^/]*)/([^/]*)\.html$ /y-kom/y-shop.php?type=$1&id=$2 [L]
+RewriteRule ^c/([^/]*)/$ /public/index.php?type=c&id=$1 [L]
+RewriteRule ^p/([^/]*)/$ /public/index.php?type=p&id=$1 [L]
+#
 
-#Funkcje
-RewriteRule ^([^/]*)\.html$ /y-kom/y-functions/app/$1.php [L]
+#adminPanel
+RewriteRule ^admin/$ /public/index.php [L]
 
-
-ErrorDocument 403 /y-kom/y-error.html
-ErrorDocument 404 /y-kom/y-error.html
-ErrorDocument 500 /y-kom/y-error.html
-
-<IfModule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/html text/css application/x-javascript text/plain text/xml image/x-icon text/javascript
-</IfModule>
+#ErrorDocument 403 /error.php
+ErrorDocument 404 /error.php
+#ErrorDocument 500 /error.php
+#
+#<IfModule mod_deflate.c>
+#AddOutputFilterByType DEFLATE text/html text/css application/x-javascript text/plain text/xml image/x-icon text/javascript
+#</IfModule>
