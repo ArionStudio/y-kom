@@ -3,6 +3,7 @@
     if($_SERVER['REQUEST_URI'] == "/"){
         $shopController = new ShopController('content/home.php');
         $shopController->generateView();
+        $shopController->showBestsellers(10);
         if(isset($_GET['type'])){
             echo $_GET['type'] . " " . $_GET['id'];
         }
@@ -10,6 +11,7 @@
         echo "witamy w adminie";
     }else{
         $lk = strtok($_SERVER['REQUEST_URI'], "/");
+        
         switch($lk){
             case "c":{
                 $catID = strtok("/");
