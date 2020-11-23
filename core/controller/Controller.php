@@ -1,14 +1,13 @@
 <?php
     class Controller{
-        protected $view = "1";
-        protected $model = "1";
+        protected $view;
+        protected $model;
 
-        public function __construct($path){
-            if(file_exists($path)){
-                $this->view = new View($path);
-            }else{
-                return null;
-            }
+        public function getHeader(){
+            $this->view->getHeader();
+        }
+        public function getFooter(){
+            $this->view->getFooter();
         }
     }
 

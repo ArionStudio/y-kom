@@ -9,10 +9,89 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-header {
+main {
+  padding: 32px;
+}
+
+form {
+  max-width: 464px;
   width: 100%;
-  height: 80px;
-  background-color: rgba(255, 255, 255, 0.842);
+  padding: 18px 32px;
+  margin: 16px auto;
+  font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+}
+
+form div {
+  width: 100%;
+  max-width: 400px;
+  padding-bottom: 12px;
+}
+
+form .title {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  outline: none;
+  background-color: #fff;
+}
+
+form input:-webkit-autofill, form input:-webkit-autofill:hover, form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: black;
+  box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+form fieldset {
+  border-color: #686868;
+  border-width: 2px;
+  border-style: solid;
+}
+
+form fieldset:focus-within {
+  border-color: #AD0034;
+}
+
+form fieldset:focus-within legend {
+  color: #AD0034;
+}
+
+form legend {
+  color: black;
+  padding-inline-start: 6px;
+  padding-inline-end: 6px;
+}
+
+form .button {
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  background-color: #AD0034;
+  border: 2px solid #AD0034;
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+form .button:hover {
+  cursor: pointer;
+  color: wheat;
+  border: 2px solid #AD0034;
+}
+
+header {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: 120px;
+  background-color: white;
 }
 
 header menu div {
@@ -44,12 +123,67 @@ header section div a {
 }
 
 header section:nth-child(1) {
+  height: 80px;
   font-size: 11px;
+}
+
+header section:nth-child(1) > div {
+  height: 100%;
+}
+
+header section:nth-child(1) > div.toolbar {
+  height: 100%;
+}
+
+header section:nth-child(1) > div.toolbar menu {
+  height: 100%;
+}
+
+header section:nth-child(1) > div.toolbar menu div {
+  display: inline-block;
+  width: 88px;
+  height: 100%;
+  padding: 0;
+}
+
+header section:nth-child(1) > div.toolbar menu div a {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header section:nth-child(1) > div.toolbar menu div a img {
+  display: block;
+  height: 32px;
+  width: 32px;
+}
+
+header section:nth-child(1) > div.toolbar menu div a .svgImg:hover {
+  fill: #AD0034;
+}
+
+header section:nth-child(1) > div.toolbar menu div a span {
+  display: inline-block;
+  width: 64px;
+  text-align: center;
+  color: black;
+}
+
+header section:nth-child(1) > div.toolbar menu div a:hover {
+  box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+}
+
+header section:nth-child(1) > div.toolbar menu div a:hover span {
+  color: #AD0034;
 }
 
 header section:nth-child(2) {
   font-size: 13px;
-  background-color: rgba(231, 231, 231, 0.603);
+  background-color: #AD0034;
 }
 
 header section:nth-child(2) menu {
@@ -63,8 +197,60 @@ header section:nth-child(2) menu div:hover {
   background-color: #ffffff;
 }
 
+header section:nth-child(2) menu div:hover a {
+  color: #AD0034;
+}
+
+header section:nth-child(2) a {
+  color: white;
+}
+
 header a {
   color: black;
   text-decoration: none;
+}
+
+.pro {
+  width: 1200px;
+  margin: auto;
+}
+
+.pro__tiles {
+  width: 182px;
+  height: 275px;
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px;
+  font-size: 14px;
+}
+
+.pro__tiles:hover {
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+}
+
+.pro__foto {
+  margin: 16px 0px;
+  height: 160px;
+}
+
+.pro__link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.pro__name {
+  height: 50px;
+}
+
+.pro__price {
+  height: 25px;
+  padding-bottom: 4px;
+}
+
+.pro__title {
+  font-size: 26px;
+  font-style: bold;
 }
 /*# sourceMappingURL=style.css.map */

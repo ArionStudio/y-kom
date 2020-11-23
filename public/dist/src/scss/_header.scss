@@ -1,62 +1,105 @@
-header{
+header {
+    position: sticky;
+    top: 0px;
     width: 100%;
-    height: 80px;
-    menu{
-        div{
+    height: 120px;
+    menu {
+        div {
             display: inline-block;
         }
     }
-    section{
+    section {
         height: 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        div{
+        div {
             width: fit-content;
             height: 40px;
-
             display: inline-block;
-
-            
             margin: 0px 0px;
             padding: 0 20px;
-
-            a{
+            a {
                 width: 100%;
                 height: 100%;
-
                 display: inline-block;
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
         }
-        
-        &:nth-child(1){
-            
+        &:nth-child(1) {
+            height: 80px;
             font-size: 11px;
+            >div {
+                height: 100%;
+                &.toolbar {
+                    height: 100%;
+                    menu {
+                        height: 100%;
+                        div {
+                            display: inline-block;
+                            width: 88px;
+                            height: 100%;
+                            padding: 0;
+                            a {
+                                height: 100%;
+                                width: 100%;
+                                margin: 0;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                flex-direction: column;
+                                img {
+                                    display: block;
+                                    height: 32px;
+                                    width: 32px;
+                                }
+                                .svgImg:hover {
+                                    fill: $color1;
+                                }
+                                span {
+                                    display: inline-block;
+                                    width: 64px;
+                                    text-align: center;
+                                    color: black;
+                                }
+                                &:hover {
+                                    -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+                                    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+                                    span {
+                                        color: $color1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        &:nth-child(2){
-            menu{
+        &:nth-child(2) {
+            menu {
                 width: fit-content;
                 margin: auto;
                 font-size: 13px;
-                div:hover{
-                    -webkit-box-shadow: 0px 6px 10px -2px rgba(0,0,0,0.23); 
-                    box-shadow: 0px 6px 10px -2px rgba(0,0,0,0.23);
+                div:hover {
+                    -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+                    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
                     background-color: #ffffff;
+                    a {
+                        color: $color1;
+                    }
                 }
             }
-
             font-size: 13px;
-            background-color: rgba(231, 231, 231, 0.603);
+            background-color: $color1;
+            a {
+                color: white;
+            }
         }
     }
-
-    background-color: rgba(255, 255, 255, 0.842);
-
-    a{
+    background-color: rgba(255, 255, 255, 1);
+    a {
         color: black;
         text-decoration: none;
     }

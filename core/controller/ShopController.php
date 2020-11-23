@@ -5,19 +5,28 @@
                 $this->model = new CategoryModel();
 				$this->view = new ShopView($path);
             }else{
-                echo " są fale";
+                echo "są fale";
                 exit;
             }
         }
 
-        public function generateView(){
-            $var = array();
-            $var['header']['categories'] = $this->model->getCategories();
-            $this->view->getView($var);
+        public function getHeader(){
+            $_POST['categories'] = $this->model->getCategories();
+            $this->view->getHeader();
         }
+
+        
         public function showBestsellers($count){
 			$pM = new ProductModel();
 			$pV = new ProductView();
 			$pV->showProductsTiles($pM->Bestsellers($count), $count);
         }
+
+        public function getCategoryProducts($idCategory, $count){
+			$pM = new ProductModel();
+            $pV = new ProductView();
+            
+			$pV->showProductsTiles($pM->getCategoryProducts($idCategory, $count), $count);
+        }
+
     }

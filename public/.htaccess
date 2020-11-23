@@ -8,8 +8,12 @@ RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
 #Options -Indexes
 #
 #Sklep
+RewriteRule ^i/([^/]*)/$ /index.php?how=$1 [L]
+RewriteRule ^f/([^/]*)/$ /index.php?fun=$1 [L]
 RewriteRule ^c/([^/]*)/$ /index.php?type=c&id=$1 [L]
 RewriteRule ^p/([^/]*)/$ /index.php?type=p&id=$1 [L]
+RewriteRule ^c/([^/]*)/i/([^/]*)/$ /index.php?type=c&id=$1&how=$2 [L]
+RewriteRule ^p/([^/]*)/i/([^/]*)/$ /index.php?type=p&id=$1&how=$2 [L]
 #
 
 #adminPanel

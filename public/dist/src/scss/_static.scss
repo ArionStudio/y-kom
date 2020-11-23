@@ -1,8 +1,87 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     font-family: 'Poppins', sans-serif;
+}
+
+main {
+    padding: 32px;
+}
+
+form {
+    max-width: 464px;
+    width: 100%;
+    //
+    padding: 18px 32px;
+    margin: 16px auto;
+    //
+    font-size: 14px;
+    //
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    div {
+        width: 100%;
+        max-width: 400px;
+        padding-bottom: 12px;
+    }
+    .title {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        outline: none;
+        background-color: #fff;
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            -webkit-text-fill-color: black;
+            -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+            box-shadow: 0 0 0px 1000px #fff inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    }
+    fieldset {
+        border-color: rgb(104, 104, 104);
+        border-width: 2px;
+        border-style: solid;
+        &:focus-within {
+            border-color: $color1;
+            legend {
+                color: $color1;
+            }
+        }
+    }
+    legend {
+        color: black;
+        padding-inline-start: 6px;
+        padding-inline-end: 6px;
+    }
+    .button {
+        outline: none;
+        // wielkości i marginesy
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        // tekst
+        font-size: 14px;
+        text-align: center;
+        // kolorki
+        color: white;
+        background-color: $color1;
+        border: 2px solid $color1;
+        //transition
+        transition: color 0.1s ease, background-color 0.1s ease;
+        //hover
+        &:hover {
+            cursor: pointer;
+            color: wheat;
+            border: 2px solid $color1;
+        }
+    }
 }
