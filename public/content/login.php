@@ -22,7 +22,7 @@
                 unset($_SESSION['']);
             }
         ?>
-        <form action="login.html" method='POST'>
+        <form action="/s/logowanie/" method='POST'>
             <div class="title">Zaloguj się</div>
             <div>
                 <fieldset>
@@ -37,11 +37,9 @@
                 <input placeholder="Hasło" type="password" name="password" value="<?php echo $array[1]; ?>" />
             </fieldset>
             </div>
-            <div class="button" type="submit">Zaloguj się</div>
+            <button class="button" type="submit">Zaloguj się</button>
         </form>
-        <div>
-            <form action="">
+        <div class="linkInfo">
             <a href="/f/rejestracja/">Zarejestruj się</a>
-            </form>
         </div>
 </body>

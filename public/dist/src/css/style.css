@@ -69,11 +69,14 @@ form legend {
 
 form .button {
   outline: none;
+  display: block;
   width: 100%;
   padding: 10px;
   margin-top: 10px;
   font-size: 14px;
+  font-family: "Poppins", sans-serif;
   text-align: center;
+  appearance: none;
   color: white;
   background-color: #AD0034;
   border: 2px solid #AD0034;
@@ -84,6 +87,33 @@ form .button:hover {
   cursor: pointer;
   color: wheat;
   border: 2px solid #AD0034;
+}
+
+.linkInfo {
+  max-width: 464px;
+  width: 100%;
+  padding: 18px 32px;
+  margin: 16px auto;
+  font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+  transition: background-color 0.5s ease, color 1s ease;
+}
+
+.linkInfo a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 18px;
+  color: #AD0034;
+}
+
+.linkInfo:hover {
+  background-color: #AD0034;
+}
+
+.linkInfo:hover a {
+  color: white;
 }
 
 header {

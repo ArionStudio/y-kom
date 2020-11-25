@@ -9,7 +9,7 @@
     $page->getHeader();
 ?>
 
-<main>
+<main id="category">
     <div class="cat_title">Kategoria nr <?php echo $id; ?></div>
     <section class="pro">
         <?php $page->getCategoryProducts($id, $how); ?>

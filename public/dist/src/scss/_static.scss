@@ -65,12 +65,15 @@ form {
     .button {
         outline: none;
         // wielkości i marginesy
+        display: block;
         width: 100%;
         padding: 10px;
         margin-top: 10px;
         // tekst
         font-size: 14px;
+        font-family: $font;
         text-align: center;
+        appearance: none;
         // kolorki
         color: white;
         background-color: $color1;
@@ -82,6 +85,39 @@ form {
             cursor: pointer;
             color: wheat;
             border: 2px solid $color1;
+        }
+    }
+}
+
+.linkInfo{
+    max-width: 464px;
+    width: 100%;
+    //
+    padding: 18px 32px;
+    margin: 16px auto;
+    //
+    font-size: 14px;
+    //
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+
+    transition: background-color 0.5s ease, color 1s ease;
+    a{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        //
+        text-decoration: none;
+        font-size: 18px;
+        //
+        color: $color1;
+    }
+
+    &:hover{
+        background-color: $color1;
+        //
+
+        a{
+            color: white;
         }
     }
 }

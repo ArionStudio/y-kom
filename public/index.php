@@ -40,6 +40,27 @@
                 break;
             }
         }
+    }elseif(isset($_GET['special'])){
+        $special = $_GET['special'];
+        switch($special){
+            case "logowanie":{
+                $page = new ShopController('content/login.php');
+                require_once('content/login.php');
+                break;
+            }
+            case "rejestracja":{
+                $function = new UserController('content/register.php');
+                if($function->register()){
+                    header("Location: /");
+                }else{
+                    header("Location: /f/rejestracja/");
+                }
+                break;
+            }
+            default:{
+                break;
+            }
+        }
     }
 
     
