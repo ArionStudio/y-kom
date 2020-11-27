@@ -92,7 +92,7 @@ form .button:hover {
 .linkInfo {
   max-width: 464px;
   width: 100%;
-  padding: 18px 32px;
+  padding: 0px;
   margin: 16px auto;
   font-size: 14px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
@@ -103,6 +103,7 @@ form .button:hover {
   display: inline-block;
   width: 100%;
   height: 100%;
+  padding: 18px 32px;
   text-decoration: none;
   font-size: 18px;
   color: #AD0034;
@@ -126,6 +127,16 @@ header {
 
 header menu div {
   display: inline-block;
+}
+
+header .logo img {
+  height: 70px;
+  width: auto;
+}
+
+header .loooop {
+  max-width: 700px;
+  width: 100%;
 }
 
 header section {
@@ -153,6 +164,9 @@ header section div a {
 }
 
 header section:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 80px;
   font-size: 11px;
 }
@@ -282,5 +296,62 @@ header a {
 .pro__title {
   font-size: 26px;
   font-style: bold;
+}
+
+#product {
+  width: 1200px;
+  margin: auto;
+}
+
+#product > div > div {
+  padding-top: 32px;
+}
+
+#product .pmain {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#product .pmain > div {
+  display: inline-block;
+  height: 100%;
+  width: 49%;
+}
+
+#product .pspecification > div > div {
+  padding: 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+#product .pspecification > div > div:first-child {
+  border-top: 1px solid #eeeeee;
+}
+
+#product .pspecification > div > div > span:nth-child(1) {
+  font-weight: 500;
+  width: 40%;
+}
+
+#product .pspecification > div > div > span:nth-child(2) {
+  width: 59%;
+}
+
+#product .pspecification > div > div span {
+  display: inline-block;
+  padding-left: 128px;
+}
+
+#product .pspecification > div > div:nth-child(2n) {
+  background-color: #f9f9f9;
+}
+
+#product .pspecification > div > div:hover {
+  background-color: #eeeeee;
+}
+
+#product .pspecification > div:nth-child(1) {
+  font-size: 24px;
+  padding-bottom: 16px;
 }
 /*# sourceMappingURL=style.css.map */

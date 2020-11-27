@@ -9,8 +9,23 @@
         }
 
         public function login(){
-            
-            return false;
+            $usr = new UserModel(); 
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            if($stmt = $usr->login($email)){
+                if(!$row = $stmt->fetch()){ //jeżeli nie znalazło żadnego urzytkownika
+                    return false;
+                }
+                elseif(password_verify($password, $row['password'])){ //jeżeli hasło się zgadza
+                    setcookie("idOfUser", $usr->getIdByEmail($email), time() + (86400 * 7), "/"); // 86400 = 1 day
+                    setcookie("nameOfUser", $usr->getNameByEmail($email), time() + (86400 * 7), "/"); // 86400 = 1 day
+                    return true;
+                }else{ //jeżeli nie
+                    return false;
+                }
+            }else{
+                return false;
+            }
         }
 
         public function register(){
@@ -46,6 +61,8 @@
 
             $usr = new UserModel();
             if($usr->register($newArray)){
+                setcookie("idOfUser", $newArray[0], time() + (86400 * 30), "/"); // 86400 = 1 day
+                setcookie("nameOfUser", $usr->getIdByEmail($newArray[6]), time() + (86400 * 30), "/"); // 86400 = 1 day
                 return true;
             }else{
                 return false;

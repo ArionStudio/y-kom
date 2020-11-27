@@ -1,9 +1,11 @@
 <?php
     class ShopController extends Controller{
-        public function __construct($path){
+        private $logIn;
+        public function __construct($path, $logIn){
             if(file_exists($path)){
                 $this->model = new CategoryModel();
-				$this->view = new ShopView($path);
+                $this->view = new ShopView($path);
+                $this->logIn = $logIn;
             }else{
                 echo "są fale";
                 exit;
@@ -12,7 +14,11 @@
 
         public function getHeader(){
             $_POST['categories'] = $this->model->getCategories();
-            $this->view->getHeader();
+            if($this->logIn){
+                $this->view->getLoginHeader();
+            }else{
+                $this->view->getHeader();
+            }
         }
 
         
@@ -26,7 +32,18 @@
 			$pM = new ProductModel();
             $pV = new ProductView();
             
-			$pV->showProductsTiles($pM->getCategoryProducts($idCategory, $count), $count);
+            $productsData = $pM->getCategoryProducts($idCategory, $count);
+
+			$pV->showProductsTiles($productsData, $count);
+        }
+
+        public function showProductPage($id){
+            $pM = new ProductModel();
+            $pV = new ProductView();
+
+            $productData = $pM->getProductData($id);
+            $pV->showProductPage($productData);
+
         }
 
     }

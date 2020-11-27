@@ -9,7 +9,9 @@
 
 
 <main id="product">
-    
+    <?php
+        $page->showProductPage($_GET['id']);
+    ?>
 </main>
 
 <?php

@@ -89,34 +89,34 @@ form {
     }
 }
 
-.linkInfo{
+.linkInfo {
     max-width: 464px;
     width: 100%;
     //
-    padding: 18px 32px;
+    padding: 0px;
     margin: 16px auto;
     //
     font-size: 14px;
     //
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
-
     transition: background-color 0.5s ease, color 1s ease;
-    a{
+    a {
         display: inline-block;
         width: 100%;
         height: 100%;
+        //
+        padding: 18px 32px;
         //
         text-decoration: none;
         font-size: 18px;
         //
         color: $color1;
     }
-
-    &:hover{
+    &:hover {
+        //
         background-color: $color1;
         //
-
-        a{
+        a {
             color: white;
         }
     }

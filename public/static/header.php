@@ -9,13 +9,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/src/css/style.css">
+    <link rel="shortcut icon" href="/dist/files/page/small-logo.ico" type="image/x-icon">
     <title>y-kom.pl - Sklep komputerowy</title>
 </head>
 <body>
     <header>
         <section>
             <div class="logo">
-                <a href="/"><img src="/dist/files/page/logo.png" height="70" width="70" alt=""></a>
+                <a href="/"><img src="/dist/files/page/big-logo.png" height="70" width="70" alt=""></a>
+            </div>
+            <div class="loooop">
             </div>
             <div class="toolbar">
                 <menu type="toolbar">

@@ -29,4 +29,61 @@
                 $this->showProduct($value[0],$value[1], $value[2],$value[3], "tiles");
             }
         }
+
+        public function showProductPage($data){
+            //name, price, idFoto, Specification
+            ?>
+                <div>
+                    <?php
+                        if(empty($data['idFoto'])){ 
+                    ?>
+                    <div class="pmain">
+                        <div class="pfoto">
+                            <img src="/dist/files/product/example/example.png"/>
+                        </div>
+                        <?php 
+                            }else{ 
+                        ?>
+                            <div class="pfoto">
+                                <img src="<?php echo $data['idFoto'];?>" alt=""/>
+                            </div>
+                        <?php 
+                            }
+                        ?>
+                        <div>
+                            <div class="pname">
+                                <?php echo $data['name']; ?>
+                            </div>
+                            <div class="pprice">
+                                Cena: <?php echo $data['price']; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pspecification">
+                        <div>Specyfikacja</div>
+                        <?php echo $this->showSpecProductOnPage($data['Specification']); ?>
+                    </div>
+                </div>
+
+            <?php
+        }
+
+        public function showSpecProductOnPage($spec){
+            $col1 = strtok($spec, ':');
+            $col2 = strtok(';');
+            ?>
+            <div>
+                <?php while($col1 !== false && $col2 !== false){
+                if($col1!==false){
+                    echo "<div>";
+                    echo "<span>" . $col1 ."</span> <span>". $col2 ."</span>";
+                    $col1 = strtok(":");
+                    $col2 = strtok(";");
+                    echo "</div>";
+                }
+            } ?>
+            </div>
+            <?php
+             
+        }
     }

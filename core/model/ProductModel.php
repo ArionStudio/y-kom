@@ -31,4 +31,11 @@
             $stmt->execute([$count]);
             return $stmt->fetchAll();
         }
+        
+        public function getProductData($id){
+            $query = 'SELECT name, price, idFoto, Specification from products where idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id]);
+            return $stmt->fetch();
+        }
     }
