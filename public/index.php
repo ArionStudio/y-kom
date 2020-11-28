@@ -96,8 +96,6 @@
                 header("Location: /");
                 break;
             }
-            case "addToCart":{
-                if(isset($_GET['id'])){
                     if(isset($_SESSION['loggedUserData'])){
                         $cM = new CartModel();
                         $cM->addToCart($_SESSION['loggedUserData']['id'], $_GET['id']);
