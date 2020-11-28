@@ -10,7 +10,11 @@ class Database{
         $user = $this->user;
         $password = $this->password;
         try{
-            $pdo = new PDO($dbh, $user, $password);
+            $pdo = new PDO($dbh, $user, $password, array(
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ));
+            
         }catch(PDOException $e){
             $pdo = null;
             session_start();

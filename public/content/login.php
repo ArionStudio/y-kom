@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/dist/src/css/style.css">
-    <title>Logowanie</title>
-</head>
-<body>
-    <header>
-            <section>
-                <div>
-                    <a href="/"><img src="/dist/files/product/example/example.png" height="40" width="40" alt=""></a>
-                </div>
-            </section>
-        </header>
+<?php
+    $page->getHeader();
+?>
 
-        <?php
+    <main>
+    <?php
             $array = ["",""];
-            if(isset($_SESSION[''])){
-                $array = $_SESSION[''];
-                unset($_SESSION['']);
+            if(isset($_SESSION['loginData'])){
+                $array = $_SESSION['loginData'];
+                unset($_SESSION['loginData']);
             }
         ?>
+        <?php if(isset($array[2])){ ?>
+            <div class="errorInfo">
+                <span>
+                    <?php echo $array[2]; ?>
+                </span>
+            </div>
+        <?php } ?>
         <form action="/s/logowanie/" method='POST'>
             <div class="title">Zaloguj się</div>
             <div>
@@ -39,7 +34,9 @@
             </div>
             <button class="button" type="submit">Zaloguj się</button>
         </form>
+        
         <div class="linkInfo">
             <a href="/f/rejestracja/">Zarejestruj się</a>
         </div>
+    </main>
 </body>

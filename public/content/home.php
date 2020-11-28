@@ -2,8 +2,9 @@
     $page->getHeader();
     if(isset($_POST['how'])){
         $how = $_GET['how'];
+        
     }else{
-        $how = 10;
+        $how = FALSE;
     }
 ?>
 
@@ -12,15 +13,15 @@
 <main id="home">
     <section class="pro">
         <div class="pro__title">Bestsellery</div>
-        <?php $page->showBestsellers($how); ?>
+        <?php $page->showBestsellers(1); ?>
     </section>
     <section class="pro">
         <div class="pro__title">Bestsellery</div>
-        <?php $page->showBestsellers($how); ?>
+        <?php $page->showBestsellers(2); ?>
     </section>
     <section class="pro">
         <div class="pro__title">Bestsellery</div>
-        <?php $page->showBestsellers($how); ?>
+        <?php $page->showBestsellers(3); ?>
     </section>
 </main>
 

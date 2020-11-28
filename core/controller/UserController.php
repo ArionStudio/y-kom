@@ -8,22 +8,43 @@
 
         }
 
+        public function loginFail($email, $password, $info){
+            session_start();
+            $_SESSION['loginData'] = array();
+            array_push($_SESSION['loginData'], $email);
+            array_push($_SESSION['loginData'], $password);
+            array_push($_SESSION['loginData'], $info);
+        }
+        public function loginSuccess($id, $name){
+            $_SESSION['loggedUserData'] = array();
+            $_SESSION['loggedUserData']['id'] = $id;
+            $_SESSION['loggedUserData']['name'] = $name;
+        }
+
         public function login(){
             $usr = new UserModel(); 
             $email = $_POST['email'];
             $password = $_POST['password'];
             if($stmt = $usr->login($email)){
                 if(!$row = $stmt->fetch()){ //jeżeli nie znalazło żadnego urzytkownika
+                    $this->loginFail(
+                        $email, $password, "Błędny email lub hasło!!!"
+                    );
                     return false;
                 }
                 elseif(password_verify($password, $row['password'])){ //jeżeli hasło się zgadza
-                    setcookie("idOfUser", $usr->getIdByEmail($email), time() + (86400 * 7), "/"); // 86400 = 1 day
-                    setcookie("nameOfUser", $usr->getNameByEmail($email), time() + (86400 * 7), "/"); // 86400 = 1 day
+                    $this->loginSuccess($usr->getIdByEmail($email), $usr->getNameByEmail($email));
                     return true;
                 }else{ //jeżeli nie
+                    $this->loginFail(
+                        $email, $password, "Błędny email lub hasło!!!"
+                    );
                     return false;
                 }
             }else{
+                $this->loginFail(
+                    $email, $password, "Problem z połączeniem spróbuj pózniej!!!"
+                );
                 return false;
             }
         }
@@ -46,7 +67,6 @@
             $newArray = array();
             foreach($array as $key => $value){
                 if(!preg_match($value[1], $value[0])){
-                    session_start();
                     $_SESSION['registerData'] = array();
                     foreach ($array as $key => $value) {
                         array_push($_SESSION['registerData'],$value[0]);
@@ -61,8 +81,10 @@
 
             $usr = new UserModel();
             if($usr->register($newArray)){
-                setcookie("idOfUser", $newArray[0], time() + (86400 * 30), "/"); // 86400 = 1 day
-                setcookie("nameOfUser", $usr->getIdByEmail($newArray[6]), time() + (86400 * 30), "/"); // 86400 = 1 day
+                $this->loginSuccess(
+                    $newArray[0], 
+                    $usr->getNameByEmail($newArray[6])
+                );
                 return true;
             }else{
                 return false;

@@ -1,26 +1,30 @@
 #product {
     width: 1200px;
     margin: auto;
-    >div {
-        >div {
+    > div {
+        > div {
             padding-top: 32px;
         }
     }
     .pmain {
         display: flex;
         flex-wrap: wrap;
-        >div {
+        > div {
             display: inline-block;
             height: 100%;
             width: 49%;
-            &:nth-child(1) {}
-            &:nth-child(2) {}
+            &:nth-child(1) {
+                display: block;
+            }
+            &:nth-child(2) {
+                display: block;
+            }
         }
     }
     .pspecification {
-        >div {
+        > div {
             //konener
-            >div {
+            > div {
                 //następny wiersz
                 padding: 8px;
                 //
@@ -29,13 +33,13 @@
                 &:first-child {
                     border-top: 1px solid rgb(238, 238, 238);
                 }
-                >span:nth-child(1) {
-                    //nazwa 
+                > span:nth-child(1) {
+                    //nazwa
                     font-weight: 500;
                     width: 40%;
                     //
                 }
-                >span:nth-child(2) {
+                > span:nth-child(2) {
                     //właściwość
                     width: 59%;
                 }

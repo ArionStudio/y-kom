@@ -45,13 +45,13 @@ header {
             height: 80px;
             //
             font-size: 11px;
-            >div {
+            > div {
                 height: 100%;
                 &.toolbar {
                     height: 100%;
                     menu {
                         height: 100%;
-                        div {
+                        > div {
                             display: inline-block;
                             width: 88px;
                             height: 100%;
@@ -82,6 +82,45 @@ header {
                                     -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
                                     box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
                                     span {
+                                        color: $color1;
+                                    }
+                                }
+                            }
+                        }
+                        > div:hover {
+                            position: relative;
+                            .userOptionList {
+                                display: block;
+                            }
+                        }
+                        .userOptionList {
+                            display: none;
+                            position: absolute;
+                            background-color: white;
+                            box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+                            height: 130px;
+                            width: 120px;
+                            padding: 0;
+                            > div {
+                                padding: 0;
+                                padding-top: 12px;
+                                margin: 0;
+                                width: 100%;
+                                text-align: center;
+                                &:last-child {
+                                    margin-top: 6px;
+                                    border-top: 1px solid
+                                        transparentize($color1, 0.35);
+                                }
+                                > span {
+                                    font-weight: bold;
+                                }
+                                > a {
+                                    display: inline-block;
+                                    box-shadow: none;
+                                }
+                                &:hover {
+                                    a {
                                         color: $color1;
                                     }
                                 }
@@ -118,3 +157,28 @@ header {
         text-decoration: none;
     }
 }
+
+header.clear {
+    height: 80px;
+    .back {
+        svg {
+            height: 40px;
+            width: 40px;
+        }
+        span {
+            font-size: 14px;
+            font-style: bold;
+        }
+        &:hover {
+            #back_arrow {
+                fill: $color1;
+            }
+            span {
+                color: $color1;
+            }
+        }
+    }
+}
+
+////
+////
