@@ -81,6 +81,7 @@
 
             $usr = new UserModel();
             if($usr->register($newArray)){
+                //$this->mail();
                 $this->loginSuccess(
                     $newArray[0], 
                     $usr->getNameByEmail($newArray[6])
@@ -90,5 +91,25 @@
                 return false;
             }
 
+        }
+        public function mail($email = ""){
+            $od  = "From: leerock.zero@gmail.com \r\n";
+            $od .= 'MIME-Version: 1.0'."\r\n";
+            $od .= 'Content-type: text/html; charset=iso-8859-2'."\r\n";
+            $adres = "leerock.zero@gmail.com";
+            $tytul = "Potwierdzenie rejestracji konta w sklepie y-kom";
+            $wiadomosc = "Cześć";
+
+            // użycie funkcji mail
+            
+            $success = mail($adres, $tytul, $wiadomosc, $od);
+            if (!$success) {
+                $errorMessage = error_get_last()['message'];
+                echo $errorMessage;
+                exit;
+            }else{
+                echo "done";
+                exit;
+            }
         }
     }

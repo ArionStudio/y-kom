@@ -24,10 +24,6 @@
         saveLastOpenPage();
         $page = new ShopController("content/home.php", logIn());
         require_once('content/home.php');
-    }elseif($_SERVER['REQUEST_URI'] == "/admin/"){
-        echo "witamy w adminie";
-
-        //
     }elseif(isset($_GET['type'])){
         saveLastOpenPage();
         $type = $_GET['type'];

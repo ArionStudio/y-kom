@@ -19,8 +19,12 @@ RewriteRule ^c/([^/]*)/i/([^/]*)/$ /index.php?type=c&id=$1&how=$2 [L]
 RewriteRule ^p/([^/]*)/i/([^/]*)/$ /index.php?type=p&id=$1&how=$2 [L]
 #
 
+
+
 #adminPanel
-RewriteRule ^admin/$ /index.php [L]
+RewriteRule ^admin/$ /admin/index.php [L]
+RewriteRule ^admin/page/([^/]*)/$ /admin/index.php?page=$1 [L]
+RewriteRule ^admin/fun/([^/]*)/$ /admin/index.php?fun=$1 [L]
 
 ErrorDocument 403 /static/error.php
 ErrorDocument 404 /static/error.php
