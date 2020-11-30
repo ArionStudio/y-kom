@@ -2,7 +2,7 @@
 class AdminController{
         function find(){
             ///
-            if(isset($_GET['fun'])){
+            if(isset($_GET['fun'])){ // http://26.213.44.74/admin/index.php?fun=login
                 switch($_GET['fun']){
                     case "login":{
                         if(isset($_SESSION['LoggedSlaveData'])) header("Location: /admin/");
@@ -17,11 +17,28 @@ class AdminController{
                         header("Location: /admin/");
                         break;
                     }
+                    case "productAdd":{
+                        $this->addNewProduct();
+                        header("Location: /admin/page/product/");
+                        break;
+                    }
                 }
-            }elseif(isset($_GET['page'])){
-                // switch($_GET['page']){
-                //     case ""
-                // }
+            }elseif(isset($_GET['page'])){ //http://26.213.44.74/admin/index.php?page=warehouse
+                require_once('static/header.php');
+                $this->menuContent();
+                $aC = new AdminController();
+                
+                switch($_GET['page']){
+                    case "product":{
+                        require_once('content/product.php');
+                    break;
+                    }
+                    case "productAdd":{
+                        require_once('content/productAdd.php');
+                    break;
+                    }
+                }
+                require_once('static/footer.php');
             }else{
                 if(isset($_SESSION['LoggedSlaveData'])){
                     $this->homePage();
@@ -32,7 +49,12 @@ class AdminController{
 
         }
 
-
+        function showAllProducts($idCat = "%"){
+            $pM = new ProductModel();
+            $pV = new ProductView();
+            $array = $pM->getAllProduct($idCat);
+            $pV->showAllProductsFromQuery($array);
+        }
         
         function menuContent(){
             require_once('static/menu.php');
@@ -40,6 +62,11 @@ class AdminController{
         function loginPage(){
             require_once('static/header.php');
             require_once('content/login.php');
+        }
+
+        function getCategorySelectField(){
+            $catM = new CategoryModel();
+            return $catM->getCategories();
         }
 
         function register(){
@@ -93,5 +120,22 @@ class AdminController{
             $_SESSION['LoggedSlaveData'] = array();
             $_SESSION['LoggedSlaveData']['id'] = $id;
             $_SESSION['LoggedSlaveData']['name'] = $name;
+        }
+
+        function addNewProduct(){
+            // var_dump($_FILES['photoGallery']);
+            // exit;
+            $pM = new ProductModel();
+            $pM->addProduct(//name, price, Quantity, Specification, category
+                $_POST['name'],
+                $_POST['price'],
+                $_POST['quantity'],
+                $_POST['specification'],
+                $_POST['category']
+            );
+            $id = $pM->getNewProductID();
+            mkdir("../dist/files/product/{$id}");
+            $pM->addPhotos($id);
+            
         }
     }

@@ -35,7 +35,8 @@ form .title {
   margin-bottom: 8px;
 }
 
-form input {
+form input,
+form select {
   width: 100%;
   padding: 8px;
   border: none;
@@ -43,7 +44,10 @@ form input {
   background-color: #fff;
 }
 
-form input:-webkit-autofill, form input:-webkit-autofill:hover, form input:-webkit-autofill:focus {
+form input:-webkit-autofill, form input:-webkit-autofill:hover, form input:-webkit-autofill:focus,
+form select:-webkit-autofill,
+form select:-webkit-autofill:hover,
+form select:-webkit-autofill:focus {
   -webkit-text-fill-color: black;
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
   box-shadow: 0 0 0px 1000px #fff inset;
@@ -155,6 +159,8 @@ header {
   top: 0px;
   width: 100%;
   height: 120px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 4px 0px;
+          box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 4px 0px;
   background-color: white;
 }
 
@@ -781,6 +787,165 @@ header.clear .back:hover span {
 
 #adminPanel table td:first-child {
   text-align: center;
+}
+
+#adminPanel #controlPro section {
+  max-width: 864px;
+  padding: 16px 32px 32px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
+          box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
+}
+
+#adminPanel #controlPro .select {
+  width: unset;
+  max-width: unset;
+}
+
+#adminPanel #controlPro .add button {
+  margin-left: 16px;
+}
+
+#adminPanel #controlPro .add button a {
+  color: white;
+  text-decoration: none;
+}
+
+#adminPanel .asortyment .pro__list {
+  border-color: #0888c7;
+}
+
+#adminPanel .asortyment .function span,
+#adminPanel .asortyment .function a {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#adminPanel .asortyment .function span svg,
+#adminPanel .asortyment .function a svg {
+  height: 50px;
+  width: 50px;
+}
+
+#adminPanel .asortyment .function span svg:hover #edit1,
+#adminPanel .asortyment .function span svg:hover #edit2,
+#adminPanel .asortyment .function span svg:hover #trash1,
+#adminPanel .asortyment .function span svg:hover #trash2,
+#adminPanel .asortyment .function span svg:hover #trash3,
+#adminPanel .asortyment .function a svg:hover #edit1,
+#adminPanel .asortyment .function a svg:hover #edit2,
+#adminPanel .asortyment .function a svg:hover #trash1,
+#adminPanel .asortyment .function a svg:hover #trash2,
+#adminPanel .asortyment .function a svg:hover #trash3 {
+  fill: black;
+}
+
+#adminPanel .asortyment .function span.edit svg,
+#adminPanel .asortyment .function a.edit svg {
+  height: 45px;
+  width: 45px;
+}
+
+#adminPanel .productAddForm {
+  max-width: 800px;
+  margin: 0;
+  padding: 32px;
+}
+
+#adminPanel .productAddForm fieldset {
+  border-color: #686868;
+  border-width: 2px;
+  border-style: solid;
+}
+
+#adminPanel .productAddForm fieldset:focus-within {
+  border-color: #0888c7;
+}
+
+#adminPanel .productAddForm fieldset:focus-within legend {
+  color: #0888c7;
+}
+
+#adminPanel .productAddForm button {
+  width: 150px;
+  color: white;
+  border: none;
+  outline: none;
+  background-color: #0888c7;
+}
+
+#adminPanel .productAddForm button:hover {
+  cursor: pointer;
+  background-color: #0DA8F5;
+}
+
+#adminPanel .productAddForm button a {
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+
+#adminPanel .productAddForm .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#adminPanel .productForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  max-width: 800px;
+  margin: 0;
+  padding: 16px 0;
+  font-size: 18px;
+}
+
+#adminPanel .productForm select {
+  height: 35px;
+  outline: none;
+  width: unset;
+  border: 1px solid black;
+}
+
+#adminPanel .productForm button {
+  color: white;
+  border: none;
+  outline: none;
+  background-color: #0888c7;
+}
+
+#adminPanel .productForm button:hover {
+  cursor: pointer;
+  background-color: #0DA8F5;
+}
+
+#adminPanel .productForm button a,
+#adminPanel .productForm button span {
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
 }
 
 .adminMenu {

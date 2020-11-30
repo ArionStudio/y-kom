@@ -21,8 +21,7 @@ form {
     //
     font-size: 14px;
     //
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px,
-        rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
     div {
         width: 100%;
         max-width: 400px;
@@ -32,7 +31,8 @@ form {
         font-size: 24px;
         margin-bottom: 8px;
     }
-    input {
+    input,
+    select {
         width: 100%;
         padding: 8px;
         border: none;
@@ -99,8 +99,7 @@ form {
     //
     font-size: 14px;
     //
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px,
-        rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
     transition: background-color 0.5s ease, color 1s ease;
     a {
         display: inline-block;
@@ -135,8 +134,7 @@ form {
     //
     background-color: $color1;
     //
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px,
-        rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
     span {
         display: inline-block;
         width: 100%;

@@ -21,10 +21,10 @@ RewriteRule ^p/([^/]*)/i/([^/]*)/$ /index.php?type=p&id=$1&how=$2 [L]
 
 
 
-#adminPanel
+#adminPanel http://26.213.44.74/admin/page/product/  -> http://26.213.44.74/admin/index.php?page=product
 RewriteRule ^admin/$ /admin/index.php [L]
-RewriteRule ^admin/page/([^/]*)/$ /admin/index.php?page=$1 [L]
-RewriteRule ^admin/fun/([^/]*)/$ /admin/index.php?fun=$1 [L]
+RewriteRule ^admin/page/([^/]*)/$ /admin/index.php?page=$1 [L] #/admin/page/product/  /admin/index.php?page=product -> $_GET['page'] == product 
+RewriteRule ^admin/fun/([^/]*)/$ /admin/index.php?fun=$1 [L] 
 
 ErrorDocument 403 /static/error.php
 ErrorDocument 404 /static/error.php
