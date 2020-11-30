@@ -1,837 +1,839 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 * {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 main {
-  padding: 32px;
+    padding: 32px;
 }
 
 form {
-  max-width: 464px;
-  width: 100%;
-  padding: 18px 32px;
-  margin: 16px auto;
-  font-size: 14px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    max-width: 464px;
+    width: 100%;
+    padding: 18px 32px;
+    margin: 16px auto;
+    font-size: 14px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
 }
 
 form div {
-  width: 100%;
-  max-width: 400px;
-  padding-bottom: 12px;
+    width: 100%;
+    max-width: 400px;
+    padding-bottom: 12px;
 }
 
 form .title {
-  font-size: 24px;
-  margin-bottom: 8px;
+    font-size: 24px;
+    margin-bottom: 8px;
 }
 
 form input,
 form select {
-  width: 100%;
-  padding: 8px;
-  border: none;
-  outline: none;
-  background-color: #fff;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: #fff;
 }
 
-form input:-webkit-autofill, form input:-webkit-autofill:hover, form input:-webkit-autofill:focus,
+form input:-webkit-autofill,
+form input:-webkit-autofill:hover,
+form input:-webkit-autofill:focus,
 form select:-webkit-autofill,
 form select:-webkit-autofill:hover,
 form select:-webkit-autofill:focus {
-  -webkit-text-fill-color: black;
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-  box-shadow: 0 0 0px 1000px #fff inset;
-  -webkit-transition: background-color 5000s ease-in-out 0s;
-  transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: black;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px #fff inset;
+    -webkit-transition: background-color 5000s ease-in-out 0s;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 form fieldset {
-  border-color: #686868;
-  border-width: 2px;
-  border-style: solid;
+    border-color: #686868;
+    border-width: 2px;
+    border-style: solid;
 }
 
 form fieldset:focus-within {
-  border-color: #AD0034;
+    border-color: #AD0034;
 }
 
 form fieldset:focus-within legend {
-  color: #AD0034;
+    color: #AD0034;
 }
 
 form legend {
-  color: black;
-  -webkit-padding-start: 6px;
-          padding-inline-start: 6px;
-  -webkit-padding-end: 6px;
-          padding-inline-end: 6px;
+    color: black;
+    -webkit-padding-start: 6px;
+    padding-inline-start: 6px;
+    -webkit-padding-end: 6px;
+    padding-inline-end: 6px;
 }
 
 form .button {
-  outline: none;
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 14px;
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  color: white;
-  background-color: #AD0034;
-  border: 2px solid #AD0034;
-  -webkit-transition: color 0.1s ease, background-color 0.1s ease;
-  transition: color 0.1s ease, background-color 0.1s ease;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: white;
+    background-color: #AD0034;
+    border: 2px solid #AD0034;
+    -webkit-transition: color 0.1s ease, background-color 0.1s ease;
+    transition: color 0.1s ease, background-color 0.1s ease;
 }
 
 form .button:hover {
-  cursor: pointer;
-  color: wheat;
-  border: 2px solid #AD0034;
+    cursor: pointer;
+    color: wheat;
+    border: 2px solid #AD0034;
 }
 
 .linkInfo {
-  max-width: 464px;
-  width: 100%;
-  padding: 0px;
-  margin: 16px auto;
-  font-size: 14px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
-  -webkit-transition: background-color 0.5s ease, color 1s ease;
-  transition: background-color 0.5s ease, color 1s ease;
+    max-width: 464px;
+    width: 100%;
+    padding: 0px;
+    margin: 16px auto;
+    font-size: 14px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    -webkit-transition: background-color 0.5s ease, color 1s ease;
+    transition: background-color 0.5s ease, color 1s ease;
 }
 
 .linkInfo a {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: 18px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #AD0034;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 18px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #AD0034;
 }
 
 .linkInfo:hover {
-  background-color: #AD0034;
+    background-color: #AD0034;
 }
 
 .linkInfo:hover a {
-  color: white;
+    color: white;
 }
 
 .errorInfo {
-  max-width: 464px;
-  width: 100%;
-  padding: 0px;
-  margin: 16px auto;
-  font-size: 14px;
-  background-color: #AD0034;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    max-width: 464px;
+    width: 100%;
+    padding: 0px;
+    margin: 16px auto;
+    font-size: 14px;
+    background-color: #AD0034;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
 }
 
 .errorInfo span {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: 18px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: white;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 18px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
 }
 
 header {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0px;
-  width: 100%;
-  height: 120px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 4px 0px;
-  background-color: white;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    height: 120px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 4px 0px;
+    background-color: white;
 }
 
 header menu div {
-  display: inline-block;
+    display: inline-block;
 }
 
 header .logo img {
-  height: 70px;
-  width: auto;
+    height: 70px;
+    width: auto;
 }
 
 header .loooop {
-  max-width: 700px;
-  width: 100%;
+    max-width: 700px;
+    width: 100%;
 }
 
 header section {
-  height: 40px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    height: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 header section div {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: 40px;
-  display: inline-block;
-  margin: 0px 0px;
-  padding: 0 20px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 40px;
+    display: inline-block;
+    margin: 0px 0px;
+    padding: 0 20px;
 }
 
 header section div a {
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 header section:nth-child(1) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 80px;
-  font-size: 11px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 80px;
+    font-size: 11px;
 }
 
-header section:nth-child(1) > div {
-  height: 100%;
+header section:nth-child(1)>div {
+    height: 100%;
 }
 
-header section:nth-child(1) > div.toolbar {
-  height: 100%;
+header section:nth-child(1)>div.toolbar {
+    height: 100%;
 }
 
-header section:nth-child(1) > div.toolbar menu {
-  height: 100%;
+header section:nth-child(1)>div.toolbar menu {
+    height: 100%;
 }
 
-header section:nth-child(1) > div.toolbar menu > div {
-  display: inline-block;
-  width: 88px;
-  height: 100%;
-  padding: 0;
+header section:nth-child(1)>div.toolbar menu>div {
+    display: inline-block;
+    width: 88px;
+    height: 100%;
+    padding: 0;
 }
 
-header section:nth-child(1) > div.toolbar menu > div a {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+header section:nth-child(1)>div.toolbar menu>div a {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 
-header section:nth-child(1) > div.toolbar menu > div a img {
-  display: block;
-  height: 32px;
-  width: 32px;
+header section:nth-child(1)>div.toolbar menu>div a img {
+    display: block;
+    height: 32px;
+    width: 32px;
 }
 
-header section:nth-child(1) > div.toolbar menu > div a .svgImg:hover {
-  fill: #AD0034;
+header section:nth-child(1)>div.toolbar menu>div a .svgImg:hover {
+    fill: #AD0034;
 }
 
-header section:nth-child(1) > div.toolbar menu > div a span {
-  display: inline-block;
-  width: 64px;
-  text-align: center;
-  color: black;
+header section:nth-child(1)>div.toolbar menu>div a span {
+    display: inline-block;
+    width: 64px;
+    text-align: center;
+    color: black;
 }
 
-header section:nth-child(1) > div.toolbar menu > div a:hover {
-  -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
-  box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+header section:nth-child(1)>div.toolbar menu>div a:hover {
+    -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
 }
 
-header section:nth-child(1) > div.toolbar menu > div a:hover span {
-  color: #AD0034;
+header section:nth-child(1)>div.toolbar menu>div a:hover span {
+    color: #AD0034;
 }
 
-header section:nth-child(1) > div.toolbar menu > div:hover {
-  position: relative;
+header section:nth-child(1)>div.toolbar menu>div:hover {
+    position: relative;
 }
 
-header section:nth-child(1) > div.toolbar menu > div:hover .userOptionList {
-  display: block;
+header section:nth-child(1)>div.toolbar menu>div:hover .userOptionList {
+    display: block;
 }
 
-header section:nth-child(1) > div.toolbar menu .userOptionList {
-  display: none;
-  position: absolute;
-  background-color: white;
-  -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
-          box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
-  height: 130px;
-  width: 120px;
-  padding: 0;
+header section:nth-child(1)>div.toolbar menu .userOptionList {
+    display: none;
+    position: absolute;
+    background-color: white;
+    -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+    height: 130px;
+    width: 120px;
+    padding: 0;
 }
 
-header section:nth-child(1) > div.toolbar menu .userOptionList > div {
-  padding: 0;
-  padding-top: 12px;
-  margin: 0;
-  width: 100%;
-  text-align: center;
+header section:nth-child(1)>div.toolbar menu .userOptionList>div {
+    padding: 0;
+    padding-top: 12px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
 }
 
-header section:nth-child(1) > div.toolbar menu .userOptionList > div:last-child {
-  margin-top: 6px;
-  border-top: 1px solid rgba(173, 0, 52, 0.65);
+header section:nth-child(1)>div.toolbar menu .userOptionList>div:last-child {
+    margin-top: 6px;
+    border-top: 1px solid rgba(173, 0, 52, 0.65);
 }
 
-header section:nth-child(1) > div.toolbar menu .userOptionList > div > span {
-  font-weight: bold;
+header section:nth-child(1)>div.toolbar menu .userOptionList>div>span {
+    font-weight: bold;
 }
 
-header section:nth-child(1) > div.toolbar menu .userOptionList > div > a {
-  display: inline-block;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+header section:nth-child(1)>div.toolbar menu .userOptionList>div>a {
+    display: inline-block;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
-header section:nth-child(1) > div.toolbar menu .userOptionList > div:hover a {
-  color: #AD0034;
+header section:nth-child(1)>div.toolbar menu .userOptionList>div:hover a {
+    color: #AD0034;
 }
 
 header section:nth-child(2) {
-  font-size: 13px;
-  background-color: #AD0034;
+    font-size: 13px;
+    background-color: #AD0034;
 }
 
 header section:nth-child(2) menu {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: auto;
-  font-size: 13px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: auto;
+    font-size: 13px;
 }
 
 header section:nth-child(2) menu div:hover {
-  -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
-  box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
-  background-color: #ffffff;
+    -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+    background-color: #ffffff;
 }
 
 header section:nth-child(2) menu div:hover a {
-  color: #AD0034;
+    color: #AD0034;
 }
 
 header section:nth-child(2) a {
-  color: white;
+    color: white;
 }
 
 header a {
-  color: black;
-  text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 header.clear {
-  height: 80px;
+    height: 80px;
 }
 
 header.clear .back svg {
-  height: 40px;
-  width: 40px;
+    height: 40px;
+    width: 40px;
 }
 
 header.clear .back span {
-  font-size: 14px;
-  font-style: bold;
+    font-size: 14px;
+    font-style: bold;
 }
 
 header.clear .back:hover #back_arrow {
-  fill: #AD0034;
+    fill: #AD0034;
 }
 
 header.clear .back:hover span {
-  color: #AD0034;
+    color: #AD0034;
 }
 
 .pro {
-  width: 1200px;
-  margin: auto;
+    width: 1200px;
+    margin: auto;
 }
 
 .pro__tiles {
-  width: 182px;
-  height: 275px;
-  display: inline-block;
-  padding: 4px 8px;
-  margin: 4px;
-  font-size: 14px;
+    width: 182px;
+    height: 275px;
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 4px;
+    font-size: 14px;
 }
 
 .pro__tiles:hover {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
 }
 
 .pro__tiles:hover img {
-  display: block;
+    display: block;
 }
 
 .pro__foto {
-  margin: 16px 0px;
-  height: 160px;
+    margin: 16px 0px;
+    height: 160px;
 }
 
 .pro__link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: black;
 }
 
 .pro__name {
-  height: 50px;
+    height: 50px;
 }
 
 .pro__price {
-  height: 25px;
-  padding-bottom: 4px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    height: 25px;
+    padding-bottom: 4px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .pro__price span img,
 .pro__price a img {
-  display: none;
-  width: 30px;
+    display: none;
+    width: 30px;
 }
 
 .pro__title {
-  font-size: 26px;
-  font-style: bold;
+    font-size: 26px;
+    font-style: bold;
 }
 
 .pro__list {
-  border-bottom: 1px solid #AD0034;
-  max-width: 800px;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    border-bottom: 1px solid #AD0034;
+    max-width: 800px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
-.pro__list > span:first-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
+.pro__list>span:first-child {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: start;
 }
 
-.pro__list > span:first-child > span {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.pro__list>span:first-child>span {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
-.pro__list > span:first-child > span img {
-  width: 70px;
+.pro__list>span:first-child>span img {
+    width: 70px;
 }
 
 .pro__list a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .pro__list .pro__name,
 .pro__list .pro__price {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 0;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 0;
 }
 
-.pro__list > span {
-  width: 50%;
-  height: 80px;
+.pro__list>span {
+    width: 50%;
+    height: 80px;
 }
 
-.pro__list > span > span {
-  margin-right: 10px;
+.pro__list>span>span {
+    margin-right: 10px;
 }
 
-.pro__list > span:last-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.pro__list>span:last-child {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
-.pro__list > span:last-child img {
-  width: 50px;
+.pro__list>span:last-child img {
+    width: 50px;
 }
 
 #product {
-  width: 1200px;
-  margin: auto;
+    width: 1200px;
+    margin: auto;
 }
 
-#product > div > div {
-  padding-top: 32px;
+#product>div>div {
+    padding-top: 32px;
 }
 
 #product .pmain {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
-#product .pmain > div {
-  display: inline-block;
-  height: 100%;
-  width: 49%;
+#product .pmain>div {
+    display: inline-block;
+    height: 100%;
+    width: 49%;
 }
 
-#product .pmain > div:nth-child(1) {
-  display: block;
+#product .pmain>div:nth-child(1) {
+    display: block;
 }
 
-#product .pmain > div:nth-child(2) {
-  display: block;
+#product .pmain>div:nth-child(2) {
+    display: block;
 }
 
-#product .pspecification > div > div {
-  padding: 8px;
-  font-size: 14px;
-  border-bottom: 1px solid #eeeeee;
+#product .pspecification>div>div {
+    padding: 8px;
+    font-size: 14px;
+    border-bottom: 1px solid #eeeeee;
 }
 
-#product .pspecification > div > div:first-child {
-  border-top: 1px solid #eeeeee;
+#product .pspecification>div>div:first-child {
+    border-top: 1px solid #eeeeee;
 }
 
-#product .pspecification > div > div > span:nth-child(1) {
-  font-weight: 500;
-  width: 40%;
+#product .pspecification>div>div>span:nth-child(1) {
+    font-weight: 500;
+    width: 40%;
 }
 
-#product .pspecification > div > div > span:nth-child(2) {
-  width: 59%;
+#product .pspecification>div>div>span:nth-child(2) {
+    width: 59%;
 }
 
-#product .pspecification > div > div span {
-  display: inline-block;
-  padding-left: 128px;
+#product .pspecification>div>div span {
+    display: inline-block;
+    padding-left: 128px;
 }
 
-#product .pspecification > div > div:nth-child(2n) {
-  background-color: #f9f9f9;
+#product .pspecification>div>div:nth-child(2n) {
+    background-color: #f9f9f9;
 }
 
-#product .pspecification > div > div:hover {
-  background-color: #eeeeee;
+#product .pspecification>div>div:hover {
+    background-color: #eeeeee;
 }
 
-#product .pspecification > div:nth-child(1) {
-  font-size: 24px;
-  padding-bottom: 16px;
+#product .pspecification>div:nth-child(1) {
+    font-size: 24px;
+    padding-bottom: 16px;
 }
 
 #cart {
-  max-width: 1200px;
-  width: 100%;
-  margin: auto;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
 }
 
 #cart .cart {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
 }
 
 #cart .title {
-  font-size: 24px;
-  font-weight: 500;
-  padding: 16px;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 16px;
 }
 
 #cart .pro {
-  max-width: 800px;
-  width: 100%;
-  margin: 0;
-  display: inline-block;
-  margin-right: 16px;
-  padding: 16px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0;
+    display: inline-block;
+    margin-right: 16px;
+    padding: 16px;
 }
 
 #cart .bou {
-  max-width: 300px;
-  width: 100%;
-  display: inline-block;
+    max-width: 300px;
+    width: 100%;
+    display: inline-block;
 }
 
 #cart .button {
-  outline: none;
-  display: block;
-  width: 300px;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 14px;
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  color: white;
-  background-color: #AD0034;
-  border: 2px solid #AD0034;
-  -webkit-transition: color 0.1s ease, background-color 0.1s ease;
-  transition: color 0.1s ease, background-color 0.1s ease;
+    outline: none;
+    display: block;
+    width: 300px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: white;
+    background-color: #AD0034;
+    border: 2px solid #AD0034;
+    -webkit-transition: color 0.1s ease, background-color 0.1s ease;
+    transition: color 0.1s ease, background-color 0.1s ease;
 }
 
 #cart .button:hover {
-  cursor: pointer;
-  color: wheat;
-  border: 2px solid #AD0034;
+    cursor: pointer;
+    color: wheat;
+    border: 2px solid #AD0034;
 }
 
 #cart .button a {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 #cart .goToHome a {
-  display: inline-block;
-  padding-top: 18px;
-  font-size: 18px;
-  text-decoration: none;
-  color: #AD0034;
+    display: inline-block;
+    padding-top: 18px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #AD0034;
 }
 
 #cart .goToHome a:hover {
-  color: #0DA8F5;
+    color: #0DA8F5;
 }
 
 #adminPanel {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 #adminPanel header {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px 0px;
 }
 
 #adminPanel header section {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
 }
 
 #adminPanel header section div:last-child {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 14px;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 14px;
 }
 
-#adminPanel > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: calc(100vh - 80px);
+#adminPanel>div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: calc(100vh - 80px);
 }
 
 #adminPanel main {
-  width: calc(100vw - 300px);
-  overflow: auto;
-  padding: 16px 32px;
+    width: calc(100vw - 300px);
+    overflow: auto;
+    padding: 16px 32px;
 }
 
 #adminPanel #login {
-  width: 100%;
-  height: calc(70vh - 80px);
-  background-color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+    width: 100%;
+    height: calc(70vh - 80px);
+    background-color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 
 #adminPanel .title {
-  font-size: 24px;
-  padding: 4px;
-  margin-bottom: 15px;
+    font-size: 24px;
+    padding: 4px;
+    margin-bottom: 15px;
 }
 
 #adminPanel table {
-  font-size: 14px;
-  padding: 4px;
-  border-collapse: collapse;
-  text-align: left;
+    font-size: 14px;
+    padding: 4px;
+    border-collapse: collapse;
+    text-align: left;
 }
 
 #adminPanel table tr {
-  border-bottom: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
 }
 
 #adminPanel table tr:first-child {
-  font-weight: 500;
+    font-weight: 500;
 }
 
 #adminPanel table tr:first-child td:nth-child(3),
 #adminPanel table tr:first-child td:last-child {
-  text-align: center;
+    text-align: center;
 }
 
 #adminPanel table tr:nth-child(2n+1) {
-  background-color: #e7e6e6;
+    background-color: #e7e6e6;
 }
 
 #adminPanel table td {
-  padding: 12px 18px;
+    padding: 12px 18px;
 }
 
 #adminPanel table td:first-child {
-  text-align: center;
+    text-align: center;
 }
 
 #adminPanel #controlPro section {
-  max-width: 864px;
-  padding: 16px 32px 32px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
+    max-width: 864px;
+    padding: 16px 32px 32px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
 }
 
 #adminPanel #controlPro .select {
-  width: unset;
-  max-width: unset;
+    width: unset;
+    max-width: unset;
 }
 
 #adminPanel #controlPro .add button {
-  margin-left: 16px;
+    margin-left: 16px;
 }
 
 #adminPanel #controlPro .add button a {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 #adminPanel .asortyment .pro__list {
-  border-color: #0888c7;
+    border-color: #0888c7;
 }
 
 #adminPanel .asortyment .function span,
 #adminPanel .asortyment .function a {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 #adminPanel .asortyment .function span svg,
 #adminPanel .asortyment .function a svg {
-  height: 50px;
-  width: 50px;
+    height: 50px;
+    width: 50px;
 }
 
 #adminPanel .asortyment .function span svg:hover #edit1,
@@ -844,157 +846,93 @@ header.clear .back:hover span {
 #adminPanel .asortyment .function a svg:hover #trash1,
 #adminPanel .asortyment .function a svg:hover #trash2,
 #adminPanel .asortyment .function a svg:hover #trash3 {
-  fill: black;
+    fill: black;
 }
 
 #adminPanel .asortyment .function span.edit svg,
 #adminPanel .asortyment .function a.edit svg {
-  height: 45px;
-  width: 45px;
+    height: 45px;
+    width: 45px;
 }
 
 #adminPanel .productAddForm {
-  max-width: 800px;
-  margin: 0;
-  padding: 32px;
-}
-
-#adminPanel .productAddForm fieldset {
-  border-color: #686868;
-  border-width: 2px;
-  border-style: solid;
-}
-
-#adminPanel .productAddForm fieldset:focus-within {
-  border-color: #0888c7;
-}
-
-#adminPanel .productAddForm fieldset:focus-within legend {
-  color: #0888c7;
-}
-
-#adminPanel .productAddForm button {
-  width: 150px;
-  color: white;
-  border: none;
-  outline: none;
-  background-color: #0888c7;
-}
-
-#adminPanel .productAddForm button:hover {
-  cursor: pointer;
-  background-color: #0DA8F5;
-}
-
-#adminPanel .productAddForm button a {
-  display: inline-block;
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-  width: 100%;
-  height: 100%;
-}
-
-#adminPanel .productAddForm .buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+    max-width: 800px;
+    margin: 0;
+    padding: 16px 16px;
 }
 
 #adminPanel .productForm {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  max-width: 800px;
-  margin: 0;
-  padding: 16px 0;
-  font-size: 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    max-width: 800px;
+    margin: 0;
+    padding: 16px 0;
+    font-size: 18px;
 }
 
 #adminPanel .productForm select {
-  height: 35px;
-  outline: none;
-  width: unset;
-  border: 1px solid black;
-}
-
-#adminPanel .productForm button {
-  color: white;
-  border: none;
-  outline: none;
-  background-color: #0888c7;
-}
-
-#adminPanel .productForm button:hover {
-  cursor: pointer;
-  background-color: #0DA8F5;
-}
-
-#adminPanel .productForm button a,
-#adminPanel .productForm button span {
-  display: inline-block;
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-  width: 100%;
-  height: 100%;
+    height: 35px;
+    outline: none;
+    width: unset;
+    border: 1px solid black;
 }
 
 .adminMenu {
-  width: 300px;
-  background-color: #0DA8F5;
-  height: 100%;
-  position: relative;
+    width: 300px;
+    background-color: #0DA8F5;
+    height: 100%;
+    position: relative;
 }
 
-.adminMenu > div {
-  height: 50px;
-  text-align: right;
-  padding: 9px;
-  font-size: 14px;
-  border-bottom: 1px solid #0888c7;
-  -webkit-transition: background-color 0.2s ease;
-  transition: background-color 0.2s ease;
+.adminMenu>div {
+    height: 50px;
+    text-align: right;
+    padding: 9px;
+    font-size: 14px;
+    border-bottom: 1px solid #0888c7;
+    -webkit-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
-.adminMenu > div a {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
-  height: 100%;
-  color: white;
-  text-decoration: none;
+.adminMenu>div a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-decoration: none;
 }
 
-.adminMenu > div:hover {
-  background-color: #0888c7;
+.adminMenu>div:hover {
+    background-color: #0888c7;
 }
 
-.adminMenu > div:last-child, .adminMenu > div.last {
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-  border-bottom: none;
-  margin-bottom: 32px;
+.adminMenu>div:last-child,
+.adminMenu>div.last {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    border-bottom: none;
+    margin-bottom: 32px;
 }
 
 .adminMenu img {
-  margin-right: 32px;
-  height: 30px;
+    margin-right: 32px;
+    height: 30px;
 }
+
+
 /*# sourceMappingURL=style.css.map */
