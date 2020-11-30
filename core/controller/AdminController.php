@@ -2,7 +2,8 @@
 class AdminController{
         function find(){
             ///
-            if(isset($_GET['fun'])){ // http://26.213.44.74/admin/index.php?fun=login
+            if(isset($_GET['fun'])){
+                if(!isset($_SESSION['LoggedSlaveData']))  header("Location: /admin/");
                 switch($_GET['fun']){
                     case "login":{
                         if(isset($_SESSION['LoggedSlaveData'])) header("Location: /admin/");
@@ -22,8 +23,32 @@ class AdminController{
                         header("Location: /admin/page/product/");
                         break;
                     }
+                    case "productEdit":{
+                        $this->editProduct($_GET['id']);
+                        header("Location: /admin/page/product/");
+                        break;
+                    }
+                    case "productDel":{
+                        $this->delProduct($_GET['id']);
+                        header("Location: /admin/page/product/");
+                        break;
+                    }
+                    case "delFoto":{
+                        if(isset($_GET['idProduct'])){
+                            if(isset($_GET['idFoto'])){
+                                //usuwanie zdjecia głownego
+                                $this->delProductGalleryFoto($_GET['idProduct'], $_GET['idFoto']);
+                            }else{
+                                //usuwanie zdjecia z galerii
+                                $this->delProductMainFoto($_GET['idProduct']);
+                            }
+                        }
+                        header("Location: /admin/page/productEdit/{$_GET['idProduct']}/");
+                        break;
+                    }
                 }
-            }elseif(isset($_GET['page'])){ //http://26.213.44.74/admin/index.php?page=warehouse
+            }elseif(isset($_GET['page'])){
+                if(!isset($_SESSION['LoggedSlaveData']))  header("Location: /admin/");
                 require_once('static/header.php');
                 $this->menuContent();
                 $aC = new AdminController();
@@ -35,6 +60,11 @@ class AdminController{
                     }
                     case "productAdd":{
                         require_once('content/productAdd.php');
+                    break;
+                    }
+                    case "productEdit":{
+                        
+                        require_once('content/productEdit.php');
                     break;
                     }
                 }
@@ -56,6 +86,15 @@ class AdminController{
             $pV->showAllProductsFromQuery($array);
         }
         
+        function getProductDataForEditProduct($id){
+            $pM = new ProductModel();
+            return $pM->getProductDataForEditProduct($id);
+        }
+        function getGallery($id){
+            $pM = new ProductModel();
+            return $pM->getGallery($id);
+        }
+
         function menuContent(){
             require_once('static/menu.php');
         }
@@ -137,5 +176,33 @@ class AdminController{
             mkdir("../dist/files/product/{$id}");
             $pM->addPhotos($id);
             
+        }
+
+        function editProduct($id){
+            $pM = new ProductModel();
+            $pM->editProduct(//name, price, Quantity, Specification, category
+                $_POST['name'],
+                $_POST['price'],
+                $_POST['specification'],
+                $_POST['category'],
+                $id
+            );
+            mkdir("../dist/files/product/{$id}");
+            $pM->addPhotos($id, TRUE);
+        }
+
+        function delProduct($id){
+            $pM = new ProductModel();
+            $pM->delProduct($id);
+        }
+
+        function delProductMainFoto($id){
+            $pM = new ProductModel();
+            $pM->delProductMainFoto($id);
+        }
+
+        function delProductGalleryFoto($id, $idFoto){
+            $pM = new ProductModel();
+            $pM->delProductGalleryFoto($id, $idFoto);
         }
     }

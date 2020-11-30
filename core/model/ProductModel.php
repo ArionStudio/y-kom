@@ -3,9 +3,9 @@
         public function getCategoryProducts($id, $count = FALSE){
             
             if(!$count){
-                $query = 'SELECT idProduct, name, Quantity, idFoto, Specification FROM products WHERE idCategory = ?';
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE idCategory = ?';
             }else{
-                $query = 'SELECT idProduct, name, Quantity, idFoto, Specification FROM products WHERE idCategory = ? LIMIT '. $count;
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE idCategory = ? LIMIT '. $count;
             }
             
             $stmt = $this->connect()->prepare($query);
@@ -40,7 +40,7 @@
         }
 
         public function getAllProduct($idCat){
-            $query = 'SELECT idProduct, name, price, idFoto, Specification from products where idCategory LIKE ? ';
+            $query = 'SELECT idProduct, name, price, idFoto, Specification from products where idCategory LIKE ? AND Quantity > -1';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$idCat]);
             return $stmt->fetchAll();
@@ -65,25 +65,20 @@
             return $stmt->fetch()['id'];
         }
 
-        public function addPhotos($id){
+        public function addPhotos($id, $edit=FALSE){
             $path = "../dist/files/product/{$id}/";
             $fileName = "main.png";
             $fullpath = $path . $fileName;
             $tmp = $_FILES['photoMain']['tmp_name'];
             file_exists($fullpath) or touch($fullpath);
             move_uploaded_file($tmp, $fullpath);
-            $query = "INSERT INTO productgallery VALUES(null, ?, ?)";
-            $stmt = $this->connect()->prepare($query);
-            $stmt->execute([$id, $fileName]);
             
-            $mainId = $this->getNewFotoID($id);
             $query = "UPDATE products SET idFoto = ? WHERE idProduct = ?";
             $stmt = $this->connect()->prepare($query);
-            $stmt->execute([$mainId, $id]);
+            $stmt->execute([1, $id]);
 
             for($i = 0; $i < count($_FILES['photoGallery']['name']); $i++){
-                $k = $i + 1;
-                $fileName = "gallery{$k}.png";
+                $fileName = $_FILES['photoGallery']['name'][$i];
                 $fullpath = $path . $fileName;
                 $tmp = $_FILES['photoGallery']['tmp_name'][$i];
                 file_exists($fullpath) or touch($fullpath);
@@ -95,4 +90,48 @@
 
         }
 
+        public function delProduct($id){
+            $query = 'UPDATE products set Quantity = -1 WHERE idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id]);
+        }
+       
+        public function getProductDataForEditProduct($id){
+            $query = 'SELECT name, price, Specification, idCategory, idFoto, idProduct from products where idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id]);
+            $row = $stmt->fetch();
+            return [$row['name'], $row['price'], $row['Specification'], $row['idCategory'], $row['idFoto'], $row['idProduct']];
+        }
+
+        public function getGallery($id){
+            $query = 'SELECT idFoto, photo from productgallery where idProduct = ? AND photo <> ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id, "main.png"]);
+            return $stmt->fetchAll();
+        }
+
+
+        public function editProduct($name, $price, $Specification, $category, $idProduct){
+            $query = 'UPDATE products SET name = ?, price = ?, Specification = ?, idCategory = ? WHERE idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$name,$price,$Specification, $category, $idProduct]);
+            return $stmt;
+        }
+
+        public function delProductGalleryFoto($idPro, $idFoto){
+            $query = "SELECT * FROM productgallery where idProduct = ? AND idFoto = ?";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$idPro, $idFoto]);
+            unlink("../dist/files/product/{$idPro}/" . $stmt->fetch()['photo']);
+            $query = "DELETE FROM productgallery where idProduct = ? AND idFoto = ?";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$idPro, $idFoto]);
+        }
+        public function delProductMainFoto($id){
+            unlink("../dist/files/product/{$id}/main.png");
+            $query = "UPDATE products SET idFoto = ? WHERE idProduct = ?";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([0, $id]);
+        }
     }

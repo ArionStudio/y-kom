@@ -10,7 +10,7 @@
                         <?php
                             }else{
                         ?>
-                            <div class="pro__foto"><img src="<?php echo $idFoto;?>" alt=""></div>
+                            <div class="pro__foto"><img src="/dist/files/product/<?php echo $id; ?>/main.png" alt=""></div>
 
                         <?php
                             }
@@ -37,7 +37,7 @@
                         <?php
                             }else{
                         ?>
-                            <span class="pro__foto"><img src="<?php echo $idFoto;?>" alt=""></span>
+                            <div class="pro__foto"><img src="/dist/files/product/<?php echo $id; ?>/main.png" alt=""></div>
 
                         <?php
                             }
@@ -60,7 +60,7 @@
                             <?php
                                 }else{
                             ?>
-                                <span class="pro__foto"><img src="<?php echo $idFoto;?>" alt=""></span>
+                                <div class="pro__foto"><img src="/dist/files/product/<?php echo $id; ?>/main.png" alt=""></div>
 
                             <?php
                                 }
@@ -77,7 +77,7 @@
                 </div>
             <?php
         }
-        public function showProductCartForAdmin($id, $name, $price, $idFoto){ //1, KOMPUTER, 1200pl, foto
+        public function showProductForAdmin($id, $name, $price, $idFoto){ //1, KOMPUTER, 1200pl, foto
             ?>
                 <div class="pro__list">
                     
@@ -97,7 +97,7 @@
                     </span>
                     <span class="function">
                         <span class="pro__price">Cena: <?php echo $price;?> zł</span>
-                        <span><a class="edit" href="/fun/delFromProducts/<?php echo $id;?>/">
+                        <span><a class="edit" href="/admin/page/productEdit/<?php echo $id;?>/">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="clarity:note-edit-line">
                                 <path id="edit1" d="M14 15H3V4H9.61L10.61 3H3C2.73478 3 2.48043 3.10536 2.29289 3.29289C2.10536 3.48043 2 3.73478 2 4V15C2 15.2652 2.10536 15.5196 2.29289 15.7071C2.48043 15.8946 2.73478 16 3 16H14C14.2652 16 14.5196 15.8946 14.7071 15.7071C14.8946 15.5196 15 15.2652 15 15V7.5L14 8.5V15Z" fill="#505050"/>
@@ -105,7 +105,7 @@
                             </g>
                         </svg>
                         </a></span>
-                        <span><a href="/fun/delFromProducts/<?php echo $id;?>/">
+                        <span><a href="/admin/fun/productDel/<?php echo $id;?>/">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="#505050" fill-rule="evenodd">
                                     <path id="trash1" d="M8 7v12h8V7H8zM7 6h10v14H7V6z" fill-rule="nonzero"></path>
@@ -123,12 +123,12 @@
                 $this->showProductList($value[0],$value[1], $value[2],$value[3]);
             }
         }
-        public function showProductsFromQuery($value){
-            $this->showProductCart($value['idProduct'],$value['name'], $value['price'],$value['idFoto']);
+        public function showProductsFromQuery($value, $how){
+            $this->showProductCart($value['idProduct'],$value['name'], $value['price'],$value['idFoto'], $how);
         }
         public function showAllProductsFromQuery($array){
             foreach($array as $key=>$value){
-                $this->showProductCartForAdmin($value['idProduct'],$value['name'], $value['price'], $value['idFoto']);
+                $this->showProductForAdmin($value['idProduct'],$value['name'], $value['price'], $value['idFoto']);
             }
             if(!count($array)){
                 echo "Brak produktów tej kategorii.";
@@ -149,23 +149,23 @@
             //name, price, idFoto, Specification
             ?>
                 <div>
+                    <div class="pmain">
                     <?php
                         if(empty($data['idFoto'])){ 
                     ?>
-                    <div class="pmain">
                         <div class="pfoto">
                             <img src="/dist/files/product/example/example.png"/>
                         </div>
-                        <?php 
-                            }else{ 
-                        ?>
-                            <div class="pfoto">
-                                <img src="<?php echo $data['idFoto'];?>" alt=""/>
-                            </div>
-                        <?php 
-                            }
-                        ?>
-                        <div>
+                    <?php 
+                        }else{ 
+                    ?>
+                        <div class="pfoto">
+                            <img src="/dist/files/product/<?php echo $data['idProduct']; ?>/main.png" alt="">
+                        </div>
+                    <?php 
+                        }
+                    ?>
+                    <div>
                             <div class="pname">
                                 <?php echo $data['name']; ?>
                             </div>

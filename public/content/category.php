@@ -1,7 +1,7 @@
 <?php
     $id = $_GET['id'];
     if(isset($_POST['how'])){
-        $how = $_GET['how'];
+        $how = $_POST['how'];
     }else{
         $how = 10;
     }

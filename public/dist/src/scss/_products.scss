@@ -4,14 +4,13 @@
     &__ {
         &tiles {
             width: 182px;
-            height: 275px;
+            height: 285px;
             display: inline-block;
             padding: 4px 8px;
             margin: 4px;
             font-size: 14px;
             &:hover {
-                box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px,
-                    rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+                box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
                 img {
                     display: block;
                 }
@@ -20,6 +19,13 @@
         &foto {
             margin: 16px 0px;
             height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                height: auto;
+                width: 156px;
+            }
         }
         &link {
             width: 100%;
@@ -31,11 +37,11 @@
             height: 50px;
         }
         &price {
-            height: 25px;
+            height: 30px;
             padding-bottom: 4px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
             span,
             a {
                 img {
@@ -57,11 +63,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        > span:first-child {
+        >span:first-child {
             display: flex;
             align-items: center;
             justify-content: start;
-            > span {
+            >span {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -79,14 +85,14 @@
             height: fit-content;
             padding: 0;
         }
-        > span {
+        >span {
             width: 50%;
             height: 80px;
-            > span {
+            >span {
                 margin-right: 10px;
             }
         }
-        > span:last-child {
+        >span:last-child {
             display: flex;
             justify-content: flex-end;
             align-items: center;
