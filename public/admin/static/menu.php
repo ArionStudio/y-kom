@@ -8,5 +8,7 @@
 
     <div><a href="/admin/page/warehouse/"><img src="/admin/icons/warehouse.svg" alt="Magazyn" />Magazyn</a></div>
 
+    <div><a href="/admin/page/arch/"><img src="/admin/icons/archive.svg" alt="Archiwum" />Archiwum</a></div>
+
     <div class="last"><a href="/admin/fun/logout/"><img src="/admin/icons/logout.svg" alt="Logout" />Wyloguj</a></div>
 </aside>
