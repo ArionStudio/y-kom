@@ -1,5 +1,5 @@
 <?php
-class AdminController{
+    class AdminController{
         function find(){
             ///
             if(isset($_GET['fun'])){
@@ -10,41 +10,86 @@ class AdminController{
                         $this->login();
                         unset($_POST['email'], $_POST['password']);
                         header("Location: /admin/");
-                        break;
+                        exit;
                     }
                     case "logout":{
-                        if(!isset($_SESSION['LoggedSlaveData'])) header("Location: /admin/");//
+                        if(!isset($_SESSION['LoggedSlaveData'])) header("Location: /admin/");
                         unset($_SESSION['LoggedSlaveData']);
                         header("Location: /admin/");
-                        break;
+                        exit;
                     }
                     case "productAdd":{
                         $this->addNewProduct();
                         header("Location: /admin/page/product/");
-                        break;
+                        exit;
                     }
                     case "productEdit":{
-                        $this->editProduct($_GET['id']);
+                        if(isset($_GET['id'])){
+                            if($this->editProduct($_GET['id'])){
+                                header("Location: /admin/page/productEdit/{$_GET['id']}/");
+                                exit;
+                            }else{
+                                header("Location: /admin/page/product/");
+                                exit;
+                            }
+                        }
+                        
                         header("Location: /admin/page/product/");
                         break;
                     }
                     case "productDel":{
                         $this->delProduct($_GET['id']);
                         header("Location: /admin/page/product/");
-                        break;
+                        exit;
                     }
                     case "delFoto":{
-                        if(isset($_GET['idProduct'])){
-                            if(isset($_GET['idFoto'])){
+                        if(isset($_GET['id'])){
+                            if(isset($_GET['idSecound'])){
                                 //usuwanie zdjecia głownego
-                                $this->delProductGalleryFoto($_GET['idProduct'], $_GET['idFoto']);
+                                $this->delProductGalleryFoto($_GET['id'], $_GET['idSecound']);
                             }else{
                                 //usuwanie zdjecia z galerii
-                                $this->delProductMainFoto($_GET['idProduct']);
+                                $this->delProductMainFoto($_GET['id']);
                             }
                         }
-                        header("Location: /admin/page/productEdit/{$_GET['idProduct']}/");
-                        break;
+                        header("Location: /admin/page/productEdit/{$_GET['id']}/");
+                        exit;
+                    }
+                    case "recoverFromArchive": {
+                        if(isset($_GET['id'])){
+                            $pM = new ProductModel();
+                            $pM->archiveAddToProduct($_GET['id']);
+                        }
+                        header("Location: /admin/page/archive/");
+                        exit;
+                    }
+                    case "productEditQuantity": {
+                        if(isset($_GET['id']) && !empty($_POST['quantity'])){
+                            $pM = new ProductModel();
+                            $pM->setProductQuantity($_GET['id'], $_POST['quantity']);
+                        }
+                        header("Location: /admin/page/warehouse/");
+                        exit;
+                    }
+                    case "slaveAdd": {
+                        $this->addSlave();
+                        header("Location: /admin/page/slave/");
+                        exit;
+                    }
+                    case "slaveDel": {
+                        if(isset($_GET['id'])){
+                            $sM = new SlaveModel();
+                            $sM->delSlave($_GET['id']);
+                        }
+                        header("Location: /admin/page/slave/");
+                        exit;
+                    }
+                    case "slaveEdit": {
+                        if(isset(($_GET['id']))){
+                            $this->editSlave($_GET['id']);
+                        }
+                        header("Location: /admin/page/slave/");
+                        exit;
                     }
                 }
             }elseif(isset($_GET['page'])){
@@ -53,21 +98,10 @@ class AdminController{
                 $this->menuContent();
                 $aC = new AdminController();
                 
-                switch($_GET['page']){
-                    case "product":{
-                        require_once('content/product.php');
-                    break;
-                    }
-                    case "productAdd":{
-                        require_once('content/productAdd.php');
-                    break;
-                    }
-                    case "productEdit":{
-                        
-                        require_once('content/productEdit.php');
-                    break;
-                    }
-                }
+                $adminPages = $GLOBALS['adminPages'];
+
+                require_once($adminPages[$_GET['page']]);
+                
                 require_once('static/footer.php');
             }else{
                 if(isset($_SESSION['LoggedSlaveData'])){
@@ -79,11 +113,106 @@ class AdminController{
 
         }
 
+        function addSlave(){
+            
+            
+            if(isset($_POST['email'])){
+                $array = [
+                    "name" => [$_POST['name'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
+                    "surname" => [$_POST['surname'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
+                    "email" => [$_POST['email'],'/^[A-Za-z0-9.-_]{3,30}@[a-z0-9]{1,20}.[a-z]{1,4}$/'],
+                    "password" => [$_POST['password'], '/^[a-zA-Z0-9]{6,24}$/'],
+                    "perm" => [$_POST['permission'], '/^[1-2]{1}$/'],
+                ];    
+            }else{
+                return FALSE;
+            }
+            $newArray = array();
+            foreach($array as $key => $value){
+                if(!preg_match($value[1], $value[0])){
+                    $_SESSION['slaveData'] = array();
+                    foreach ($array as $key => $value) {
+                        array_push($_SESSION['slaveData'],$value[0]);
+                    }
+                    return false;
+                }else{
+                    array_push($newArray,$value[0]);
+                }
+            }
+            $newArray[3] = password_hash($array["password"][0], PASSWORD_DEFAULT);
+            $sM = new SlaveModel();
+            if($sM->addSlave($newArray)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function editSlave($id){
+            
+            
+            if(isset($_POST['email'])){
+                $array = [
+                    "name" => [$_POST['name'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
+                    "surname" => [$_POST['surname'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
+                    "email" => [$_POST['email'],'/^[A-Za-z0-9.-_]{3,30}@[a-z0-9]{1,20}.[a-z]{1,4}$/'],
+                    "password" => [$_POST['password'], '/^[a-zA-Z0-9]{6,24}$/'],
+                    "perm" => [$_POST['permission'], '/^[1-2]{1}$/'],
+                ];    
+            }else{
+                return FALSE;
+            }
+            if(empty($_POST['password'])){
+                array_splice($array, 3, 1);
+            }
+
+            $newArray = array();
+            foreach($array as $key => $value){
+                if(!preg_match($value[1], $value[0])){
+                    $_SESSION['slaveData'] = array();
+                    foreach ($array as $key => $value) {
+                        array_push($_SESSION['slaveData'],$value[0]);
+                    }
+                    return false;
+                }else{
+                    array_push($newArray,$value[0]);
+                }
+            }
+            array_push($newArray, $id);
+            if(!empty($_POST['password'])){
+                $newArray[3] = password_hash($array["password"][0], PASSWORD_DEFAULT);
+            }
+            $sM = new SlaveModel();
+            if($sM->editSlave($newArray)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        public function getSlaveDataForEditForm($id){
+            $sM = new SlaveModel();
+            return $sM->getSlaveDataForEditForm($id);
+            
+        }
         function showAllProducts($idCat = "%"){
             $pM = new ProductModel();
             $pV = new ProductView();
             $array = $pM->getAllProduct($idCat);
             $pV->showAllProductsFromQuery($array);
+        }
+
+        function showAllArchiveProducts($idCat = "%"){
+            $pM = new ProductModel();
+            $pV = new ProductView();
+            $array = $pM->archive($idCat);
+            $pV->showAllArchiveProductsFromQuery($array);
+        }
+
+        function showAllWarehouseProducts($idCat = "%"){
+            $pM = new ProductModel();
+            $pV = new ProductView();
+            $array = $pM->warehouse($idCat);
+            $pV->showAllWarehouseProductsFromQuery($array);
         }
         
         function getProductDataForEditProduct($id){
@@ -155,15 +284,17 @@ class AdminController{
             array_push($_SESSION['loginData'], $password);
             array_push($_SESSION['loginData'], $info);
         }
-        public function loginSuccess($id, $name){
+        public function loginSuccess($id, $name, $idPrem){
             $_SESSION['LoggedSlaveData'] = array();
             $_SESSION['LoggedSlaveData']['id'] = $id;
             $_SESSION['LoggedSlaveData']['name'] = $name;
+            $_SESSION['LoggedSlaveData']['permission'] = $idPrem;
         }
 
         function addNewProduct(){
             // var_dump($_FILES['photoGallery']);
             // exit;
+            
             $pM = new ProductModel();
             $pM->addProduct(//name, price, Quantity, Specification, category
                 $_POST['name'],
@@ -173,11 +304,13 @@ class AdminController{
                 $_POST['category']
             );
             $id = $pM->getNewProductID();
-            mkdir("../dist/files/product/{$id}");
             $pM->addPhotos($id);
             
         }
-
+        function getProductIdCategory($id){
+            $pM = new ProductModel();
+            return getProductIdCategory($id);
+        }
         function editProduct($id){
             $pM = new ProductModel();
             $pM->editProduct(//name, price, Quantity, Specification, category
@@ -187,8 +320,12 @@ class AdminController{
                 $_POST['category'],
                 $id
             );
-            mkdir("../dist/files/product/{$id}");
-            $pM->addPhotos($id, TRUE);
+            if(empty($_FILES['photoGallery']['name'][0]) && empty($_FILES['photoMain']['name'])){
+                return FALSE;
+            }else{
+                $pM->addPhotos($id, TRUE);
+                return TRUE;
+            }
         }
 
         function delProduct($id){
@@ -204,5 +341,11 @@ class AdminController{
         function delProductGalleryFoto($id, $idFoto){
             $pM = new ProductModel();
             $pM->delProductGalleryFoto($id, $idFoto);
+        }
+
+        public function showSlaves($idprem = "%"){
+            $sM = new SlaveModel();
+            $sV = new SlaveView();
+            $sV->showAllSlaves($sM->getSlave($idprem));
         }
     }

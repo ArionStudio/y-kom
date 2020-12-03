@@ -10,7 +10,7 @@
         <?php
         }
         public function showRegisterAll($array){
-            echo "<div class='title'>Ostatnie logowania </div>";
+            echo "<div class='title' style='text-align: center;'>Ostatnie logowania </div>";
             echo "<table>";
             echo "<tr><td>id</td><td>Pracownik</td><td>Czas</td><td>IP</td></tr>";
             foreach($array as $key => $value){

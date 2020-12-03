@@ -34,11 +34,16 @@
             </div>
             <div>
                 <fieldset>
-                    <legend> Category </legend>    
+                    <legend> Category </legend> 
+                    
                     <select name='category'>
-                        <?php 
+                    <?php 
                             foreach($category as $key=>$value){
-                                echo "<option value='{$value['idCategory']}'>{$value['category']}</a></option>";
+                                if($array[3] == $value['idCategory']){
+                                    echo "<option value='{$value['idCategory']}' selected >{$value['category']}</option>";
+                                }else{
+                                    echo "<option value='{$value['idCategory']}'>{$value['category']}</option>";
+                                }
                             }
                         ?>
                     </select>

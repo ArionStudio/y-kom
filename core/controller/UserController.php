@@ -1,12 +1,5 @@
 <?php
     class UserController{
-        public function getUser(){
-
-        }
-
-        public function setUser(){
-
-        }
 
         public function loginFail($email, $password, $info){
             session_start();

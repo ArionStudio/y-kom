@@ -1,6 +1,5 @@
 $special: darken($color: $color3, $amount: 10%);
 #adminPanel {
-    overflow: hidden;
     header {
         //border-bottom: 5px solid black;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px 0px;
@@ -40,11 +39,29 @@ $special: darken($color: $color3, $amount: 10%);
         padding: 4px;
         margin-bottom: 15px;
     }
+    overflow: hidden;
+    main {
+        section:first-child {
+            max-width: 864px;
+            width: 100%;
+            margin: 16px auto 64px;
+            padding: 16px 32px 32px;
+            box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
+            display: block;
+            form {
+                box-shadow: none!important;
+            }
+        }
+    }
+    #productList {}
     table {
         font-size: 14px;
+        width: fit-content;
         padding: 4px;
         border-collapse: collapse;
         text-align: left;
+        margin: auto;
+        display: block;
         tr {
             border-bottom: 1px solid rgb(202, 202, 202);
             &:first-child {
@@ -68,12 +85,6 @@ $special: darken($color: $color3, $amount: 10%);
     }
     //asortyment
     #controlPro {
-        section {
-            max-width: 864px;
-            padding: 16px 32px 32px;
-            box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
-            display: inline-block;
-        }
         .select {
             width: unset;
             max-width: unset;
@@ -91,8 +102,40 @@ $special: darken($color: $color3, $amount: 10%);
     .asortyment {
         .pro__list {
             border-color: $special;
+            >span:first-child {
+                width: 350px;
+            }
+        }
+        .pro__name {
+            width: 260px;
+            display: inline-block;
         }
         .function {
+            .editQuantity {
+                height: 100%;
+                max-width: none;
+                width: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                margin: 0;
+                fieldset {
+                    width: 100px;
+                    margin: 0px 12px;
+                    &:focus-within {
+                        border-color: $special;
+                        legend {
+                            color: $special;
+                        }
+                    }
+                }
+                button {
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                }
+            }
             span,
             a {
                 height: 100%;
@@ -119,48 +162,6 @@ $special: darken($color: $color3, $amount: 10%);
                     }
                 }
             }
-        }
-    }
-    .productAddForm {
-        max-width: 500px;
-        margin: 0;
-        padding: 32px;
-        div {
-            margin: auto;
-        }
-        fieldset {
-            border-color: rgb(104, 104, 104);
-            border-width: 2px;
-            border-style: solid;
-            &:focus-within {
-                border-color: $special;
-                legend {
-                    color: $special;
-                }
-            }
-        }
-        button {
-            width: 150px;
-            color: white;
-            border: none;
-            outline: none;
-            background-color: $special;
-            &:hover {
-                cursor: pointer;
-                background-color: $color3;
-            }
-            a {
-                display: inline-block;
-                padding: 10px;
-                color: white;
-                text-decoration: none;
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .buttons {
-            display: flex;
-            justify-content: space-between;
         }
     }
     .productForm {
@@ -200,55 +201,21 @@ $special: darken($color: $color3, $amount: 10%);
             }
         }
     }
-}
-
-#editProduct {
-    .title {
-        text-align: center;
-        padding: 32px;
-    }
-    section {
-        margin-bottom: 32px;
-        &:last-child {
-            max-width: calc(100% - 80px);
-            form {
-                max-width: calc(100% - 80px);
-            }
+    #slaveList {
+        max-width: 1200px;
+        form {
+            max-width: 1200px;
         }
-    }
-    .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        max-width: calc(100% - 80px);
-        img {
-            max-width: 400px;
+        .pro__list {
+            max-width: 100%;
         }
-        div {
-            position: relative;
-            padding-bottom: 0px;
-            height: 400px;
-            // background-color: $special;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            &:hover {
-                box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
-            }
-        }
-        a{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            width: 50px;
-            height: 50px;
-            text-decoration: none;
-            color: red;
-            font-size: 30px;
-            &:hover #erase1,&:hover #erase2{
-                fill: red;
+        .slave {
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100px;
+                word-break: break-word;
             }
         }
     }

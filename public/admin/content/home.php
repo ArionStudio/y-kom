@@ -24,5 +24,7 @@
     
 -->
 <main>
-    <?php $aC->register();?>
+    <section>
+        <?php $aC->register();?>
+    </section>
 </main>

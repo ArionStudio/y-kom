@@ -12,3 +12,16 @@
             "View" => "../../core/view/", //view of admin panel classes routes FOR ADMIN
         ];
     }
+
+
+    $adminPages = [
+        "archive" => 'content/archive/list.php',
+        "archiveShowProduct" => 'content/archive/showOne.php',
+        "product" => 'content/product/list.php',
+        "productAdd" => 'content/product/add.php',
+        "productEdit" => 'content/product/edit.php',
+        "warehouse" => 'content/product/warehouse.php',
+        "slave" => 'content/slave/list.php',
+        "slaveAdd" => 'content/slave/add.php',
+        "slaveEdit" => 'content/slave/edit.php',
+	];

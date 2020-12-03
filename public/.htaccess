@@ -20,12 +20,10 @@ RewriteRule ^p/([^/]*)/i/([^/]*)/$ /index.php?type=p&id=$1&how=$2 [L]
 #
 
 RewriteRule ^admin/$ /admin/index.php [L]
-RewriteRule ^admin/page/productEdit/([^/]*)/$ /admin/index.php?page=productEdit&id=$1 [L] 
+RewriteRule ^admin/page/([^/]*)/([^/]*)/$ /admin/index.php?page=$1&id=$2  [L]
 RewriteRule ^admin/page/([^/]*)/$ /admin/index.php?page=$1 [L]
-RewriteRule ^admin/fun/productDel/([^/]*)/$ /admin/index.php?fun=productDel&id=$1 [L] 
-RewriteRule ^admin/fun/productEdit/([^/]*)/$ /admin/index.php?fun=productEdit&id=$1 [L]
-RewriteRule ^admin/fun/delFoto/([^/]*)/$ /admin/index.php?fun=delFoto&idProduct=$1 [L]
-RewriteRule ^admin/fun/delFoto/([^/]*)/([^/]*)/$ /admin/index.php?fun=delFoto&idProduct=$1&idFoto=$2 [L]
+RewriteRule ^admin/fun/([^/]*)/([^/]*)/([^/]*)/$ /admin/index.php?fun=$1&id=$2&idSecound=$3 [L]
+RewriteRule ^admin/fun/([^/]*)/([^/]*)/$ /admin/index.php?fun=$1&id=$2 [L]
 RewriteRule ^admin/fun/([^/]*)/$ /admin/index.php?fun=$1 [L] 
 
 ErrorDocument 403 /static/error.php

@@ -31,27 +31,6 @@ form {
         font-size: 24px;
         margin-bottom: 8px;
     }
-    input,
-    select,
-    textarea {
-        width: 100%;
-        padding: 8px;
-        border: none;
-        outline: none;
-        background-color: #fff;
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus {
-            -webkit-text-fill-color: black;
-            -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-            box-shadow: 0 0 0px 1000px #fff inset;
-            transition: background-color 5000s ease-in-out 0s;
-        }
-    }
-    textarea {
-        resize: none;
-        height: 100px;
-    }
     fieldset {
         border-color: rgb(104, 104, 104);
         border-width: 2px;
@@ -61,6 +40,30 @@ form {
             legend {
                 color: $color1;
             }
+        }
+        input,
+        select,
+        textarea,
+        span {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            outline: none;
+            background-color: #fff;
+            display: inline-block;
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+                -webkit-text-fill-color: black;
+                -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+                box-shadow: 0 0 0px 1000px #fff inset;
+                transition: background-color 5000s ease-in-out 0s;
+            }
+        }
+        textarea,
+        .bigSpan {
+            resize: none;
+            height: 100px;
         }
     }
     .info {
@@ -96,6 +99,7 @@ form {
             color: wheat;
             border: 2px solid $color1;
         }
+        &.one {}
     }
 }
 

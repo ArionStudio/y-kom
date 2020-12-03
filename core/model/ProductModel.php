@@ -3,9 +3,9 @@
         public function getCategoryProducts($id, $count = FALSE){
             
             if(!$count){
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE idCategory = ?';
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE and idCategory = ?';
             }else{
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE idCategory = ? LIMIT '. $count;
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE and idCategory = ? LIMIT '. $count;
             }
             
             $stmt = $this->connect()->prepare($query);
@@ -15,9 +15,9 @@
         public function Bestsellers($count = FALSE){
             // $stmt = $this->connect()->prepare('SELECT idProduct, name, price, idFoto FROM product WHERE Quantity > 10 and idProduct in (SELECT idProduktu from productsincarts ORDER BY count(idCart) GROUP BY idProduktu) Limit ?');
             if(!$count){
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE Quantity > 1';
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE';
             }else{
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE Quantity > 1 Limit '. $count;
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE Limit '. $count;
             }
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([]);
@@ -40,7 +40,7 @@
         }
 
         public function getAllProduct($idCat){
-            $query = 'SELECT idProduct, name, price, idFoto, Specification from products where idCategory LIKE ? AND Quantity > -1';
+            $query = 'SELECT idProduct, name, price, idFoto, Specification from products where idCategory LIKE ? AND archive = FALSE';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$idCat]);
             return $stmt->fetchAll();
@@ -67,31 +67,38 @@
 
         public function addPhotos($id, $edit=FALSE){
             $path = "../dist/files/product/{$id}/";
+            if(!file_exists($path)){
+                mkdir($path);
+            }
             $fileName = "main.png";
             $fullpath = $path . $fileName;
             $tmp = $_FILES['photoMain']['tmp_name'];
-            file_exists($fullpath) or touch($fullpath);
-            move_uploaded_file($tmp, $fullpath);
-            
-            $query = "UPDATE products SET idFoto = ? WHERE idProduct = ?";
-            $stmt = $this->connect()->prepare($query);
-            $stmt->execute([1, $id]);
-
-            for($i = 0; $i < count($_FILES['photoGallery']['name']); $i++){
-                $fileName = $_FILES['photoGallery']['name'][$i];
-                $fullpath = $path . $fileName;
-                $tmp = $_FILES['photoGallery']['tmp_name'][$i];
+            if(!empty($tmp)){
                 file_exists($fullpath) or touch($fullpath);
                 move_uploaded_file($tmp, $fullpath);
-                $query = "INSERT INTO productgallery VALUES(null, ?, ?)";
+                
+                $query = "UPDATE products SET idFoto = ? WHERE idProduct = ?";
                 $stmt = $this->connect()->prepare($query);
-                $stmt->execute([$id, $fileName]);
+                $stmt->execute([1, $id]);
+            }
+            if(empty($_FILES['photoGallery']['name'][0])) return;
+            if(count($_FILES['photoGallery']['name']) > 0){
+                for($i = 0; $i < count($_FILES['photoGallery']['name']); $i++){
+                    $fileName = $_FILES['photoGallery']['name'][$i];
+                    $fullpath = $path . $fileName;
+                    $tmp = $_FILES['photoGallery']['tmp_name'][$i];
+                    file_exists($fullpath) or touch($fullpath);
+                    move_uploaded_file($tmp, $fullpath);
+                    $query = "INSERT INTO productgallery VALUES(null, ?, ?)";
+                    $stmt = $this->connect()->prepare($query);
+                    $stmt->execute([$id, $fileName]);
+                }
             }
 
         }
 
         public function delProduct($id){
-            $query = 'UPDATE products set Quantity = -1 WHERE idProduct = ?';
+            $query = 'UPDATE products set archive = TRUE WHERE idProduct = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$id]);
         }
@@ -133,5 +140,39 @@
             $query = "UPDATE products SET idFoto = ? WHERE idProduct = ?";
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([0, $id]);
+        }
+
+        public function archive($idCategory = "%"){
+            $query = "SELECT * FROM products WHERE archive = TRUE and idCategory Like ?";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$idCategory]);
+            return $stmt->fetchAll();
+        }
+
+        public function archiveAddToProduct($id){
+            $query = 'UPDATE products set archive = FALSE where idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id]);
+            return $stmt;
+        }
+
+        public function getProductIdCategory($id){
+            $query = 'SELECT idCategory from products where idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id]);
+            return $stmt;
+        }
+        
+        public function warehouse($idCategory = "%"){
+            $query = "SELECT idProduct, name, Quantity, idFoto FROM products WHERE archive = FALSE and idCategory Like ?";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$idCategory]);
+            return $stmt->fetchAll();
+        }
+        public function setProductQuantity($id, $newQua){
+            $query = 'UPDATE products set Quantity = ? where idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$newQua, $id]);
+            return $stmt;
         }
     }
