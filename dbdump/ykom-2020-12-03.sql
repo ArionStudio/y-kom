@@ -1,12 +1,11 @@
-
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Gru 2020, 00:56
--- Wersja serwera: 10.4.11-MariaDB
--- Wersja PHP: 7.4.5
+-- Generation Time: Dec 03, 2020 at 10:04 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 Drop database ykom;
 create database ykom;
 use ykom;
@@ -21,13 +20,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `ykom`
+-- Database: `ykom`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `carts`
+-- Table structure for table `carts`
 --
 
 CREATE TABLE `carts` (
@@ -37,7 +36,7 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `carts`
+-- Dumping data for table `carts`
 --
 
 INSERT INTO `carts` (`idCart`, `cartName`, `summaryPrice`) VALUES
@@ -70,7 +69,7 @@ INSERT INTO `carts` (`idCart`, `cartName`, `summaryPrice`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -79,7 +78,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`idCategory`, `category`) VALUES
@@ -96,7 +95,7 @@ INSERT INTO `categories` (`idCategory`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `employeelogintime`
+-- Table structure for table `employeelogintime`
 --
 
 CREATE TABLE `employeelogintime` (
@@ -107,7 +106,7 @@ CREATE TABLE `employeelogintime` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Zrzut danych tabeli `employeelogintime`
+-- Dumping data for table `employeelogintime`
 --
 
 INSERT INTO `employeelogintime` (`idLogged`, `idEmployee`, `Time`, `IP`) VALUES
@@ -139,12 +138,18 @@ INSERT INTO `employeelogintime` (`idLogged`, `idEmployee`, `Time`, `IP`) VALUES
 (26, 1, '2020-11-30 20:37:45', '26.213.44.74'),
 (27, 3, '2020-11-30 20:38:44', '26.230.17.254'),
 (28, 3, '2020-11-30 20:59:05', '26.230.17.254'),
-(29, 3, '2020-11-30 22:05:33', '26.230.17.254');
+(29, 3, '2020-11-30 22:05:33', '26.230.17.254'),
+(30, 2, '2020-12-03 14:35:51', '26.212.186.202'),
+(31, 1, '2020-12-03 15:03:57', '26.213.44.74'),
+(32, 3, '2020-12-03 15:05:53', '26.230.17.254'),
+(33, 3, '2020-12-03 15:18:27', '26.230.17.254'),
+(34, 1, '2020-12-03 20:49:06', '26.213.44.74'),
+(35, 3, '2020-12-03 21:21:35', '26.230.17.254');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `employees`
+-- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
@@ -157,26 +162,25 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `employees`
+-- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`idEmployee`, `name`, `surname`, `email`, `password`, `idPrem`) VALUES
-(1, 'Andrzej', 'Adrian', 'andrzej@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 2),
+(1, 'Maruda', 'Marudowy', 'maruda@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 2),
 (2, 'Karolina', 'Prekurat', 'karolina@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 1),
-(3, 'Adrian', 'Rybaczuk', 'adrian@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 1),
-(4, 'Jakub', 'Paprocki', 'jakub@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 1);
+(3, 'Adrianes', 'Rybarczukr', 'adrianeczek@gmail.com', '$2y$10$D3GbzngoubZ9yIElm3B/Fe9PfKPrvWSWT2jmKYpRjABWwp.6d.EWC', 1),
+(4, 'Jakub', 'Paprockiasd', 'jakub@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
   `idOrder` int(11) NOT NULL,
   `idUser` int(11) DEFAULT NULL,
   `idCart` int(11) NOT NULL,
-  `idEmployee` int(11) DEFAULT NULL,
   `idStatus` int(11) DEFAULT NULL,
   `name` text COLLATE utf8_polish_ci DEFAULT NULL,
   `surname` text COLLATE utf8_polish_ci DEFAULT NULL,
@@ -189,26 +193,26 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `permissions`
+-- Table structure for table `permissions`
 --
 
 CREATE TABLE `permissions` (
   `idPrem` int(11) NOT NULL,
-  `premission` tinytext COLLATE utf8_polish_ci DEFAULT NULL
+  `permission` tinytext COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `permissions`
+-- Dumping data for table `permissions`
 --
 
-INSERT INTO `permissions` (`idPrem`, `premission`) VALUES
+INSERT INTO `permissions` (`idPrem`, `permission`) VALUES
 (1, 'pracownik'),
 (2, 'administrator');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `productgallery`
+-- Table structure for table `productgallery`
 --
 
 CREATE TABLE `productgallery` (
@@ -218,20 +222,19 @@ CREATE TABLE `productgallery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `productgallery`
+-- Dumping data for table `productgallery`
 --
 
 INSERT INTO `productgallery` (`idFoto`, `idProduct`, `photo`) VALUES
 (87, 1, 'main.png'),
-(97, 1, 'pr_2020_9_2_11_10_57_978_00 — kopia (3).png'),
-(98, 1, 'pr_2020_9_2_11_10_57_978_00 — kopia (3).png'),
-(99, 1, 'add.png'),
-(101, 1, 'add.png');
+(120, 19, 'siema.png'),
+(121, 19, 'siema1.png'),
+(128, 20, 'siema.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -241,29 +244,31 @@ CREATE TABLE `products` (
   `Quantity` int(10) NOT NULL,
   `Specification` mediumtext COLLATE utf8_polish_ci DEFAULT NULL,
   `idCategory` int(11) DEFAULT NULL,
-  `idFoto` tinyint(1) NOT NULL DEFAULT 0
+  `idFoto` tinyint(1) NOT NULL DEFAULT 0,
+  `archive` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `products`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`idProduct`, `name`, `price`, `Quantity`, `Specification`, `idCategory`, `idFoto`) VALUES
-(1, 'WD 240GB 2,5', '120.00', 0, 'Przeznaczenie produktu:PC;Pojemność:240 GB;Format:2.5\";Interfejs:SATA III (6.0Gb/s);Prędkość odczytu (maksymalna):545 MB/s;Rodzaj kości pamięci:TLC;', 1, 1),
-(2, 'Gigabyte GeForce RTX 2060  OC 6GB GDDR6', '1599.00', 12, 'Obsługa Ray tracingu:Tak;Układ graficzny:GeForce RTX 2060;Rodzaj złącza:PCI-E x16 3.0;Pamięć:6 GB;Rodzaj pamięci:GDDR6;', 3, 0),
-(3, 'AMD Ryzen 5 3600', '999.00', 12, 'Seria:Ryzen™ 5 3600;Taktowanie:3.6 GHz;Liczba rdzeni:6 rdzeni;Cache:35 MB', 1, 0),
-(4, 'AMD Ryzen 5 3500X', '753.00', 50, 'Seria:Ryzen™ 5 3500X;Taktowanie:3.6 GHz;Liczba rdzeni:6 rdzeni;Cache:35 MB', 1, 0),
-(14, 'Procesor', '1.00', 3, 'sdasdasdasd', 1, 0),
-(15, 'Procesor', '1.00', 3, 'sdasdasdasd', 1, 0),
-(16, 'Duu', '1.00', 2, '', 1, 0),
-(17, 'siema', '54.00', 3, 'siema:essa;', 1, 0),
-(18, 'name', '1.00', 1, '', 1, 0),
-(19, 'Eldo', '12.00', 2, 'Na:wolno;', 1, 0);
+INSERT INTO `products` (`idProduct`, `name`, `price`, `Quantity`, `Specification`, `idCategory`, `idFoto`, `archive`) VALUES
+(1, 'WD 240GB 2,5', '120.00', 10000, 'Przeznaczenie produktu:PC;Pojemność:240 GB;Format:2.5\";Interfejs:SATA III (6.0Gb/s);Prędkość odczytu (maksymalna):545 MB/s;Rodzaj kości pamięci:TLC;', 2, 0, 0),
+(2, 'Gigabyte GeForce RTX 2060  OC 6GB GDDR6', '1599.00', 10000, 'Obsługa Ray tracingu:Tak;Układ graficzny:GeForce RTX 2060;Rodzaj złącza:PCI-E x16 3.0;Pamięć:6 GB;Rodzaj pamięci:GDDR6;', 3, 0, 0),
+(3, 'AMD Ryzen 5 3600', '999.00', 10000, 'Seria:Ryzen™ 5 3600;Taktowanie:3.6 GHz;Liczba rdzeni:6 rdzeni;Cache:35 MB', 1, 0, 0),
+(4, 'AMD Ryzen 5 3500X', '752.88', 10000, 'Seria:Ryzen™ 5 3500X;Taktowanie:3.6 GHz;Liczba rdzeni:6 rdzeni;Cache:35 MB', 3, 0, 1),
+(14, 'Procesor', '1.00', 10000, 'sdasdasdasd', 1, 0, 1),
+(15, 'Procesor', '1.00', 10000, 'sdasdasdasd', 6, 0, 0),
+(16, 'Duu', '1.00', 10000, '', 1, 0, 0),
+(17, 'siema', '54.00', 10000, 'siema:essa;', 9, 0, 0),
+(18, 'name', '1.00', 10000, '', 1, 0, 0),
+(19, 'ESSA', '12200.00', 10000, 'Na:wolno; ale: nie szybko;', 6, 0, 0),
+(20, 'siema', '234.00', 10000, 'alE:kokS;jeSt:ten;produkt:kochAny;', 7, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `productsincarts`
+-- Table structure for table `productsincarts`
 --
 
 CREATE TABLE `productsincarts` (
@@ -273,7 +278,7 @@ CREATE TABLE `productsincarts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `productsincarts`
+-- Dumping data for table `productsincarts`
 --
 
 INSERT INTO `productsincarts` (`idCart`, `idProduct`, `howMuch`) VALUES
@@ -283,7 +288,7 @@ INSERT INTO `productsincarts` (`idCart`, `idProduct`, `howMuch`) VALUES
 (8, 4, 1);
 
 --
--- Wyzwalacze `productsincarts`
+-- Triggers `productsincarts`
 --
 DELIMITER $$
 CREATE TRIGGER `onDeleteCart` AFTER DELETE ON `productsincarts` FOR EACH ROW UPDATE carts SET summaryPrice = summaryPrice -(
@@ -313,7 +318,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `status`
+-- Table structure for table `status`
 --
 
 CREATE TABLE `status` (
@@ -322,7 +327,7 @@ CREATE TABLE `status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `status`
+-- Dumping data for table `status`
 --
 
 INSERT INTO `status` (`idStatus`, `status`) VALUES
@@ -335,7 +340,7 @@ INSERT INTO `status` (`idStatus`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -352,7 +357,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`idUser`, `name`, `surname`, `postCity`, `postCode`, `address`, `phone`, `email`, `password`, `currentCart`) VALUES
@@ -381,60 +386,59 @@ INSERT INTO `users` (`idUser`, `name`, `surname`, `postCity`, `postCode`, `addre
 (41, 'Kubus', 'Paprocus', 'Siema', '89-322', 'Pliszczusie 6', '997998999', 'kubus420@siema.jd', '$2y$10$q.SNSihn/1lTZd3pqaRkSeS4nuLFP6SumS3dZfEMIDCUVndB4/0lO', 28);
 
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `carts`
+-- Indexes for table `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`idCart`);
 
 --
--- Indeksy dla tabeli `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`idCategory`);
 
 --
--- Indeksy dla tabeli `employeelogintime`
+-- Indexes for table `employeelogintime`
 --
 ALTER TABLE `employeelogintime`
   ADD PRIMARY KEY (`idLogged`),
   ADD KEY `idEmployee` (`idEmployee`);
 
 --
--- Indeksy dla tabeli `employees`
+-- Indexes for table `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`idEmployee`),
   ADD KEY `idPrem` (`idPrem`);
 
 --
--- Indeksy dla tabeli `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`idOrder`),
   ADD KEY `idCart` (`idCart`),
   ADD KEY `idStatus` (`idStatus`),
-  ADD KEY `idUser` (`idUser`),
-  ADD KEY `idEmployee` (`idEmployee`);
+  ADD KEY `idUser` (`idUser`);
 
 --
--- Indeksy dla tabeli `permissions`
+-- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`idPrem`);
 
 --
--- Indeksy dla tabeli `productgallery`
+-- Indexes for table `productgallery`
 --
 ALTER TABLE `productgallery`
   ADD PRIMARY KEY (`idFoto`),
   ADD KEY `idProdukt` (`idProduct`);
 
 --
--- Indeksy dla tabeli `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`idProduct`),
@@ -442,20 +446,20 @@ ALTER TABLE `products`
   ADD KEY `idFoto` (`idFoto`);
 
 --
--- Indeksy dla tabeli `productsincarts`
+-- Indexes for table `productsincarts`
 --
 ALTER TABLE `productsincarts`
   ADD PRIMARY KEY (`idCart`,`idProduct`),
   ADD KEY `idProdukt` (`idProduct`);
 
 --
--- Indeksy dla tabeli `status`
+-- Indexes for table `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`idStatus`);
 
 --
--- Indeksy dla tabeli `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`idUser`);
@@ -465,104 +469,103 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `carts`
+-- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
   MODIFY `idCart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT dla tabeli `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `idCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT dla tabeli `employeelogintime`
+-- AUTO_INCREMENT for table `employeelogintime`
 --
 ALTER TABLE `employeelogintime`
-  MODIFY `idLogged` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idLogged` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT dla tabeli `employees`
+-- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `idEmployee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idEmployee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT dla tabeli `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `permissions`
+-- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `idPrem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT dla tabeli `productgallery`
+-- AUTO_INCREMENT for table `productgallery`
 --
 ALTER TABLE `productgallery`
-  MODIFY `idFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `idFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
--- AUTO_INCREMENT dla tabeli `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT dla tabeli `status`
+-- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
   MODIFY `idStatus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT dla tabeli `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- Ograniczenia dla zrzutów tabel
+-- Constraints for dumped tables
 --
 
 --
--- Ograniczenia dla tabeli `employeelogintime`
+-- Constraints for table `employeelogintime`
 --
 ALTER TABLE `employeelogintime`
   ADD CONSTRAINT `employeelogintime_ibfk_1` FOREIGN KEY (`idEmployee`) REFERENCES `employees` (`idEmployee`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Ograniczenia dla tabeli `employees`
+-- Constraints for table `employees`
 --
 ALTER TABLE `employees`
   ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`idPrem`) REFERENCES `permissions` (`idPrem`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Ograniczenia dla tabeli `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`idCart`) REFERENCES `carts` (`idCart`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`idStatus`) REFERENCES `status` (`idStatus`),
-  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`idUser`) REFERENCES `users` (`idUser`),
-  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`idEmployee`) REFERENCES `employees` (`idEmployee`);
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`idUser`) REFERENCES `users` (`idUser`);
 
 --
--- Ograniczenia dla tabeli `productgallery`
+-- Constraints for table `productgallery`
 --
 ALTER TABLE `productgallery`
   ADD CONSTRAINT `productgallery_ibfk_1` FOREIGN KEY (`idProduct`) REFERENCES `products` (`idProduct`);
 
 --
--- Ograniczenia dla tabeli `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `categories` (`idCategory`);
 
 --
--- Ograniczenia dla tabeli `productsincarts`
+-- Constraints for table `productsincarts`
 --
 ALTER TABLE `productsincarts`
   ADD CONSTRAINT `productsincarts_ibfk_1` FOREIGN KEY (`idCart`) REFERENCES `carts` (`idCart`),
