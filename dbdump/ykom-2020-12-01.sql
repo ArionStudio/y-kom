@@ -1,3 +1,6 @@
+Drop database ykom;
+create database ykom;
+use ykom;
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
