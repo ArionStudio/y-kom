@@ -18,6 +18,12 @@
             $st->execute([$email]);
             return $st->fetch()['name'];
         }
+        public function getPremByEmail($email){
+            $query = 'SELECT idPrem FROM employees WHERE email = ?';
+            $st = $this->connect()->prepare($query);
+            $st->execute([$email]);
+            return $st->fetch()['idPrem'];
+        }
 
         public function registerLoginAction($id){
             $query = 'INSERT INTO employeelogintime(idEmployee, IP) VALUES (?, ?)'; //id, ip

@@ -40,15 +40,16 @@
             </div>
             <div>
                 <fieldset>
-                    <legend> Permission </legend>   
+                    <legend> Permission* </legend>   
                     <select name='permission'>
                         <option value="2" <?php echo ($array[3] == 2? " selected " : " ") ?>>Admin</option>
                         <option value="1" <?php echo ($array[3] == 1? " selected " : " ") ?>>Pracownik</option>
                     </select>
                 </fieldset>
+                <div>*Jeśli nie podasz hasła nie zmienie się ono</div>
             </div>
             <div class="buttons">
-                <button>Edytuj</button><button><a href="/admin/page/slave/">Anuluj</a></button>
+                <button type="submit">Edytuj</button><button><a href="/admin/page/slave/">Anuluj</a></button>
             </div>
 
         </form>

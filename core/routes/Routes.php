@@ -24,4 +24,5 @@
         "slave" => 'content/slave/list.php',
         "slaveAdd" => 'content/slave/add.php',
         "slaveEdit" => 'content/slave/edit.php',
+        "order" => 'content/order/list.php',
 	];

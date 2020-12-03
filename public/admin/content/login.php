@@ -1,5 +1,3 @@
-
-
     <main id="login">
     <?php
             $array = ["",""];

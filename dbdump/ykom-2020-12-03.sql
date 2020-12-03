@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2020 at 10:04 PM
+-- Generation Time: Dec 03, 2020 at 10:47 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 Drop database ykom;
@@ -144,7 +144,13 @@ INSERT INTO `employeelogintime` (`idLogged`, `idEmployee`, `Time`, `IP`) VALUES
 (32, 3, '2020-12-03 15:05:53', '26.230.17.254'),
 (33, 3, '2020-12-03 15:18:27', '26.230.17.254'),
 (34, 1, '2020-12-03 20:49:06', '26.213.44.74'),
-(35, 3, '2020-12-03 21:21:35', '26.230.17.254');
+(35, 3, '2020-12-03 21:21:35', '26.230.17.254'),
+(36, 3, '2020-12-03 22:21:12', '26.230.17.254'),
+(37, 1, '2020-12-03 22:28:35', '26.213.44.74'),
+(38, 2, '2020-12-03 22:34:55', '26.212.186.202'),
+(39, 1, '2020-12-03 22:38:10', '26.212.186.202'),
+(40, 2, '2020-12-03 22:38:45', '26.212.186.202'),
+(41, 3, '2020-12-03 22:45:19', '26.230.17.254');
 
 -- --------------------------------------------------------
 
@@ -166,10 +172,10 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`idEmployee`, `name`, `surname`, `email`, `password`, `idPrem`) VALUES
-(1, 'Maruda', 'Marudowy', 'maruda@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 2),
-(2, 'Karolina', 'Prekurat', 'karolina@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 1),
-(3, 'Adrianes', 'Rybarczukr', 'adrianeczek@gmail.com', '$2y$10$D3GbzngoubZ9yIElm3B/Fe9PfKPrvWSWT2jmKYpRjABWwp.6d.EWC', 1),
-(4, 'Jakub', 'Paprockiasd', 'jakub@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 1);
+(1, 'Maruda', 'Marudowy', 'maruda@gmail.com', '$2y$10$P.xsvaf/mWsPsuMOWaYYKugU93YY7W4zZRBYNg5khE7Rmq/pyo6Hq', 2),
+(2, 'Karolina', 'Prekurat', 'karolina@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 2),
+(3, 'Adrianes', 'Rybarczukr', 'adrianeczek@gmail.com', '$2y$10$2ijawGC7z1dO7MoRNVe2R.22uozAnXyv1YOc/G92W.r9IRF0rOSfK', 2),
+(4, 'Jakub', 'Paprockiasd', 'jakub@gmail.com', '$2y$10$JfleS6PLAls7a1IRDdxmsOcFLysjlAYI6c5H5fK4jr3LD03ipuQgG', 2);
 
 -- --------------------------------------------------------
 
@@ -256,8 +262,8 @@ INSERT INTO `products` (`idProduct`, `name`, `price`, `Quantity`, `Specification
 (1, 'WD 240GB 2,5', '120.00', 10000, 'Przeznaczenie produktu:PC;Pojemność:240 GB;Format:2.5\";Interfejs:SATA III (6.0Gb/s);Prędkość odczytu (maksymalna):545 MB/s;Rodzaj kości pamięci:TLC;', 2, 0, 0),
 (2, 'Gigabyte GeForce RTX 2060  OC 6GB GDDR6', '1599.00', 10000, 'Obsługa Ray tracingu:Tak;Układ graficzny:GeForce RTX 2060;Rodzaj złącza:PCI-E x16 3.0;Pamięć:6 GB;Rodzaj pamięci:GDDR6;', 3, 0, 0),
 (3, 'AMD Ryzen 5 3600', '999.00', 10000, 'Seria:Ryzen™ 5 3600;Taktowanie:3.6 GHz;Liczba rdzeni:6 rdzeni;Cache:35 MB', 1, 0, 0),
-(4, 'AMD Ryzen 5 3500X', '752.88', 10000, 'Seria:Ryzen™ 5 3500X;Taktowanie:3.6 GHz;Liczba rdzeni:6 rdzeni;Cache:35 MB', 3, 0, 1),
-(14, 'Procesor', '1.00', 10000, 'sdasdasdasd', 1, 0, 1),
+(4, 'AMD Ryzen 5 3500X', '752.88', 10000, 'Seria:Ryzen™ 5 3500X;Taktowanie:3.6 GHz;Liczba rdzeni:6 rdzeni;Cache:35 MB', 3, 0, 0),
+(14, 'Procesor', '1.00', 10000, 'sdasdasdasd', 1, 0, 0),
 (15, 'Procesor', '1.00', 10000, 'sdasdasdasd', 6, 0, 0),
 (16, 'Duu', '1.00', 10000, '', 1, 0, 0),
 (17, 'siema', '54.00', 10000, 'siema:essa;', 9, 0, 0),
@@ -484,7 +490,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `employeelogintime`
 --
 ALTER TABLE `employeelogintime`
-  MODIFY `idLogged` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idLogged` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `employees`

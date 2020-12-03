@@ -7,8 +7,9 @@
                 switch($_GET['fun']){
                     case "login":{
                         if(isset($_SESSION['LoggedSlaveData'])) header("Location: /admin/");
-                        $this->login();
-                        unset($_POST['email'], $_POST['password']);
+                        if($this->login()){
+                            unset($_POST['email'], $_POST['password']);
+                        }
                         header("Location: /admin/");
                         exit;
                     }
@@ -97,7 +98,14 @@
                 require_once('static/header.php');
                 $this->menuContent();
                 $aC = new AdminController();
-                
+
+                if($_SESSION['LoggedSlaveData']['permission'] == 1 && (
+                    $_GET['page'] == "slave" ||
+                    $_GET['page'] == "slaveAdd" ||
+                    $_GET['page'] == "slaveEdit"
+                )){
+                    header("Location: /");
+                }
                 $adminPages = $GLOBALS['adminPages'];
 
                 require_once($adminPages[$_GET['page']]);
@@ -262,7 +270,7 @@
                     return false;
                 }
                 elseif(password_verify($password, $row['password'])){ //jeżeli hasło się zgadza
-                    $this->loginSuccess($admin->getIdByEmail($email), $admin->getNameByEmail($email));
+                    $this->loginSuccess($admin->getIdByEmail($email), $admin->getNameByEmail($email), $admin->getPremByEmail($email), $admin->getPremByEmail($email));
                     $admin->registerLoginAction($admin->getIdByEmail($email));
                     return true;
                 }else{ //jeżeli nie

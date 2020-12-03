@@ -35,13 +35,12 @@
             </div>
             <div>
                 <fieldset>
-                    <legend> Nowe hasło* </legend>    
+                    <legend> Premission </legend>    
                     <select name='permission'>
                         <option value="2" >Admin</option>
                         <option value="1" selected >Pracownik</option>
                     </select>
                 </fieldset>
-                <div>*Jeśli nie podasz hasła nie zmienie się ono</div>
             </div>
             <div class="buttons">
                 <button>Dodaj</button><button><a href="/admin/page/slave/">Anuluj</a></button>
