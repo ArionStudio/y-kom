@@ -30,7 +30,7 @@
                     <legend> Specification* </legend>
                     <textarea maxlength="400" placeholder="Specification" type="text" name="specification" ><?php echo $array[2]; ?></textarea>
                 </fieldset>
-                <div class="info">*Format specyfikacji -> Właściwość: wartość; </div>
+                <div class="info">*Format specyfikacji -> Właściwość: wartość;</div>
             </div>
             <div>
                 <fieldset>
