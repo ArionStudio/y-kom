@@ -6,10 +6,13 @@
 
 body {
     font-family: "Poppins", sans-serif;
+    overflow: hidden;
 }
 
 main {
     padding: 32px;
+    overflow: auto;
+    height: calc(100vh - 120px);
 }
 
 form {

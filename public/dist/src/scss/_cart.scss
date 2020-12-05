@@ -66,4 +66,20 @@
             }
         }
     }
+    .succesOrder {
+        font-size: 40px;
+        color: darken($color: $color3, $amount: 10%);
+        padding: 16px;
+        text-align: center;
+    }
+    button {
+        margin: 0px;
+        padding: 0px !important;
+        a {
+            padding: 10px;
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+        }
+    }
 }

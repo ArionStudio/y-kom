@@ -12,7 +12,7 @@
                         <img style="width:32px;height:32px;" src="/dist/files/page/konto.svg" alt="" srcset="">
                         <span>twoje konto</span>
                     </a>
-                    <div class="userOptionList">
+                    <div class="userOptionList unlogged">
                         <div>
                             <a href="/f/logowanie/">Zaloguj się</a>
                         </div>

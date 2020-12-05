@@ -17,7 +17,10 @@
                             <span><?php echo $_SESSION["loggedUserData"]["name"];?></span>
                         </div>
                         <div>
-                            <a href="">Twoje konto</a>
+                            <a href="/f/moje-konto/">Twoje konto</a>
+                        </div>
+                        <div>
+                            <a href="/f/moje-zamowienia/">Zamówienia</a>
                         </div>
                         <div>
                             <a href="/s/logout/">Wyloguj się</a>

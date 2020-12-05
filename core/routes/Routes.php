@@ -25,4 +25,23 @@
         "slaveAdd" => 'content/slave/add.php',
         "slaveEdit" => 'content/slave/edit.php',
         "order" => 'content/order/list.php',
-	];
+    ];
+    
+    $shopRoutes  = [
+        "type/p" => "content/product.php",
+        "type/c" => "content/category.php",
+        "fun/logowanie" => "content/login.php",
+        "fun/rejestracja" => "content/register.php",
+        "fun/koszyk" => "content/cart.php",
+        "fun/order" => "content/order.php",
+        "fun/moje-konto" => "content/account.php",
+        "fun/moje-zamowienia" => "content/orders.php",
+        "fun/zamowienie" => "content/orderID.php",
+        "special/logowanie" => ["/f/logowanie/", "/"],
+        "special/rejestracja" => ["/f/rejestracja/", "/"],
+        "special/logout" => "1",
+        "special/addToCart" => "1",
+        "special/delFromCart" => "1",
+        "special/orderAdd" => "1",
+        "special/userEdit" => "1"
+    ];

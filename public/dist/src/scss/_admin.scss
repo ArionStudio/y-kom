@@ -1,4 +1,7 @@
-$special: darken($color: $color3, $amount: 10%);
+$special: darken(
+    $color: $color3,
+    $amount: 10%,
+);
 #adminPanel {
     header {
         //border-bottom: 5px solid black;
@@ -15,7 +18,7 @@ $special: darken($color: $color3, $amount: 10%);
             }
         }
     }
-    >div {
+    > div {
         display: flex;
         height: calc(100vh - 80px);
     }
@@ -49,11 +52,12 @@ $special: darken($color: $color3, $amount: 10%);
             box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px 0px;
             display: block;
             form {
-                box-shadow: none!important;
+                box-shadow: none !important;
             }
         }
     }
-    #productList {}
+    #productList {
+    }
     table {
         font-size: 14px;
         width: fit-content;
@@ -72,7 +76,7 @@ $special: darken($color: $color3, $amount: 10%);
                     text-align: center;
                 }
             }
-            &:nth-child(2n+1) {
+            &:nth-child(2n + 1) {
                 background-color: rgb(231, 230, 230);
             }
         }
@@ -102,7 +106,7 @@ $special: darken($color: $color3, $amount: 10%);
     .asortyment {
         .pro__list {
             border-color: $special;
-            >span:first-child {
+            > span:first-child {
                 width: 350px;
             }
         }
@@ -169,7 +173,7 @@ $special: darken($color: $color3, $amount: 10%);
         display: flex;
         justify-content: space-between;
         box-shadow: none;
-        //        
+        //
         max-width: 800px;
         margin: 0;
         padding: 16px 0;

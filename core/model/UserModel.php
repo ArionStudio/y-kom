@@ -1,12 +1,5 @@
 <?php
     class UserModel extends Database{
-        public function getUser(){
-
-        }
-
-        public function setUser(){
-
-        }
 
         public function login($email){
             $query = 'SELECT password FROM users WHERE email = ?';
@@ -39,5 +32,22 @@
             return $st->fetch()['name'];
         }
 
-        
+        public function getUserData($id){
+            $query = 'SELECT name, surname, postcity, postcode, address, phone, email from users where idUser = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id]);
+            return $stmt->fetch();
+        }
+
+        public function editUser($array){
+            if(count($array) == 9){
+                $query = 'UPDATE users SET name = ?, surname = ?, postCity = ?, postCode = ?, address = ?, phone = ?, email = ?, password = ? WHERE idUser = ? ';
+            }else{
+                $query = 'UPDATE users SET name = ?, surname = ?, postcity = ?, postCode = ?, address = ?, phone = ?, email = ? WHERE idUser = ? ';
+            }
+            $st = $this->connect()->prepare($query);
+            $st->execute($array);
+            return ($st ? TRUE : FALSE);
+        }
     }
+    

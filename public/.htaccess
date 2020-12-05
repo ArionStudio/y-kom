@@ -9,6 +9,7 @@ RewriteRule ^(.+)-([0-9]+).js$ $1.php [QSA,L]
 #
 #Sklep
 RewriteRule ^i/([^/]*)/$ /index.php?how=$1 [L]
+RewriteRule ^f/zamowienie/([^/]*)/$ /index.php?fun=zamowienie&id=$1 [L]
 RewriteRule ^f/([^/]*)/$ /index.php?fun=$1 [L]
 RewriteRule ^s/addToCart/([^/]*)/$ /index.php?special=addToCart&id=$1 [L]
 RewriteRule ^s/delFromCart/([^/]*)/$ /index.php?special=delFromCart&id=$1 [L]

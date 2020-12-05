@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAKQ,OALD,CAKE,aAAM,AAAA,YAAY,AAAC,CAChB,WAAW,CAAE,IAAI,CAEpB",
+    "sources": [
+        "../scss/orders.scss"
+    ],
+    "names": [],
+    "file": "orders.min.css"
+}
