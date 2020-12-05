@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="/f/listy/">
+                    <a href="/f/moje-zamowienia/">
                         <img style="width:32px;height:32px;" src="/dist/files/page/lista.svg" alt="" srcset="">
                         <span>twoje listy</span>
                     </a>

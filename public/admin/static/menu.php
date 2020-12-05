@@ -1,7 +1,7 @@
 <aside class="adminMenu">
     <div><a href="/admin/"><img src="/admin/icons/home.svg" alt="START" />START</a></div>
 
-    <div><a href="/admin/page/order/"><img src="/admin/icons/order.svg" alt="Order" />Zamówienia</a></div>
+    <div><a href="/admin/page/orders/"><img src="/admin/icons/order.svg" alt="Order" />Zamówienia</a></div>
 
     <div><a href="/admin/page/product/"><img src="/admin/icons/product.svg" alt="Zarządzanie asortymentem" style="height: 25px;width: 30px;" />Asortyment</a></div>  
 

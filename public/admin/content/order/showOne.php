@@ -1,5 +1,4 @@
 <?php
-    $page->getHeader();
     if(isset($_POST['how'])){
         $how = $_GET['how'];
     }else{
@@ -10,9 +9,6 @@
 
 <main id="orders" class="single">
     <?php
-        $page->showUserOrder($_GET['id']);
+        $aC->showOrder($_GET['id'], TRUE);
     ?>
 </main>
-
-<?php
-    $page->getFooter();

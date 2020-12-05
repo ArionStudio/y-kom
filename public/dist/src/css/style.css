@@ -16,6 +16,14 @@ main {
   height: calc(100vh - 120px);
 }
 
+svg {
+  cursor: pointer;
+}
+
+svg:hover .hovCo {
+  fill: black;
+}
+
 form {
   max-width: 464px;
   width: 100%;
@@ -43,11 +51,11 @@ form fieldset {
 }
 
 form fieldset:focus-within {
-  border-color: #AD0034;
+  border-color: #ad0034;
 }
 
 form fieldset:focus-within legend {
-  color: #AD0034;
+  color: #ad0034;
 }
 
 form fieldset input,
@@ -88,13 +96,13 @@ form .info {
   padding-bottom: 0px;
 }
 
-form legend {
+form .info legend {
   color: black;
   padding-inline-start: 6px;
   padding-inline-end: 6px;
 }
 
-form .button {
+.button {
   outline: none;
   display: block;
   width: 100%;
@@ -105,15 +113,15 @@ form .button {
   text-align: center;
   appearance: none;
   color: white;
-  background-color: #AD0034;
-  border: 2px solid #AD0034;
+  background-color: #ad0034;
+  border: 2px solid #ad0034;
   transition: color 0.1s ease, background-color 0.1s ease;
 }
 
-form .button:hover {
+.button:hover {
   cursor: pointer;
   color: wheat;
-  border: 2px solid #AD0034;
+  border: 2px solid #ad0034;
 }
 
 .linkInfo {
@@ -133,11 +141,11 @@ form .button:hover {
   padding: 18px 32px;
   text-decoration: none;
   font-size: 18px;
-  color: #AD0034;
+  color: #ad0034;
 }
 
 .linkInfo:hover {
-  background-color: #AD0034;
+  background-color: #ad0034;
 }
 
 .linkInfo:hover a {
@@ -150,7 +158,7 @@ form .button:hover {
   padding: 0px;
   margin: 16px auto;
   font-size: 14px;
-  background-color: #AD0034;
+  background-color: #ad0034;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
 }
 
@@ -254,7 +262,7 @@ header section:nth-child(1) > div.toolbar menu > div a img {
 }
 
 header section:nth-child(1) > div.toolbar menu > div a .svgImg:hover {
-  fill: #AD0034;
+  fill: #ad0034;
 }
 
 header section:nth-child(1) > div.toolbar menu > div a span {
@@ -269,7 +277,7 @@ header section:nth-child(1) > div.toolbar menu > div a:hover {
 }
 
 header section:nth-child(1) > div.toolbar menu > div a:hover span {
-  color: #AD0034;
+  color: #ad0034;
 }
 
 header section:nth-child(1) > div.toolbar menu > div:hover {
@@ -317,12 +325,12 @@ header section:nth-child(1) > div.toolbar menu .userOptionList > div > a {
 }
 
 header section:nth-child(1) > div.toolbar menu .userOptionList > div:hover a {
-  color: #AD0034;
+  color: #ad0034;
 }
 
 header section:nth-child(2) {
   font-size: 13px;
-  background-color: #AD0034;
+  background-color: #ad0034;
 }
 
 header section:nth-child(2) menu {
@@ -337,7 +345,7 @@ header section:nth-child(2) menu div:hover {
 }
 
 header section:nth-child(2) menu div:hover a {
-  color: #AD0034;
+  color: #ad0034;
 }
 
 header section:nth-child(2) a {
@@ -364,11 +372,11 @@ header.clear .back span {
 }
 
 header.clear .back:hover #back_arrow {
-  fill: #AD0034;
+  fill: #ad0034;
 }
 
 header.clear .back:hover span {
-  color: #AD0034;
+  color: #ad0034;
 }
 
 .pro {
@@ -437,7 +445,7 @@ header.clear .back:hover span {
 }
 
 .pro__list {
-  border-bottom: 1px solid #AD0034;
+  border-bottom: 1px solid #ad0034;
   max-width: 800px;
   width: 100%;
   display: flex;
@@ -604,15 +612,15 @@ header.clear .back:hover span {
   text-align: center;
   appearance: none;
   color: white;
-  background-color: #AD0034;
-  border: 2px solid #AD0034;
+  background-color: #ad0034;
+  border: 2px solid #ad0034;
   transition: color 0.1s ease, background-color 0.1s ease;
 }
 
 #cart .button:hover {
   cursor: pointer;
   color: wheat;
-  border: 2px solid #AD0034;
+  border: 2px solid #ad0034;
 }
 
 #cart .button a {
@@ -625,11 +633,11 @@ header.clear .back:hover span {
   padding-top: 18px;
   font-size: 18px;
   text-decoration: none;
-  color: #AD0034;
+  color: #ad0034;
 }
 
 #cart .goToHome a:hover {
-  color: #0DA8F5;
+  color: #0da8f5;
 }
 
 #cart .succesOrder {
@@ -644,7 +652,8 @@ header.clear .back:hover span {
   padding: 0px !important;
 }
 
-#cart button a {
+#cart button a,
+#cart button span {
   padding: 10px;
   display: inline-block;
   height: 100%;
@@ -653,7 +662,7 @@ header.clear .back:hover span {
 
 .adminMenu {
   width: 300px;
-  background-color: #0DA8F5;
+  background-color: #0da8f5;
   height: 100%;
   position: relative;
 }
@@ -860,16 +869,8 @@ header.clear .back:hover span {
   width: 50px;
 }
 
-#adminPanel .asortyment .function span svg:hover #edit1,
-#adminPanel .asortyment .function span svg:hover #edit2,
-#adminPanel .asortyment .function span svg:hover #trash1,
-#adminPanel .asortyment .function span svg:hover #trash2,
-#adminPanel .asortyment .function span svg:hover #trash3,
-#adminPanel .asortyment .function a svg:hover #edit1,
-#adminPanel .asortyment .function a svg:hover #edit2,
-#adminPanel .asortyment .function a svg:hover #trash1,
-#adminPanel .asortyment .function a svg:hover #trash2,
-#adminPanel .asortyment .function a svg:hover #trash3 {
+#adminPanel .asortyment .function span svg:hover .hover,
+#adminPanel .asortyment .function a svg:hover .hover {
   fill: black;
 }
 
@@ -905,7 +906,7 @@ header.clear .back:hover span {
 
 #adminPanel .productForm button:hover {
   cursor: pointer;
-  background-color: #0DA8F5;
+  background-color: #0da8f5;
 }
 
 #adminPanel .productForm button a,
@@ -972,7 +973,7 @@ header.clear .back:hover span {
 
 .productAddForm button:hover {
   cursor: pointer;
-  background-color: #0DA8F5;
+  background-color: #0da8f5;
 }
 
 .productAddForm button a {
@@ -1137,11 +1138,88 @@ header.clear .back:hover span {
   padding: 0px !important;
 }
 
-#order button a {
+#order button a,
+#order button span {
   padding: 10px;
   display: inline-block;
   height: 100%;
   width: 100%;
+}
+
+#orders .admin {
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+  padding-bottom: 32px;
+}
+
+#orders .admin .title.special {
+  max-width: 750px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#orders .admin .title.special form,
+#orders .admin .title.special > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+#orders .admin .title.special form span,
+#orders .admin .title.special > span span {
+  width: fit-content;
+}
+
+#orders .admin .title.special form button,
+#orders .admin .title.special > span button {
+  width: 100px;
+}
+
+#orders .admin button {
+  background-color: #0888c7;
+  border-color: #0888c7;
+}
+
+#orders .admin button:hover {
+  background-color: #0da8f5;
+  border-color: #0da8f5;
+}
+
+#orders .admin .pro__list {
+  border-color: #0888c7;
+}
+
+#orders .admin form {
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  max-width: none;
+}
+
+#orders .admin > section:last-child {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#orders .admin > section:last-child div {
+  width: 50%;
+}
+
+#orders .admin > section:last-child form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#orders .admin > section:last-child form button {
+  width: 100px;
 }
 
 #orders .title {
@@ -1216,5 +1294,64 @@ header.clear .back:hover span {
 
 #orders .orders a:hover .eye {
   fill: black;
+}
+
+#orders.single article {
+  max-width: 800px;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+  padding: 16px;
+}
+
+#orders.single article .title {
+  font-size: 20px;
+  font-weight: 450;
+  text-align: left;
+  padding: 0px;
+}
+
+#orders.single article > section {
+  padding: 16px;
+}
+
+#orders.single article > section:first-child .title {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+#orders.single article > section:nth-child(2) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#orders.single article > section:nth-child(2) section {
+  width: 50%;
+}
+
+#orders.single article section {
+  box-shadow: none;
+  padding: 16px;
+  margin: auto;
+}
+
+#orders.single article section section {
+  padding: 0px;
+}
+
+#orders button {
+  max-width: 300px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px !important;
+}
+
+#orders button a,
+#orders button span {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

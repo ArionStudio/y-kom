@@ -39,7 +39,7 @@
                     text-align: left;
                 }
             }
-            .pro__list > span:first-child > span {
+            .pro__list>span:first-child>span {
                 justify-content: flex-start;
             }
         }
@@ -64,7 +64,8 @@
     button {
         margin: 0px;
         padding: 0px !important;
-        a {
+        a,
+        span {
             padding: 10px;
             display: inline-block;
             height: 100%;

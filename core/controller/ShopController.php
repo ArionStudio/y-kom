@@ -322,6 +322,6 @@
             $oM = new OrderModel();
             $array = $oM->getUserOrder($_SESSION['loggedUserData']['id'], $id);
             $oV = new OrderView();
-            $oV->showOrderPage($array["DATA"], $array["USER_DATA"], $array["USER_ADDRESS"]);
+            $oV->showOrderPage($array["DATA"], $array["USER_DATA"], $array["USER_ADDRESS"], $array['CART']);
         }
     }

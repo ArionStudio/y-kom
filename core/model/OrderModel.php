@@ -15,7 +15,13 @@
         }
 
         public function getUserOrders($id){
-            $query = 'SELECT idOrder, status, orderData, summaryPrice from (orders NATURAL JOIN carts) NATURAL JOIN status WHERE idUser = ?'; //będzie korzystać z widoku
+            $query = 'SELECT idOrder, status, orderData, summaryPrice from (orders NATURAL JOIN carts) NATURAL JOIN status WHERE idUser = ? ORDER BY idOrder DESC'; //będzie korzystać z widoku
+            $st = $this->connect()->prepare($query);
+            $st->execute([$id]);
+            return $st->fetchAll();
+        }
+        public function getOrders($id){
+            $query = 'SELECT idOrder, status, orderData, summaryPrice from (orders NATURAL JOIN carts) NATURAL JOIN status WHERE idStatus LIKE ? ORDER BY  idStatus, idOrder DESC'; //będzie korzystać z widoku
             $st = $this->connect()->prepare($query);
             $st->execute([$id]);
             return $st->fetchAll();
@@ -34,11 +40,24 @@
             ];
         }
 
+        public function getOrderAdmin($id){
+            $query = 'SELECT * from (orders NATURAL JOIN carts) NATURAL JOIN status WHERE idOrder = ?'; //będzie korzystać z widoku
+            $st = $this->connect()->prepare($query);
+            $st->execute([$id]);
+            $row = $st->fetch();
+            return [
+                "DATA" => [$row['idOrder'], $row['status'], $row['orderData']] ,
+                "USER_DATA" => [$row['name'] . " " .$row['surname'], $row['email'], $row['phone']],
+                "USER_ADDRESS" => [$row['postCity'], $row['postCode'], $row['adress']],
+                "CART" => [$row['idCart'], $row['summaryPrice']]
+            ];
+        }
+
         public function getProductsFromOrder($id){
-            $query = 'SELECT idProduct from productsincarts where idCart = ?';
+            $query = 'SELECT idFoto, name, howMuch, price from productsincarts NATURAL JOIN products where idCart = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$id]);
-            return $stmt->fetch();
+            return $stmt->fetchAll();
         }
 
 
@@ -77,4 +96,20 @@
             }
             return $cartId;
         }
+
+        public function getStatusAll(){
+            $query = 'SELECT * from status';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        
+        public function updateStatus($idStatus, $idOrder){
+            $query = 'UPDATE orders set idStatus = ? where idOrder = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$idStatus, $idOrder]);
+            return $stmt;
+        }
     }
+
+    

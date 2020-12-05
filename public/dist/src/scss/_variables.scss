@@ -1,8 +1,12 @@
-$color1: #AD0034;
+$color1: #ad0034;
 //
-$color2: #B453F5;
+$color2: #b453f5;
 //
-$color3:#0DA8F5;
+$color3: #0da8f5;
+$special: darken(
+    $color: $color3,
+    $amount: 10%,
+);
 $graczu1: #294db3;
 //
 $graczu1: rgb(100, 28, 194);
@@ -11,5 +15,6 @@ $graczu1: rgb(47, 77, 177);
 $rgb: rgb(93, 59, 59);
 //
 $dd: #00ad79;
-$font: 'Poppins',
-sans-serif;
+$font: "Poppins", sans-serif;
+$dd: #00ad79;
+$font: "Poppins", sans-serif;

@@ -39,7 +39,7 @@
                     <legend> Imię </legend>
                     <input 
                         placeholder="Imię" 
-                        type="text" 
+                       ype="text" 
                         name="name" 
                         value="<?php echo $array[0]; ?>"
                         pattern="[A-Ż]{1}[a-ż]{2,20}"
@@ -72,8 +72,7 @@
                     pattern="[A-Ż]{1}[a-ż]{2,30}"
                     title="Nazwa miejscowości poczty powinna mieć od 3 do 30 znaków"
                     />
-                </fieldset>
-                
+                 
             </div>
             <div>
                 <fieldset>
@@ -161,7 +160,7 @@
             <span>Łączna kwota: </span><span><?php echo number_format($summaryPrice, 2);?>zł</span>
             </div>
             <div class="pro_button">
-                <button class="button" type="submit">Zamów</button>
+                <button class="button" type="submit"><span>Zamów</span></button>
             </div>
         </section>
     </form>

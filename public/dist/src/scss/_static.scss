@@ -15,6 +15,15 @@ main {
     height: calc(100vh - 120px);
 }
 
+svg {
+    cursor: pointer;
+    &:hover {
+        .hovCo {
+            fill: black;
+        }
+    }
+}
+
 form {
     max-width: 464px;
     width: 100%;
@@ -72,37 +81,37 @@ form {
     .info {
         font-size: 11px;
         padding-bottom: 0px;
-    }
-    legend {
-        color: black;
-        padding-inline-start: 6px;
-        padding-inline-end: 6px;
-    }
-    .button {
-        outline: none;
-        // wielkości i marginesy
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        // tekst
-        font-size: 14px;
-        font-family: $font;
-        text-align: center;
-        appearance: none;
-        // kolorki
-        color: white;
-        background-color: $color1;
-        border: 2px solid $color1;
-        //transition
-        transition: color 0.1s ease, background-color 0.1s ease;
-        //hover
-        &:hover {
-            cursor: pointer;
-            color: wheat;
-            border: 2px solid $color1;
+        legend {
+            color: black;
+            padding-inline-start: 6px;
+            padding-inline-end: 6px;
         }
-        &.one {}
+    }
+}
+
+.button {
+    outline: none;
+    // wielkości i marginesy
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    // tekst
+    font-size: 14px;
+    font-family: $font;
+    text-align: center;
+    appearance: none;
+    // kolorki
+    color: white;
+    background-color: $color1;
+    border: 2px solid $color1;
+    //transition
+    transition: color 0.1s ease, background-color 0.1s ease;
+    //hover
+    &:hover {
+        cursor: pointer;
+        color: wheat;
+        border: 2px solid $color1;
     }
 }
 

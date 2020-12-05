@@ -92,6 +92,14 @@
                         header("Location: /admin/page/slave/");
                         exit;
                     }
+                    case "changeStatus": {
+                        if(isset(($_GET['id']))){
+                            $oM = new OrderModel();
+                            $array = $oM->updateStatus($_POST['newStatus'], $_GET['id']);
+                        }
+                        header("Location: /admin/page/order/{$_GET['id']}/");
+                        exit;
+                    }
                 }
             }elseif(isset($_GET['page'])){
                 if(!isset($_SESSION['LoggedSlaveData']))  header("Location: /admin/");
@@ -120,6 +128,20 @@
             }
 
         }
+
+        public function showOrders($id = "%"){
+            $oM = new OrderModel();
+            $oV= new OrderView();
+            $oV->showOrders($oM->getOrders($id), TRUE);
+        }
+
+        public function showOrder($id, $admin = FALSE){
+            $oM = new OrderModel();
+            $array = $oM->getOrderAdmin($id);
+            $oV = new OrderView();
+            $oV->showOrderPage($array["DATA"], $array["USER_DATA"], $array["USER_ADDRESS"], $array['CART'], $admin);
+        }
+
 
         function addSlave(){
             
