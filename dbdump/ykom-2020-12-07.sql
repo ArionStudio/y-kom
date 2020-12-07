@@ -6,7 +6,9 @@
 -- Generation Time: Dec 07, 2020 at 02:39 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
-
+Drop database ykom;
+create database ykom;
+use ykom;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
