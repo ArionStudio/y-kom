@@ -10,7 +10,7 @@
 
         public function register($array = []){
             if(count($array) == 0) return false;
-            $query = 'INSERT INTO carts VALUES(NULL, NULL, 0)';
+            $query = 'INSERT INTO carts VALUES(NULL, 0)';
             $st = $this->connect()->query($query);
             $query = 'INSERT INTO users VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT max(idCart) FROM carts))';
             $st = $this->connect()->prepare($query);

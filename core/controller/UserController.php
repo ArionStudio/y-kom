@@ -74,7 +74,7 @@
 
             $usr = new UserModel();
             if($usr->register($newArray)){
-                //$this->mail();
+                $this->mail();
                 $this->loginSuccess(
                     $newArray[0], 
                     $usr->getNameByEmail($newArray[6])
