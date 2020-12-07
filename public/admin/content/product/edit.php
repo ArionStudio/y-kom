@@ -16,7 +16,7 @@
             <div>
                 <fieldset>
                     <legend> Name </legend>
-                    <input placeholder="Name" type="text" name="name" value="<?php echo $array[0]; ?>" />
+                    <input placeholder="Name" type="text" name="name" pattern="[A-Ża-ż0-9 -:.,]{3,100}" value="<?php echo $array[0]; ?>" />
                 </fieldset>
             </div>
             <div>

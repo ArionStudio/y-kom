@@ -148,11 +148,11 @@
             
             if(isset($_POST['email'])){
                 $array = [
-                    "name" => [$_POST['name'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
-                    "surname" => [$_POST['surname'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
-                    "email" => [$_POST['email'],'/^[A-Za-z0-9.-_]{3,30}@[a-z0-9]{1,20}.[a-z]{1,4}$/'],
-                    "password" => [$_POST['password'], '/^[a-zA-Z0-9]{6,24}$/'],
-                    "perm" => [$_POST['permission'], '/^[1-2]{1}$/'],
+                    "perm" => [$_POST['permission'], '/^[1-2]{1}$/'], // 1
+                    "name" => [$_POST['name'], '/^[A-Ż]{1}[a-ż]{2,29}$/'], //30
+                    "surname" => [$_POST['surname'], '/^[A-Ż]{1}[a-ż]{2,19}$/'], //20
+                    "email" => [$_POST['email'],'/^[A-Za-z0-9.-_]{3,30}@[a-z0-9]{1,20}.[a-z]{1,4}$/'], //30 +20 + 4 + @ + . // 56
+                    "password" => [$_POST['password'], '/^[a-zA-Z0-9]{6,24}$/'], 
                 ];    
             }else{
                 return FALSE;
@@ -332,6 +332,33 @@
                 $_POST['quantity'],
                 $_POST['specification'],
                 $_POST['category']
+            );
+
+            if(isset($_POST['name'])){
+                $array = [
+                    "category" => [$_POST['category'], '/^[0-9]{2}$/'],
+                    "price" => [$_POST['price'], '/^[0-9,]{20}$/'],
+                    "quantity" => [$_POST['quantity'], '/^[0-9]{10000}$/'],
+                    "specification" => [$_POST['specification'] , '/^[A-Ża-ż0-9,-:;. ]{2,3000}$/'],
+                    "name" => [$_POST['name'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
+                ];    
+            }else{
+                return FALSE;
+            }
+            $newArray = array();
+            foreach($array as $key => $value){
+                if(!preg_match($value[1], $value[0])){
+                    $_SESSION['orderData'] = array();
+                    foreach ($array as $key => $value) {
+                        array_push($_SESSION['orderData'],$value[0]);
+                    }
+                    return false;
+                }else{
+                    array_push($newArray,$value[0]);
+                }
+            }
+            $pM->addProduct(//name, price, Quantity, Specification, category
+                $newArray
             );
             $id = $pM->getNewProductID();
             $pM->addPhotos($id);

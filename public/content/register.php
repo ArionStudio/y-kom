@@ -37,8 +37,8 @@
                         type="text" 
                         name="surname" 
                         value="<?php echo $array[1]; ?>" 
-                        pattern="[A-Ż]{1}[a-ż]{2,20}"
-                        title="Nazwisko musi zawierać od 3 do 20 liter"
+                        pattern="[A-Ż]{1}[a-ż]{2,29}"
+                        title="Nazwisko musi zawierać od 3 do 30 liter"
                         />
                     </fieldset>
                     
@@ -50,8 +50,8 @@
                         placeholder="Poczta" 
                         type="text" name="postCity" 
                         value="<?php echo $array[2]; ?>"
-                        pattern="[A-Ż]{1}[a-ż]{2,30}"
-                        title="Nazwa miejscowości poczty powinna mieć od 3 do 30 znaków"
+                        pattern="[A-Ż]{1}[a-ż]{2,39}"
+                        title="Nazwa miejscowości poczty powinna mieć od 3 do 40 znaków"
                         />
                     </fieldset>
                     
@@ -78,8 +78,8 @@
                         type="text" 
                         name="address" 
                         value="<?php echo $array[4]; ?>" 
-                        pattern="[A-Ża-ż0-9 ]{2,40}"
-                        title="Adres powinien zawierać od 2 do 40 znaków"
+                        pattern="[A-Ża-ż0-9 ]{2,100}"
+                        title="Adres powinien zawierać od 2 do 100 znaków"
                         />
                     </fieldset>
                     

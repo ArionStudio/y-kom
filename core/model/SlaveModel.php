@@ -9,7 +9,7 @@
         }
         
         public function addSlave($array){
-            $query = 'INSERT INTO employees VALUES (null, ?, ?, ?, ?, ?)';//idEmloyee, name, surname, email, password, idPrem
+            $query = 'INSERT INTO employees VALUES (null, ?, ?, ?, ?, ?)';//idEmloyee, idPrem, name, surname, email, password
             $st = $this->connect()->prepare($query);
             $st->execute($array);
             return ($st ? TRUE : FALSE);

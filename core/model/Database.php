@@ -14,7 +14,7 @@ class Database{
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => false,
             ));
-            
+            $pdo->exec("SET NAMES binary");
         }catch(PDOException $e){
             $pdo = null;
             session_start();

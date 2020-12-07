@@ -252,10 +252,10 @@
             if(isset($_POST['email'])){
                 $array = [
                     "name" => [$_POST['name'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
-                    "surname" => [$_POST['surname'], '/^[A-Ż]{1}[a-ż]{2,19}$/'],
-                    "postCity" => [$_POST['postCity'],'/^[A-Ż]{1}[a-ż]{2,24}$/'],
+                    "surname" => [$_POST['surname'], '/^[A-Ż]{1}[a-ż]{2,29}$/'],
+                    "postCity" => [$_POST['postCity'],'/^[A-Ż]{1}[a-ż]{2,39}$/'],
                     "postCode" => [$_POST['postCode'], '/^[0-9]{2}-[0-9]{3}$/'],
-                    "address" => [$_POST['address'] , '/^[A-Ża-ż0-9 ]{2,40}$/'],
+                    "address" => [$_POST['address'] , '/^[A-Ża-ż0-9 ]{2,100}$/'],
                     "phone" => [$_POST['phone'], '/^[0-9]{9}$/'],
                     "email" => [$_POST['email'], '/^[A-Za-z0-9.-_]{3,30}@[a-z0-9]{1,20}.[a-z]{1,4}$/']
                 ];    

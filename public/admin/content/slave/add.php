@@ -18,7 +18,7 @@
             <div>
                 <fieldset>
                     <legend> Surname </legend>
-                    <input placeholder="Surname" type="text" name="surname" title ="Nazwisko musi mieć od 3 do 21 znaków" pattern="[A-Ż]{1}[a-ż]{2,20}" value="<?php echo $array[1]; ?>" />
+                    <input placeholder="Surname" type="text" name="surname" title ="Nazwisko musi mieć od 3 do 30 znaków" pattern="[A-Ż]{1}[a-ż]{2,29}" value="<?php echo $array[1]; ?>" />
                 </fieldset>
             </div>
             <div>
@@ -30,7 +30,7 @@
             <div>
                 <fieldset>
                     <legend> Password </legend>
-                    <input placeholder="Password" type="password" name="password" title="Hasło musi miec conajmniej 6 znaków" pattern="[a-zA-Z0-9]{6,24}" value="<?php echo $array[3]; ?>" />
+                    <input placeholder="Password" type="password" name="password" title="Hasło musi miec od 6 do 24 liczb lub znaków angielskich" pattern="[a-zA-Z0-9]{6,24}" value="<?php echo $array[3]; ?>" />
                 </fieldset>
             </div>
             <div>

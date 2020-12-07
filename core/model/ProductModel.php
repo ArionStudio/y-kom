@@ -47,7 +47,7 @@
         }
 
         public function addProduct($name, $price, $Quantity, $Specification, $category){
-            $query = 'INSERT into products(name, price, Quantity, Specification, idCategory) values (?,?,?,?,?)';
+            $query = 'INSERT into products(idCategory, Quantity, price, Specification, name) values (?,?,?,?,?)';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$name,$price,$Quantity,$Specification, $category]);
             return $stmt;
