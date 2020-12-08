@@ -16,11 +16,12 @@
                     }
                 }
                 $row = $stmt->fetch();//
-                $query = 'UPDATE productsInCarts SET howMuch = ' . $howMuch . 
+                $query = 'UPDATE productsincarts SET howMuch = ' . $howMuch . 
                     " WHERE idCart = (SELECT currentCart FROM users WHERE idUser = ?) AND idProduct = ?";
             }else{
-                $query = 'INSERT INTO productsInCarts VALUES ((SELECT currentCart FROM users WHERE idUser = ?), ?, 1)';
+                $query = 'INSERT INTO productsincarts VALUES ((SELECT currentCart FROM users WHERE idUser = ?), ?, 1)';
             }
+            $id = strtok($id, "-");
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$userId, $id]);
             return $stmt;
@@ -34,9 +35,7 @@
         }
 
         public function getProduct($userId){
-            //idProduct, name, Quantity, idFoto, Specification, howMuch -> products, productsInCarts 
-            //products(idProduct, name, price, ), productsInCarts(idCart, idProduct, howMuch), users(currentCart)
-            $query = 'SELECT p.idProduct, name, price, idFoto, howMuch from products p inner join productsInCarts pic ON p.idProduct = pic.idProduct where idCart = (select currentCart FRom users where idUser = ?)';
+            $query = 'SELECT p.idProduct, name, price, idFoto, howMuch from products p inner join productsincarts pic ON p.idProduct = pic.idProduct where idCart = (select currentCart FRom users where idUser = ?)';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$userId]);
             return $stmt->fetchAll();

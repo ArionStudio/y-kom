@@ -37,6 +37,14 @@
                     header("Location: /");
                     exit;
                 }
+                if(empty($_SESSION['loggedUserData']) && $_GET['fun'] == "moje-zamowienia"){
+                    header("Location: /");
+                    exit;
+                }
+                if(empty($_SESSION['loggedUserData']) && $_GET['fun'] == "moje-konto"){
+                    header("Location: /");
+                    exit;
+                }
                 if(
                     $_GET['fun'] == "logowanie" ||
                     $_GET['fun'] == "rejestracja"
@@ -61,32 +69,42 @@
                 switch($_GET['special']){
                     case "logowanie":{
                         header("Location: " . $path[$uC->login()]);
-                        break;
+                        exit;
                     }
                     case "rejestracja":{
                         header("Location: " . $path[$uC->register()]);
-                        break;
+                        exit;
                     }
                     case "logout":{
                         unset($_SESSION['loggedUserData']);
                         header("Location: /");
-                        break;
+                        exit;
                     }
                     case "addToCart":{
                         if(isset($_GET['id'])){
                             $this->addToCart();
                             unset($_GET['id']);	
                         }
-                        
                         header("Location: " . $_SESSION['lastOpenPage']);
-                        break;
+                        exit;
+                    }
+                    case "activate":{
+                        if(isset($_GET['id'])){
+                            if($this->activateAcount($_GET['id'])){
+                                $_SESSION['accountActivated'] = "Udało sie aktywować konto teraz możesz się zalogować";
+                            }
+                            unset($_GET['id']);	
+                        }
+                        
+                        header("Location: /");
+                        exit;
                     }
                     case "delFromCart":{
                         if(isset($_GET['id'])){
                             $this->delFromCart();
                         }
                         header("Location: /f/koszyk/");
-                        break;
+                        exit;
                     }
                     case "orderAdd":{
                         if($this->orderAdd()){
@@ -95,7 +113,7 @@
                         }else{
                             header("Location: /f/order/");
                         }
-                        break;
+                        exit;
                     }
                     case "userEdit":{
                         if(isset($_SESSION['loggedUserData']['id'])){
@@ -109,7 +127,7 @@
                         }else{
                             header("Location: /");
                         }
-                        break;
+                        exit;
                     }
 
                 }
@@ -124,6 +142,12 @@
             $this->headerType = $headerType;
         }
         
+
+        public function activateAcount($id){
+            $uM = new UserModel();
+            return $uM->activateAcount($id);
+        }
+
         public function addToCart(){
             if(isset($_SESSION['loggedUserData'])){
                 $cM = new CartModel();
@@ -132,15 +156,11 @@
                 if(isset($_SESSION['cartUnloggedUser'])){
                     $flag = TRUE;
                     foreach ($_SESSION['cartUnloggedUser'] as $key => &$value) {
-                        echo $_GET['id'];
-                        echo $value[0];
-                        echo "<br/>";
                         if($value[0] == $_GET['id']){
                             if($value[1] < 10){
                                 $value[1]++;
                             }
                             $flag=FALSE;
-                            echo $value[0];
                         }elseif($value[0] . '-' == $_GET['id']){
                             if($value[1] > 1){
                                 $value[1]--;
@@ -148,14 +168,12 @@
                             $flag=FALSE;
                         }
                     }
-                    echo "<br/>";
                     if($flag){
                         array_push($_SESSION['cartUnloggedUser'], [$_GET['id'], 1]);
                     }
                 }else{
                     $_SESSION['cartUnloggedUser'] = array();
                     array_push($_SESSION['cartUnloggedUser'], [$_GET['id'], 1]);
-                    header("Location: " . $_SESSION['lastOpenPage']);
                 }
             }
         }
@@ -198,17 +216,29 @@
         }
 
         
-        public function showBestsellers($count){
+        public function showBestsellers($count = FALSE){
 			$pM = new ProductModel();
 			$pV = new ProductView();
 			$pV->showProductsTiles($pM->Bestsellers($count), $count);
         }
 
-        public function getCategoryProducts($idCategory, $count){
+        public function showRecommended($count = FALSE){
+			$pM = new ProductModel();
+			$pV = new ProductView();
+			$pV->showProductsTiles($pM->Recommended($count), $count);
+        }
+
+        public function Search($count = FALSE, $x){
+			$pM = new ProductModel();
+			$pV = new ProductView();
+			$pV->showProductsTiles($pM->Search($count,$x), $count);
+        }
+
+        public function getCategoryProducts($idCategory, $count, $x = FALSE){
 			$pM = new ProductModel();
             $pV = new ProductView();
             
-            $productsData = $pM->getCategoryProducts($idCategory, $count);
+            $productsData = $pM->getCategoryProducts($idCategory, $count, $x);
 
 			$pV->showProductsTiles($productsData, $count);
         }
@@ -247,6 +277,10 @@
             return $pM->getPrice($id);
         }
 
+        public function getName($id){
+            $cM = new CategoryModel();
+            return $cM->getCategoryName($id);
+        }
 
         public function orderAdd(){
             if(isset($_POST['email'])){

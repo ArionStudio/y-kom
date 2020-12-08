@@ -16,7 +16,7 @@
             <div>
                 <fieldset>
                     <legend> Name </legend>
-                    <input placeholder="Name" type="text" name="name" pattern="[A-Ża-ż0-9 -:.,]{3,100}" value="<?php echo $array[0]; ?>" />
+                    <input placeholder="Name" type="text" name="name" pattern="[A-Ża-ż0-9 -:.,]{3,40}" title="od 3 do 40 znaków" value="<?php echo $array[0]; ?>" />
                 </fieldset>
             </div>
             <div>
@@ -28,7 +28,7 @@
             <div>
                 <fieldset>
                     <legend> Specification* </legend>
-                    <textarea maxlength="400" placeholder="Specification" type="text" name="specification" ><?php echo $array[2]; ?></textarea>
+                    <textarea maxlength="400" placeholder="Specification:property;Specification:property;" type="text" name="specification" ><?php echo $array[2]; ?></textarea>
                 </fieldset>
                 <div class="info">*Format specyfikacji -> Właściwość: wartość;</div>
             </div>

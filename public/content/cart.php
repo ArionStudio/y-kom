@@ -29,7 +29,7 @@
                     }
                     
                 }else{
-                    if(!empty($_SESSION['cartUnloggedUser'])){
+                    if(!empty($_SESSION['cartUnloggedUser']) && !isset($_SESSION['loggedUserData'])){
                         foreach ($_SESSION['cartUnloggedUser'] as $key => $value) {
                             $page->showProductCartUnLogged($value[0], $value[1]);
                         }

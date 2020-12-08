@@ -21,6 +21,7 @@
         "productAdd" => 'content/product/add.php',
         "productEdit" => 'content/product/edit.php',
         "warehouse" => 'content/product/warehouse.php',
+        "actions" => 'content/actions.php',
         "slave" => 'content/slave/list.php',
         "slaveAdd" => 'content/slave/add.php',
         "slaveEdit" => 'content/slave/edit.php',
@@ -44,5 +45,6 @@
         "special/addToCart" => "1",
         "special/delFromCart" => "1",
         "special/orderAdd" => "1",
-        "special/userEdit" => "1"
+        "special/userEdit" => "1",
+        "special/activate" => "1"
     ];

@@ -1,5 +1,5 @@
 <main>
     <section>
-        <?php $aC->register();?>
+        <?php $aC->actions();?>
     </section>
 </main>

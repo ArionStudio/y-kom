@@ -256,10 +256,17 @@
             foreach ($array as $key => $value) {
                 $this->showProductTiles($value[0],$value[1], $value[2],$value[3]);
             }
+            if(count($array) == 0){?>
+                <div style="padding-top: 20px; color: #ee0000; font-size: 24px;">Brak produktów!</div>
+            <?php
+            }
         }
 
         public function showProductPage($data){
             //name, price, idFoto, Specification
+            
+            $aC = new AdminController();
+            $gallery = $aC->getGallery($_GET['id']);
             ?>
                 <div>
                     <div class="pmain">
@@ -285,6 +292,9 @@
                             <div class="pprice">
                                 Cena: <?php echo $data['price']; ?>
                             </div>
+                            <div class="pprice">
+                                <button class="button page"><a href="/s/addToCart/<?php echo $data['idProduct']; ?>/">Dodaj do koszyka</a></button>
+                            </div>
                         </div>
                     </div>
                     <div class="pspecification">
@@ -292,7 +302,24 @@
                         <?php echo $this->showSpecProductOnPage($data['Specification']); ?>
                     </div>
                 </div>
-
+                <form class="productAddForm" style="margin-top: 64px; max-width: 1200px; text-align: center">
+                    <div class="title" style="padding-bottom: 32px;">Galeria</div>
+                    <div class="gallery">
+                        <?php 
+                            if($data['idFoto'] == FALSE){ ?>
+                                <div><img src="/dist/files/product/<?php echo $_GET['id']; ?>/main.png" alt=""></div>
+                        <?php
+                            }
+            
+                            foreach ($gallery as $key => $value) {
+                                echo "<div><img src='/dist/files/product/{$_GET['id']}/{$value['photo']}'/></div>";
+                            }
+                            if(empty($gallery) && $data['idFoto'] == FALSE){
+                                echo "<div>Brak zdjęć w galerii.</div>";
+                            }
+                        ?>
+                    </div>
+                </form>
             <?php
         }
 

@@ -1,30 +1,53 @@
 <?php
     class ProductModel extends Database{
-        public function getCategoryProducts($id, $count = FALSE){
+        public function getCategoryProducts($id, $count = FALSE, $x = FALSE){
             
             if(!$count){
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE and idCategory = ?';
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE and idCategory = ? AND name LIKE CONCAT("%", ?, "%")';
             }else{
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE and idCategory = ? LIMIT '. $count;
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE and idCategory = ? AND name LIKE CONCAT("%", ?, "%") LIMIT '. $count;
             }
             
             $stmt = $this->connect()->prepare($query);
-            $stmt->execute([$id]);
+            $stmt->execute([$id, $x]);
             return $stmt->fetchAll();
         }
         public function Bestsellers($count = FALSE){
-            // $stmt = $this->connect()->prepare('SELECT idProduct, name, price, idFoto FROM product WHERE Quantity > 10 and idProduct in (SELECT idProduktu from productsincarts ORDER BY count(idCart) GROUP BY idProduktu) Limit ?');
             if(!$count){
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE';
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE Quantity > 10 and archive = FALSE and idProduct in (SELECT idProduct from productsincarts GROUP BY idProduct ORDER BY count(idCart))';
             }else{
-                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE archive = FALSE Limit '. $count;
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE Quantity > 10 and archive = FALSE and idProduct in (SELECT idProduct from productsincarts GROUP BY idProduct ORDER BY count(idCart)) Limit '. $count;
             }
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([]);
-            //var_dump($stmt->fetchAll());
+            return $stmt->fetchAll();
+        }
+
+
+
+        public function Recommended($count = FALSE){
+            if(!$count){
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE Quantity > 10 and archive = FALSE and idProduct in (?, ?, ?, ?, ?, ?)';
+            }else{
+                $query = 'SELECT idProduct, name, price, idFoto FROM products WHERE Quantity > 10 and archive = FALSE and idProduct in (?, ?, ?, ?, ?, ?) Limit '. $count;
+            }
+            $pro = $this->getIdPro();
+            $random = [0, 0, 0, 0, 0, 0];
+            for($i = 0; $i < count($random); $i++){
+                $random[$i] = $pro[intval(random_int(0, (count($pro) - 1) * 100) / 100)][0];
+            }
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute($random);
             return $stmt->fetchAll();
         }
         
+        public function getIdPro(){
+            $query = 'SELECT idProduct FROM products where archive = FALSE';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+
         public function getProductData($id){
             $query = 'SELECT idProduct, name, price, idFoto, Specification from products where idProduct = ?';
             $stmt = $this->connect()->prepare($query);
@@ -49,7 +72,8 @@
         public function addProduct($name, $price, $Quantity, $Specification, $category){
             $query = 'INSERT into products(idCategory, Quantity, price, Specification, name) values (?,?,?,?,?)';
             $stmt = $this->connect()->prepare($query);
-            $stmt->execute([$name,$price,$Quantity,$Specification, $category]);
+            $stmt->execute([$category, $Quantity,$price,$Specification, $name]);
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Dodawanie nowego produktu o nazwie: {$name}");
             return $stmt;
         }
 
@@ -84,7 +108,8 @@
             if(empty($_FILES['photoGallery']['name'][0])) return;
             if(count($_FILES['photoGallery']['name']) > 0){
                 for($i = 0; $i < count($_FILES['photoGallery']['name']); $i++){
-                    $fileName = $_FILES['photoGallery']['name'][$i];
+                    $now = new DateTime('NOW');
+                    $fileName = substr($_FILES['photoGallery']['name'][$i], 0, -4) . $now->format('_Y_m_d_H_i_s') . ".png";
                     $fullpath = $path . $fileName;
                     $tmp = $_FILES['photoGallery']['tmp_name'][$i];
                     file_exists($fullpath) or touch($fullpath);
@@ -94,13 +119,14 @@
                     $stmt->execute([$id, $fileName]);
                 }
             }
-
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Dodawanie zdjęć do produktu nr: {$id}");
         }
 
         public function delProduct($id){
             $query = 'UPDATE products set archive = TRUE WHERE idProduct = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$id]);
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Zarchiwizowanie ze sklepu produktu nr: {$id}");
         }
        
         public function getProductDataForEditProduct($id){
@@ -123,6 +149,7 @@
             $query = 'UPDATE products SET name = ?, price = ?, Specification = ?, idCategory = ? WHERE idProduct = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$name,$price,$Specification, $category, $idProduct]);
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Edycja produktu nr: {$idProduct}");
             return $stmt;
         }
 
@@ -134,12 +161,14 @@
             $query = "DELETE FROM productgallery where idProduct = ? AND idFoto = ?";
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$idPro, $idFoto]);
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Usunięcie zdjęcia nr: {$idFoto} z galerii produktu nr: {$idPro}");
         }
         public function delProductMainFoto($id){
             unlink("../dist/files/product/{$id}/main.png");
             $query = "UPDATE products SET idFoto = ? WHERE idProduct = ?";
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([0, $id]);
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Usunięcie głownego zdjęcia produktu nr: {$id}");
         }
 
         public function archive($idCategory = "%"){
@@ -153,6 +182,7 @@
             $query = 'UPDATE products set archive = FALSE where idProduct = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$id]);
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Przywrócenie do sklepu produktu nr: {$id}");
             return $stmt;
         }
 
@@ -173,6 +203,26 @@
             $query = 'UPDATE products set Quantity = ? where idProduct = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$newQua, $id]);
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Zmiana ilości produktu nr: {$id}");
             return $stmt;
+        }
+        public function addNewRegisterAction($id, $com){
+            $query = 'INSERT INTO actions(idEmployee, description, time) VALUES (?, ?, null)';
+            $st = $this->connect()->prepare($query);
+            $st->execute([$id, $com]);
+            return ($st ? TRUE : FALSE);
+        }
+
+        public function Search($count = FALSE, $x){
+            $count = intval($count);
+            if(!$count){
+                $query = 'SELECT idProduct, name, price, idFoto FROM products natural join categories WHERE Quantity > 10 and archive = FALSE and (name LIKE CONCAT("%", ?, "%") or category LIKE CONCAT("%", ?, "%"))';
+            }else{
+                $query = 'SELECT idProduct, name, price, idFoto FROM products natural join categories WHERE Quantity > 10 and archive = FALSE and (name like CONCAT("%", ?, "%") or category like CONCAT("%", ?, "%") )  Limit '. $count;
+            }
+            
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$x, $x]);
+            return $stmt->fetchAll();
         }
     }

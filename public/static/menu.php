@@ -4,6 +4,11 @@
 ?>
 
     <section>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <menu type="context">
             <?php
                 foreach ($categories as $key => $value) { ?>

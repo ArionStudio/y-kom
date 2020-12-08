@@ -4,13 +4,14 @@
     &__ {
         &tiles {
             width: 182px;
-            height: 285px;
+            height: 305px;
             display: inline-block;
             padding: 4px 8px;
             margin: 4px;
             font-size: 14px;
             &:hover {
-                box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+                box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px,
+                    rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
                 img {
                     display: block;
                 }
@@ -34,7 +35,7 @@
             color: black;
         }
         &name {
-            height: 50px;
+            height: 70px;
         }
         &price {
             height: 30px;
@@ -63,11 +64,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        >span:first-child {
+        > span:first-child {
             display: flex;
             align-items: center;
             justify-content: start;
-            >span {
+            > span {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -85,14 +86,14 @@
             height: fit-content;
             padding: 0;
         }
-        >span {
+        > span {
             width: 50%;
             height: 80px;
-            >span {
+            > span {
                 margin-right: 10px;
             }
         }
-        >span:last-child {
+        > span:last-child {
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -101,4 +102,12 @@
             }
         }
     }
+}
+
+.cat_title {
+    max-width: 1200px;
+    margin: auto;
+    font-weight: 450;
+    font-size: 20px;
+    padding-bottom: 32px;
 }

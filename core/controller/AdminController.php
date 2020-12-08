@@ -79,6 +79,10 @@
                     }
                     case "slaveDel": {
                         if(isset($_GET['id'])){
+                            if($_SESSION['LoggedSlaveData']['id'] == $_GET['id']){
+                                header("Location: /admin/page/slave/");
+                                exit;
+                            }
                             $sM = new SlaveModel();
                             $sM->delSlave($_GET['id']);
                         }
@@ -110,7 +114,8 @@
                 if($_SESSION['LoggedSlaveData']['permission'] == 1 && (
                     $_GET['page'] == "slave" ||
                     $_GET['page'] == "slaveAdd" ||
-                    $_GET['page'] == "slaveEdit"
+                    $_GET['page'] == "slaveEdit" ||
+                    $_GET['page'] == "actions"
                 )){
                     header("Location: /");
                 }
@@ -148,11 +153,11 @@
             
             if(isset($_POST['email'])){
                 $array = [
-                    "perm" => [$_POST['permission'], '/^[1-2]{1}$/'], // 1
                     "name" => [$_POST['name'], '/^[A-Ż]{1}[a-ż]{2,29}$/'], //30
                     "surname" => [$_POST['surname'], '/^[A-Ż]{1}[a-ż]{2,19}$/'], //20
                     "email" => [$_POST['email'],'/^[A-Za-z0-9.-_]{3,30}@[a-z0-9]{1,20}.[a-z]{1,4}$/'], //30 +20 + 4 + @ + . // 56
                     "password" => [$_POST['password'], '/^[a-zA-Z0-9]{6,24}$/'], 
+                    "perm" => [$_POST['permission'], '/^[1-2]{1}$/'], // 1
                 ];    
             }else{
                 return FALSE;
@@ -404,5 +409,11 @@
             $sM = new SlaveModel();
             $sV = new SlaveView();
             $sV->showAllSlaves($sM->getSlave($idprem));
+        }
+
+        public function actions(){
+            $aM = new AdminModel();
+            $aV = new AdminView();
+            $aV->showRegisterAll($aM->getActions(), TRUE);
         }
     }

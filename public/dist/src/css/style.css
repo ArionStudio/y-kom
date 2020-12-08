@@ -44,6 +44,11 @@ form .title {
   margin-bottom: 8px;
 }
 
+form legend {
+  margin: 0px 4px;
+  padding: 0px 4px;
+}
+
 form fieldset {
   border-color: #686868;
   border-width: 2px;
@@ -189,9 +194,57 @@ header .logo img {
   width: auto;
 }
 
+header .hamburger {
+  display: none;
+}
+
 header .loooop {
   max-width: 700px;
   width: 100%;
+}
+
+header .loooop .szukajka {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 16px;
+  box-shadow: none;
+}
+
+header .loooop .szukajka fieldset {
+  width: 300px;
+  height: 60px;
+}
+
+header .loooop .szukajka button {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  margin-left: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+header .loooop .szukajka button .loop {
+  fill: #ad0034;
+  transition: all 0.5s ease;
+}
+
+header .loooop .szukajka button:hover {
+  background-color: #ad0034;
+}
+
+header .loooop .szukajka button:hover .loop {
+  fill: #ffffff;
 }
 
 header section {
@@ -379,6 +432,118 @@ header.clear .back:hover span {
   color: #ad0034;
 }
 
+@media (max-width: 1500px) {
+  header {
+    height: 80px;
+  }
+  header .loooop {
+    max-width: 500px;
+    width: 100%;
+  }
+  header .hamburger {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 57px;
+    height: 52px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+  }
+  header .hamburger span {
+    width: 100%;
+    height: 5px;
+    background-color: #ad0034;
+  }
+  header .hamburger .hidden {
+    display: none;
+  }
+  header .hamburger:hover span {
+    background-color: wheat;
+  }
+  header section:nth-child(2) {
+    background-color: #ffffff00 !important;
+    position: relative;
+    font-size: 13px;
+    background-color: #ad0034;
+  }
+  header section:nth-child(2) menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    flex-wrap: wrap;
+    margin: auto;
+    font-size: 13px;
+    padding: 12px 0px;
+    background-color: #ad0034;
+  }
+  header section:nth-child(2) menu div {
+    width: 100%;
+  }
+  header section:nth-child(2) menu div a {
+    justify-content: flex-start;
+  }
+  header section:nth-child(2) menu div:hover {
+    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.23);
+    background-color: #ffffff;
+  }
+  header section:nth-child(2) menu div:hover a {
+    color: #ad0034;
+  }
+  header section:nth-child(2) menu.open {
+    display: flex;
+  }
+  header section:nth-child(2) a {
+    color: white;
+  }
+  header section .hamburger:hover + menu {
+    display: flex;
+  }
+  header section menu:hover {
+    display: flex;
+  }
+}
+
+.howSelect {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.howSelect form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+.howSelect button {
+  width: 150px;
+  display: inline-block;
+  padding: 0;
+  height: 30px;
+  margin: 0;
+  margin-left: 13px;
+}
+
+.howSelect select {
+  height: 30px;
+  padding: 4px;
+}
+
 .pro {
   width: 1200px;
   margin: auto;
@@ -386,7 +551,7 @@ header.clear .back:hover span {
 
 .pro__tiles {
   width: 182px;
-  height: 285px;
+  height: 305px;
   display: inline-block;
   padding: 4px 8px;
   margin: 4px;
@@ -422,7 +587,7 @@ header.clear .back:hover span {
 }
 
 .pro__name {
-  height: 50px;
+  height: 70px;
 }
 
 .pro__price {
@@ -499,7 +664,15 @@ header.clear .back:hover span {
   width: 50px;
 }
 
-#product {
+.cat_title {
+  max-width: 1200px;
+  margin: auto;
+  font-weight: 450;
+  font-size: 20px;
+  padding-bottom: 32px;
+}
+
+#product > div {
   max-width: 1200px;
   margin: auto;
 }
@@ -566,6 +739,15 @@ header.clear .back:hover span {
 
 #product img {
   height: 160px;
+}
+
+#product .button.page {
+  width: 300px !important;
+}
+
+#product .button.page a {
+  color: white;
+  text-decoration: none;
 }
 
 #cart {
@@ -1012,6 +1194,10 @@ header.clear .back:hover span {
   max-width: calc(100% - 80px);
 }
 
+#editProduct > section {
+  margin: auto;
+}
+
 #editProduct .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -1051,6 +1237,48 @@ header.clear .back:hover span {
 
 #editProduct .gallery a:hover #erase1,
 #editProduct .gallery a:hover #erase2 {
+  fill: red;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: calc(100% - 80px);
+}
+
+.gallery img {
+  max-width: 400px;
+}
+
+.gallery div {
+  position: relative;
+  padding-bottom: 0px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery div:hover {
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+}
+
+.gallery a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  color: red;
+  font-size: 30px;
+}
+
+.gallery a:hover #erase1,
+.gallery a:hover #erase2 {
   fill: red;
 }
 

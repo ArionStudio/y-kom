@@ -2,7 +2,6 @@
     class UserController{
 
         public function loginFail($email, $password, $info){
-            session_start();
             $_SESSION['loginData'] = array();
             array_push($_SESSION['loginData'], $email);
             array_push($_SESSION['loginData'], $password);
@@ -57,6 +56,15 @@
             }else{
                 return FALSE;
             }
+            $usr = new UserModel();
+            if($usr->issetEmail($_POST['email'])){
+                $_SESSION['registerData'] = array();
+                foreach ($array as $key => $value) {
+                    array_push($_SESSION['registerData'],$value[0]);
+                }
+                array_push($_SESSION['registerData'], "Ten email jest już zajęty!");
+                return FALSE;
+            }
             $newArray = array();
             foreach($array as $key => $value){
                 if(!preg_match($value[1], $value[0])){
@@ -64,6 +72,7 @@
                     foreach ($array as $key => $value) {
                         array_push($_SESSION['registerData'],$value[0]);
                     }
+                    array_push($_SESSION['registerData'], "Błędny format!");
                     return false;
                 }else{
                     array_push($newArray,$value[0]);
@@ -72,30 +81,30 @@
         
             $newArray[7] = password_hash($array["password"][0], PASSWORD_DEFAULT);
 
-            $usr = new UserModel();
             if($usr->register($newArray)){
-                $this->mail();
-                $this->loginSuccess(
-                    $newArray[0], 
-                    $usr->getNameByEmail($newArray[6])
-                );
+                $this->mail($newArray[6], $usr->getIdByEmail($newArray[6]), $newArray[0]);
+                $_SESSION['accountActivated'] = "Udało się utworzyć konto. Wejdź na maila i potwierdź je!";
                 return true;
             }else{
                 return false;
             }
 
         }
-        public function mail($email = ""){
-            $od  = "From: leerock.zero@gmail.com \r\n";
-            $od .= 'MIME-Version: 1.0'."\r\n";
-            $od .= 'Content-type: text/html; charset=iso-8859-2'."\r\n";
-            $adres = "leerock.zero@gmail.com";
+        public function mail($email = "", $id, $name){
+            $adres = $email;
             $tytul = "Potwierdzenie rejestracji konta w sklepie y-kom";
-            $wiadomosc = "Cześć";
+            $wiadomosc = "Cześć {$name}!<br/>".
+                "Kliknij poniżej aby aktywować nowo dodane konto: <br/>".
+                "<a href='https://y-kom-23.000webhostapp.com/s/activate/{$id}/'>Aktywacja</a><br/>".
+                "Jak aktywacja nie działa to proszę użyć linka 'https://y-kom-23.000webhostapp.com/s/activate/{$id}'";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
+            $headers .= "From: y-kom@y-kom.pl" . "\r\n" .
+            "Reply-To: successive.testing@gmail.com" . "\r\n" .
+            "X-Mailer: PHP/" . phpversion();
 
-            // użycie funkcji mail
             
-            $success = mail($adres, $tytul, $wiadomosc, $od);
+            $success = mail($adres, $tytul, $wiadomosc, $headers);
             
         }
 

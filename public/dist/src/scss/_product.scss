@@ -1,7 +1,7 @@
 #product {
-    max-width: 1200px;
-    margin: auto;
     >div {
+        max-width: 1200px;
+        margin: auto;
         >div {
             padding-top: 32px;
         }
@@ -59,5 +59,12 @@
     }
     img {
         height: 160px;
+    }
+    .button.page {
+        width: 300px !important;
+        a {
+            color: white;
+            text-decoration: none;
+        }
     }
 }

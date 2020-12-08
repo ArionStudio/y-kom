@@ -1,7 +1,7 @@
 <?php
     class OrderModel extends Database{
         public function addOrder($array){
-            $query = 'INSERT INTO orders VALUES (null, ?, ?, 1, null, ?, ?, ?, ?, ?, ?, ?)';
+            $query = 'INSERT INTO orders(idUser, idCart, idStatus, orderData, name, surname, postCity, postCode, adress, phone, email) VALUES (?, ?, 1, null, ?, ?, ?, ?, ?, ?, ?)';
             $st = $this->connect()->prepare($query);
             $st->execute($array);
             return $st;
@@ -108,8 +108,55 @@
             $query = 'UPDATE orders set idStatus = ? where idOrder = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$idStatus, $idOrder]);
+            $query = "SELECT name, email FROM orders WHERE idOrder = ?";
+            $st = $this->connect()->prepare($query);
+            $st->execute([$idOrder]);
+            $row = $st->fetch();
+            if($stmt->rowCount()){
+                $query = 'SELECT idProduct FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
+                $stmt = $this->connect()->prepare($query);
+                $stmt->execute([$idOrder]);
+                $result = $stmt->fetchAll();
+                foreach ($result as $value) {
+                    $this->productOrder($idOrder, $value[0]);
+                }
+                $this->mail($row['email'], $idOrder, $row['name']);
+            }
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Zmiana statusu zamówienia nr: {$idOrder}");
             return $stmt;
         }
+
+        public function productOrder($idO, $idP){
+            $query = 'UPDATE products SET quantity = quantity - (SELECT howMuch FROM productsincarts WHERE idCart = '.
+                '(SELECT idCart FROM orders WHERE idOrder = ?) AND idProduct = ?) WHERE idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$idO, $idP, $idP]);
+            return;
+        }
+
+        public function addNewRegisterAction($id, $com){
+            $query = 'INSERT INTO actions(idEmployee, description, time) VALUES (?, ?, null)';
+            $st = $this->connect()->prepare($query);
+            $st->execute([$id, $com]);
+            return ($st ? TRUE : FALSE);
+        }
+
+        public function mail($email = "", $id, $name){
+            $adres = $email;
+            $tytul = "Potwierdzenie złożenia zamówienia w sklepie y-kom";
+            $wiadomosc = "Cześć {$name}<br/>".
+                "Potwierdziliśmy twoje zamówienie nr: {$id}<br/>";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+            $headers .= "From: y-kom@y-kom.pl" . "\r\n" .
+            "Reply-To: successive.testing@gmail.com" . "\r\n" .
+            "X-Mailer: PHP/" . phpversion();
+
+            
+            $success = mail($adres, $tytul, $wiadomosc, $headers);
+            
+        }
+
     }
 
     

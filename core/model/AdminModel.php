@@ -39,4 +39,11 @@
             return $st->fetchAll();
         }
 
+        public function getActions(){//employeelogintime idLogged, idEmployee, Time, IP
+            $query = 'SELECT idAction as idLogged, CONCAT(name, " ", surname) as emp, Time, Description as IP from actions natural join employees ORDER BY idAction DESC LIMIT 10';
+            $st = $this->connect()->prepare($query);
+            $st->execute();
+            return $st->fetchAll();
+        }
+
     }

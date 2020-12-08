@@ -12,7 +12,13 @@
                 }
                 
             ?>
-
+        <?php if(isset($array[8])){ ?>
+            <div class="errorInfo">
+                <span>
+                    <?php echo $array[8]; ?>
+                </span>
+            </div>
+        <?php } ?>
         <form method="post" action="/s/rejestracja/">
             <div class='title'>Rejestracja</div>
             <div>
