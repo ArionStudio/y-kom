@@ -54,7 +54,7 @@
         }
 
         public function getProductsFromOrder($id){
-            $query = 'SELECT idFoto, name, howMuch, price from productsincarts NATURAL JOIN products where idCart = ?';
+            $query = 'SELECT idFoto, name, howMuch, price, idProduct from productsincarts NATURAL JOIN products where idCart = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$id]);
             return $stmt->fetchAll();

@@ -345,7 +345,7 @@
             <div>
                 <?php
                 foreach ($array as $key => $value) {
-                    $this->showProductFromOrder($value[0],$value[1], $value[2],$value[3]);
+                    $this->showProductFromOrder($value[0],$value[1], $value[2],$value[3],$value[4]);
                 }
                 ?>
                 <div class="pro__list" style="border-bottom: none;">
@@ -354,18 +354,18 @@
             </div>
             <?php
         }
-        public function showProductFromOrder($idFoto, $name, $how, $price){
+        public function showProductFromOrder($idFoto, $name, $how, $price, $id){
             ?>
                 <div class="pro__list">
                     
                     <span>
                         <?php 
                                 if(empty($idFoto)){ ?>
-                                    <span class="pro__foto"><img src="/dist/files/product/example/example.png" alt=""></span>
+                                    <span class="pro__foto"><img style="width: auto; height: 80px" src="/dist/files/product/example/example.png" alt=""></span>
                             <?php
                                 }else{
                             ?>
-                                <div class="pro__foto"><img src="/dist/files/product/<?php echo $id; ?>/main.png" alt=""></div>
+                                <div class="pro__foto"><img style="width: auto; height: 80px" src="/dist/files/product/<?php echo $id; ?>/main.png" alt=""></div>
 
                             <?php
                                 }
