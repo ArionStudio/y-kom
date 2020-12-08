@@ -23,9 +23,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-bottom: 0px;
             img {
                 height: auto;
-                width: 156px;
+                width: 160px;
             }
         }
         &link {
@@ -110,4 +111,14 @@
     font-weight: 450;
     font-size: 20px;
     padding-bottom: 32px;
+}
+
+#cart,
+#order {
+    .pro__list {
+        img {
+            height: 80px;
+            width: auto;
+        }
+    }
 }

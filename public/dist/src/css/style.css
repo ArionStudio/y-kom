@@ -572,11 +572,12 @@ header.clear .back:hover span {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 0px;
 }
 
 .pro__foto img {
   height: auto;
-  width: 156px;
+  width: 160px;
 }
 
 .pro__link {
@@ -670,6 +671,12 @@ header.clear .back:hover span {
   font-weight: 450;
   font-size: 20px;
   padding-bottom: 32px;
+}
+
+#cart .pro__list img,
+#order .pro__list img {
+  height: 80px;
+  width: auto;
 }
 
 #product > div {
