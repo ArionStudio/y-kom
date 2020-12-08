@@ -113,14 +113,25 @@
             $st->execute([$idOrder]);
             $row = $st->fetch();
             if($stmt->rowCount()){
-                $query = 'SELECT idProduct FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
-                $stmt = $this->connect()->prepare($query);
-                $stmt->execute([$idOrder]);
-                $result = $stmt->fetchAll();
-                foreach ($result as $value) {
-                    $this->productOrder($idOrder, $value[0]);
+                if($idStatus == 2){
+                    $query = 'SELECT idProduct FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
+                    $stmt = $this->connect()->prepare($query);
+                    $stmt->execute([$idOrder]);
+                    $result = $stmt->fetchAll();
+                    foreach ($result as $value) {
+                        $this->productOrder($idOrder, $value[0]);
+                    }
+                    $this->mail($row['email'], $idOrder, $row['name'], "Potwierdziliśmy twoje zamówienie nr", "Potwierdzenie złożenia zamówienia w sklepie y-kom");
+                }elseif($idStatus == 6){
+                    $query = 'SELECT idProduct FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
+                    $stmt = $this->connect()->prepare($query);
+                    $stmt->execute([$idOrder]);
+                    $result = $stmt->fetchAll();
+                    foreach ($result as $value) {
+                        $this->productReturn($idOrder, $value[0]);
+                    }
+                    $this->mail($row['email'], $idOrder, $row['name'], "Twoje zamówienie zostało anulowane, nr zamówienia: ", "Anulowanie zamówienia w sklepie y-kom");
                 }
-                $this->mail($row['email'], $idOrder, $row['name']);
             }
             $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Zmiana statusu zamówienia nr: {$idOrder}");
             return $stmt;
@@ -128,6 +139,13 @@
 
         public function productOrder($idO, $idP){
             $query = 'UPDATE products SET quantity = quantity - (SELECT howMuch FROM productsincarts WHERE idCart = '.
+                '(SELECT idCart FROM orders WHERE idOrder = ?) AND idProduct = ?) WHERE idProduct = ?';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$idO, $idP, $idP]);
+            return;
+        }
+        public function productReturn($idO, $idP){
+            $query = 'UPDATE products SET quantity = quantity + (SELECT howMuch FROM productsincarts WHERE idCart = '.
                 '(SELECT idCart FROM orders WHERE idOrder = ?) AND idProduct = ?) WHERE idProduct = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$idO, $idP, $idP]);
@@ -141,11 +159,10 @@
             return ($st ? TRUE : FALSE);
         }
 
-        public function mail($email = "", $id, $name){
+        public function mail($email = "", $id, $name, $com, $tytul){
             $adres = $email;
-            $tytul = "Potwierdzenie złożenia zamówienia w sklepie y-kom";
             $wiadomosc = "Cześć {$name}<br/>".
-                "Potwierdziliśmy twoje zamówienie nr: {$id}<br/>";
+                "{$com}: {$id}<br/>";
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
             $headers .= "From: y-kom@y-kom.pl" . "\r\n" .

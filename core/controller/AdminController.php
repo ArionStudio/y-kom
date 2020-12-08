@@ -272,10 +272,10 @@
             return $catM->getCategories();
         }
 
-        function register(){
+        function register($how){
             $aM = new AdminModel();
             $aV = new AdminView();
-            $aV->showRegisterAll($aM->getLoginRegister());
+            $aV->showRegisterAll($aM->getLoginRegister($how), $how, FALSE);
         }
         public function homePage(){
             require_once('static/header.php');
@@ -411,9 +411,9 @@
             $sV->showAllSlaves($sM->getSlave($idprem));
         }
 
-        public function actions(){
+        public function actions($how){
             $aM = new AdminModel();
             $aV = new AdminView();
-            $aV->showRegisterAll($aM->getActions(), TRUE);
+            $aV->showRegisterAll($aM->getActions($how), $how, TRUE);
         }
     }

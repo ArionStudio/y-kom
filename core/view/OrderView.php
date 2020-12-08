@@ -106,9 +106,12 @@
                                     $i=6;
                                     foreach($oM->getStatusAll() as $value){
                                         if($DATA[1] == $value[1]) $i = $value[0];
-                                        if($value[0] == $i || $value[0] == $i + 1){
+                                        if($value[0] == 6 && $i != 6){
+                                            echo "<option value={$value[0]}>{$value[1]}</option>";
+                                        }elseif($value[0] == $i || $value[0] == $i + 1){
                                             echo "<option value={$value[0]}>{$value[1]}</option>";
                                         }
+                                        
                                     }
                                 ?>
                             </select>

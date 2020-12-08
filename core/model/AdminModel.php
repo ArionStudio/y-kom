@@ -32,15 +32,29 @@
             return $st;           
         }
 
-        public function getLoginRegister(){//employeelogintime idLogged, idEmployee, Time, IP
-            $query = 'SELECT idLogged, CONCAT(name, " ", surname) as emp, Time, IP from employeelogintime natural join employees ORDER BY idLogged DESC LIMIT 10';
+        public function getLoginRegister($how){//employeelogintime idLogged, idEmployee, Time, IP
+            if(empty($how)){
+                $query = 'SELECT idLogged, CONCAT(name, " ", surname) as emp, Time, IP from employeelogintime natural join employees ORDER BY idLogged DESC LIMIT 10';
+            }elseif($how == "X"){
+                $query = 'SELECT idLogged, CONCAT(name, " ", surname) as emp, Time, IP from employeelogintime natural join employees ORDER BY idLogged DESC';
+            }else{
+                $query = 'SELECT idLogged, CONCAT(name, " ", surname) as emp, Time, IP from employeelogintime natural join employees ORDER BY idLogged DESC LIMIT ' .$how;
+
+            }
             $st = $this->connect()->prepare($query);
             $st->execute();
             return $st->fetchAll();
         }
 
-        public function getActions(){//employeelogintime idLogged, idEmployee, Time, IP
-            $query = 'SELECT idAction as idLogged, CONCAT(name, " ", surname) as emp, Time, Description as IP from actions natural join employees ORDER BY idAction DESC LIMIT 10';
+        public function getActions($how = FALSE){//employeelogintime idLogged, idEmployee, Time, IP
+            if(empty($how)){
+                $query = 'SELECT idAction as idLogged, CONCAT(name, " ", surname) as emp, Time, Description as IP from actions natural join employees ORDER BY idAction DESC LIMIT 10';
+            }elseif($how == "X"){
+                $query = 'SELECT idAction as idLogged, CONCAT(name, " ", surname) as emp, Time, Description as IP from actions natural join employees ORDER BY idAction DESC';
+            }else{
+                $query = 'SELECT idAction as idLogged, CONCAT(name, " ", surname) as emp, Time, Description as IP from actions natural join employees ORDER BY idAction DESC LIMIT ' . intval($how);
+
+            }
             $st = $this->connect()->prepare($query);
             $st->execute();
             return $st->fetchAll();
