@@ -105,49 +105,78 @@
         }
         
         public function updateStatus($idStatus, $idOrder){
-            $query = 'UPDATE orders set idStatus = ? where idOrder = ?';
-            $stmt = $this->connect()->prepare($query);
-            $stmt->execute([$idStatus, $idOrder]);
-            $query = "SELECT name, email FROM orders WHERE idOrder = ?";
-            $st = $this->connect()->prepare($query);
-            $st->execute([$idOrder]);
-            $row = $st->fetch();
-            if($stmt->rowCount()){
-                if($idStatus == 2){
-                    $query = 'SELECT idProduct FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
-                    $stmt = $this->connect()->prepare($query);
-                    $stmt->execute([$idOrder]);
-                    $result = $stmt->fetchAll();
-                    foreach ($result as $value) {
-                        $this->productOrder($idOrder, $value[0]);
+            $pdo = $this->connect();
+            try{
+                $pdo->beginTransaction();
+                $query = 'SELECT idStatus FROM orders WHERE idOrder = ? LIMIT 1';
+                $stmt = $this->connect()->prepare($query);
+                $stmt->execute([$idOrder]);
+                $actualStatus = $stmt->fetch()['idStatus'];
+                $query = 'UPDATE orders set idStatus = ? where idOrder = ?';
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([$idStatus, $idOrder]);
+                $query = "SELECT name, email FROM orders WHERE idOrder = ?";
+                $st = $this->connect()->prepare($query);
+                $st->execute([$idOrder]);
+                $row = $st->fetch();
+                if($stmt->rowCount()){
+                    if($idStatus == 2){
+                        $query = 'SELECT idProduct, howMuch FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute([$idOrder]);
+                        $result = $stmt->fetchAll();
+                        foreach ($result as $value) {
+                            $this->productOrder($idOrder, $value[0], $pdo);
+                        }
+                        
+                        $this->mail($row['email'], $idOrder, $row['name'], "Potwierdziliśmy twoje zamówienie nr", "Potwierdzenie złożenia zamówienia w sklepie y-kom");
+                    }elseif($idStatus == 5){
+                        if($actualStatus > 1){
+                            $query = 'SELECT idProduct FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
+                            $stmt = $pdo->prepare($query);
+                            $stmt->execute([$idOrder]);
+                            $result = $stmt->fetchAll();
+                            foreach ($result as $value) {
+                                $this->productReturn($idOrder, $value[0], $pdo);
+                            }
+                        }
+                        
+                        $this->mail($row['email'], $idOrder, $row['name'], "Twoje zamówienie zostało anulowane, nr zamówienia: ", "Anulowanie zamówienia w sklepie y-kom");
                     }
-                    $this->mail($row['email'], $idOrder, $row['name'], "Potwierdziliśmy twoje zamówienie nr", "Potwierdzenie złożenia zamówienia w sklepie y-kom");
-                }elseif($idStatus == 6){
-                    $query = 'SELECT idProduct FROM productsincarts WHERE idCart = (SELECT idCart FROM orders WHERE idOrder = ?)';
-                    $stmt = $this->connect()->prepare($query);
-                    $stmt->execute([$idOrder]);
-                    $result = $stmt->fetchAll();
-                    foreach ($result as $value) {
-                        $this->productReturn($idOrder, $value[0]);
-                    }
-                    $this->mail($row['email'], $idOrder, $row['name'], "Twoje zamówienie zostało anulowane, nr zamówienia: ", "Anulowanie zamówienia w sklepie y-kom");
                 }
+                $pdo->commit();
+            }catch(PDOException $e){
+                $pdo->rollBack();
+                // echo $e->getCode();
+                if($e->getCode() == '22003'){
+                    $_SESSION['notToMuch'] = "Nie ma wystarczającej ilości produktów w magazynie by zatwierdzić zamówienie";
+                }
+
+                // exit;
             }
-            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Zmiana statusu zamówienia nr: {$idOrder}");
+            
+            $this->addNewRegisterAction($_SESSION['LoggedSlaveData']['id'], "Próba zmiany statusu zamówienia nr: {$idOrder}");
             return $stmt;
         }
 
-        public function productOrder($idO, $idP){
+        public function productOrder($idO, $idP, $pdo){
+            // $query = 'SELECT Quantity, howMuch FROM products natural join productsincarts WHERE idProduct = ? and idCart = (SELECT idCart FROM orders WHERE idOrder = ?) LIMIT 1';
+            // $stmt = $pdo->prepare($query);
+            // $stmt->execute([$idP, $idO]);
+            // $row = $stmt->fetch();
+            // echo $row['howMuch'] . " " . $row['Quantity'];
+            // exit;
+
             $query = 'UPDATE products SET quantity = quantity - (SELECT howMuch FROM productsincarts WHERE idCart = '.
                 '(SELECT idCart FROM orders WHERE idOrder = ?) AND idProduct = ?) WHERE idProduct = ?';
-            $stmt = $this->connect()->prepare($query);
+            $stmt = $pdo->prepare($query);
             $stmt->execute([$idO, $idP, $idP]);
             return;
         }
-        public function productReturn($idO, $idP){
+        public function productReturn($idO, $idP, $pdo){
             $query = 'UPDATE products SET quantity = quantity + (SELECT howMuch FROM productsincarts WHERE idCart = '.
                 '(SELECT idCart FROM orders WHERE idOrder = ?) AND idProduct = ?) WHERE idProduct = ?';
-            $stmt = $this->connect()->prepare($query);
+            $stmt = $pdo->prepare($query);
             $stmt->execute([$idO, $idP, $idP]);
             return;
         }

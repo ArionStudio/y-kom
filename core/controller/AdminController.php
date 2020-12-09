@@ -65,9 +65,12 @@
                         exit;
                     }
                     case "productEditQuantity": {
-                        if(isset($_GET['id']) && !empty($_POST['quantity'])){
-                            $pM = new ProductModel();
-                            $pM->setProductQuantity($_GET['id'], $_POST['quantity']);
+                        if(isset($_GET['id']) && isset($_POST['quantity'])){
+                            if($_POST['quantity'] >= 0 && $_POST['quantity'] != ""){
+                                $pM = new ProductModel();
+                                $pM->setProductQuantity($_GET['id'], $_POST['quantity']);
+                            }
+                            
                         }
                         header("Location: /admin/page/warehouse/");
                         exit;
@@ -90,14 +93,14 @@
                         exit;
                     }
                     case "slaveEdit": {
-                        if(isset(($_GET['id']))){
+                        if(isset($_GET['id'])){
                             $this->editSlave($_GET['id']);
                         }
                         header("Location: /admin/page/slave/");
                         exit;
                     }
                     case "changeStatus": {
-                        if(isset(($_GET['id']))){
+                        if(isset($_GET['id'])){
                             $oM = new OrderModel();
                             $array = $oM->updateStatus($_POST['newStatus'], $_GET['id']);
                         }

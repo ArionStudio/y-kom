@@ -43,6 +43,7 @@
         
             
             <article <?php if($admin) echo 'class="admin"'; ?>>
+                
                 <section>
                     <div class="title">Zamówienie nr <?php echo $DATA[0]; ?></div>
                     <div> z <?php echo date_format(new DateTime($DATA[2]), "d-m-Y") ?></div>
@@ -84,6 +85,16 @@
                         $pV->showProductsFromOrder($oM->getProductsFromOrder($CART[0]), $CART[1]); 
                     ?>
                 </section>
+                <?php
+                    if(isset($_SESSION['notToMuch'])){
+                ?>
+                    <section style="color: red; font-size: 18px;">
+                        <?php echo $_SESSION['notToMuch']; ?>
+                    </section>
+                <?php      
+                    unset($_SESSION['notToMuch']);
+                    }
+                ?>
                 <section>
                     <div>
                         <button class="button">
@@ -106,7 +117,7 @@
                                     $i=6;
                                     foreach($oM->getStatusAll() as $value){
                                         if($DATA[1] == $value[1]) $i = $value[0];
-                                        if($value[0] == 6 && $i != 6){
+                                        if($value[0] == 5 && $i != 5){
                                             echo "<option value={$value[0]}>{$value[1]}</option>";
                                         }elseif($value[0] == $i || $value[0] == $i + 1){
                                             echo "<option value={$value[0]}>{$value[1]}</option>";
@@ -120,6 +131,7 @@
                     <?php } ?>
                     </div>
                 </section>
+                
             </article>
             
             
