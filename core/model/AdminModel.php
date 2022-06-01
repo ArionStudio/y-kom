@@ -26,7 +26,8 @@
         }
 
         public function registerLoginAction($id){
-            $query = 'INSERT INTO employeelogintime(idEmployee, IP) VALUES (?, ?)'; //id, ip
+            //TODO: check Time
+            $query = 'INSERT INTO employeelogintime(idEmployee, IP, Time) VALUES (?, ?, now())'; //id, ip
             $st = $this->connect()->prepare($query);
             $st->execute([$id, $_SERVER['REMOTE_ADDR']]);
             return $st;           

@@ -1,7 +1,8 @@
 <?php
     class OrderModel extends Database{
         public function addOrder($array){
-            $query = 'INSERT INTO orders(idUser, idCart, idStatus, orderData, name, surname, postCity, postCode, adress, phone, email) VALUES (?, ?, 1, null, ?, ?, ?, ?, ?, ?, ?)';
+            $query = 'INSERT INTO orders(idUser, idCart, idStatus, orderData, name, surname, postCity, postCode, adress, phone, email) VALUES (?, ?, 1, now(), ?, ?, ?, ?, ?, ?, ?)';
+            //TODO: check (order Data now)
             $st = $this->connect()->prepare($query);
             $st->execute($array);
             return $st;
@@ -182,7 +183,8 @@
         }
 
         public function addNewRegisterAction($id, $com){
-            $query = 'INSERT INTO actions(idEmployee, description, time) VALUES (?, ?, null)';
+            //TODO: check time
+            $query = 'INSERT INTO actions(idEmployee, description, time) VALUES (?, ?, now())';
             $st = $this->connect()->prepare($query);
             $st->execute([$id, $com]);
             return ($st ? TRUE : FALSE);

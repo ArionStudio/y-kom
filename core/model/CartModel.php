@@ -27,7 +27,8 @@
             return $stmt;
         }
 
-        public function delFromCart($userId, $id){
+        public function delFromCart($userId, $id, $summaryPrice){
+            
             $query = 'DELETE FROM productsincarts where idCart = (select currentCart FRom users where idUser = ?) and idProduct = ?';
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$userId, $id]);
@@ -46,5 +47,18 @@
             $stmt = $this->connect()->prepare($query);
             $stmt->execute([$id]);
             return $stmt->fetch()['summaryPrice'];
+        }
+
+        public function onDeleteProductFromCart($userId, $id){
+            $query = 'UPDATE carts SET summaryPrice = summaryPrice - (select howMuch From productsincarts where idCart = (select currentCart FRom users where idUser = ?)) * (select price from products where idProduct = ?) WHERE idCart = (select currentCart FRom users where idUser = ?)';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$userId, $id, $userId]);
+            return $stmt;
+        }
+        public function onInsertProductToCart($userId, $id, $minus){
+            $query = 'UPDATE carts SET summaryPrice = summaryPrice + (select howMuch From productsincarts where idCart = (select currentCart FRom users where idUser = ?)) ' + ($minus = TRUE ? "-1" : "-1") + '* (select price from products where idProduct = ?) WHERE idCart = (select currentCart FRom users where idUser = ?)';
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$userId, $id, $userId]);
+            return $stmt;
         }
     }

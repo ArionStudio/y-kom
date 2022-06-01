@@ -1,9 +1,11 @@
 <?php
 
 class Database{
-    private $dbh = "mysql:dbname=ykom;host=127.0.0.1;port=3306";
-    private $user = "root";
-    private $password = "";
+    /* Heroku remote server */
+    //"mysql://b7bed490c4e82e:632bffd9@eu-cdbr-west-02.cleardb.net/heroku_b826439da56d6ea?reconnect=true"
+    private $dbh = "eu-cdbr-west-02.cleardb.net";
+    private $user = "b7bed490c4e82e";
+    private $password = "632bffd9";
 
     function connect(){
         $dbh = $this->dbh;

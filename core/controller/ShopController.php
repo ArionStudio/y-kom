@@ -152,6 +152,7 @@
             if(isset($_SESSION['loggedUserData'])){
                 $cM = new CartModel();
                 $cM->addToCart($_SESSION['loggedUserData']['id'], $_GET['id']);
+                $cM->onInsertProductToCart($_SESSION['loggedUserData']['id'], $_GET['id'], $id == strtok($id, "-"));
             }else{
                 if(isset($_SESSION['cartUnloggedUser'])){
                     $flag = TRUE;
@@ -181,6 +182,7 @@
         public function delFromCart(){
             if(isset($_SESSION['loggedUserData'])){
                 $cM = new CartModel();
+                $cM->onDeleteProductFromCartonDeleteProductFromCart($_SESSION['loggedUserData']['id'], $_GET['id']);
                 $cM->delFromCart($_SESSION['loggedUserData']['id'], $_GET['id']);
             }else{
                 if(isset($_SESSION['cartUnloggedUser'])){
