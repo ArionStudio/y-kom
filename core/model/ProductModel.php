@@ -207,7 +207,7 @@
             return $stmt;
         }
         public function addNewRegisterAction($id, $com){
-            $query = 'INSERT INTO actions(idEmployee, description, time) VALUES (?, ?, null)';
+            $query = 'INSERT INTO actions(idEmployee, description, time) VALUES (?, ?, now())';
             $st = $this->connect()->prepare($query);
             $st->execute([$id, $com]);
             return ($st ? TRUE : FALSE);
